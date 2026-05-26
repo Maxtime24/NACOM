@@ -1,0 +1,81 @@
+// This is your Prisma schema file.
+// Learn more about it: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String   @unique
+  password  String   // bcrypt hashed
+  school    String
+  grade     Int
+  role      Role     @default(STUDENT)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  posts   Post[]
+  answers Answer[]
+
+  @@index([email])
+}
+
+model Category {
+  id    Int    @id @default(autoincrement())
+  name  String @unique
+  icon  String?
+
+  posts Post[]
+}
+
+model Post {
+  id         Int      @id @default(autoincrement())
+  title      String
+  content    String   @db.Text
+  views      Int      @default(0)
+  isResolved Boolean  @default(false)
+  tags       String?  // JSON 배열 문자열로 저장
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  author     User     @relation(fields: [authorId], references: [id])
+  authorId   Int
+
+  category   Category @relation(fields: [categoryId], references: [id])
+  categoryId Int
+
+  answers Answer[]
+
+  @@index([authorId])
+  @@index([categoryId])
+}
+
+model Answer {
+  id         Int      @id @default(autoincrement())
+  content    String   @db.Text
+  isAccepted Boolean  @default(false)
+  upvotes    Int      @default(0)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  author   User @relation(fields: [authorId], references: [id])
+  authorId Int
+
+  post   Post @relation(fields: [postId], references: [id], onDelete: Cascade)
+  postId Int
+
+  @@index([postId])
+  @@index([authorId])
+}
+
+enum Role {
+  STUDENT
+  ADMIN
+}
