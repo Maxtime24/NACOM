@@ -5,16 +5,24 @@ import { authenticate, AuthRequest } from '../middleware/auth';
 const router = Router();
 
 // -----------------------------------------------
-// GET /api/posts - 게시글 목록 조회
+// GET /api/posts - 게시글 목록 조회 (검색 기능 포함)
 // -----------------------------------------------
 router.get('/', async (req: Request, res: Response): Promise<void> => {
-  const { categoryId, resolved, page = '1', limit = '20' } = req.query;
+  const { categoryId, resolved, search, page = '1', limit = '20' } = req.query;
 
   const skip = (Number(page) - 1) * Number(limit);
 
   const where: Record<string, unknown> = {};
   if (categoryId) where.categoryId = Number(categoryId);
   if (resolved !== undefined) where.isResolved = resolved === 'true';
+  
+  // 검색 기능: 제목 또는 내용에서 검색
+  if (search) {
+    where.OR = [
+      { title: { contains: String(search) } },
+      { content: { contains: String(search) } },
+    ];
+  }
 
   const [posts, total] = await Promise.all([
     prisma.post.findMany({
@@ -46,6 +54,44 @@ router.get('/', async (req: Request, res: Response): Promise<void> => {
       answerCount: p._count.answers,
     })),
     meta: { total, page: Number(page), limit: Number(limit) },
+  });
+});
+
+// -----------------------------------------------
+// GET /api/posts/my/notifications - 내 게시물에 달린 답변 알림 (인증 필요)
+// -----------------------------------------------
+router.get('/my/notifications', authenticate, async (req: AuthRequest, res: Response): Promise<void> => {
+  const userId = req.user!.id;
+
+  // 내가 작성한 게시물들을 조회
+  const myPosts = await prisma.post.findMany({
+    where: { authorId: userId },
+    select: { id: true },
+  });
+
+  const myPostIds = myPosts.map(p => p.id);
+
+  // 내 게시물에 달린 모든 답변들 (최신순)
+  const notifications = await prisma.answer.findMany({
+    where: { postId: { in: myPostIds } },
+    orderBy: { createdAt: 'desc' },
+    include: {
+      author: { select: { id: true, name: true, school: true, grade: true } },
+      post: { select: { id: true, title: true } },
+    },
+  });
+
+  res.json({
+    data: notifications.map(n => ({
+      id: n.id,
+      content: n.content,
+      isAccepted: n.isAccepted,
+      upvotes: n.upvotes,
+      createdAt: n.createdAt,
+      author: n.author,
+      post: n.post,
+    })),
+    total: notifications.length,
   });
 });
 
@@ -87,11 +133,19 @@ router.get('/:id', async (req: Request, res: Response): Promise<void> => {
 // -----------------------------------------------
 // POST /api/posts - 게시글 작성 (인증 필요)
 // -----------------------------------------------
+// POST /api/posts - 게시글 작성 (인증 필요, 이미지 첨부 가능)
+// -----------------------------------------------
 router.post('/', authenticate, async (req: AuthRequest, res: Response): Promise<void> => {
-  const { title, content, categoryId, tags } = req.body;
+  const { title, content, categoryId, tags, imageUrl } = req.body;
 
   if (!title || !content || !categoryId) {
     res.status(400).json({ message: '제목, 내용, 카테고리는 필수입니다.' });
+    return;
+  }
+
+  // 이미지 크기 제한 (Base64로 인코딩된 경우 약 5MB 제한)
+  if (imageUrl && imageUrl.length > 5 * 1024 * 1024) {
+    res.status(400).json({ message: '이미지 크기가 너무 큽니다. (최대 5MB)' });
     return;
   }
 
@@ -102,6 +156,7 @@ router.post('/', authenticate, async (req: AuthRequest, res: Response): Promise<
       categoryId: Number(categoryId),
       authorId: req.user!.id,
       tags: tags ? JSON.stringify(tags) : null,
+      imageUrl: imageUrl || null,
     },
     include: {
       author: { select: { id: true, name: true, school: true, grade: true } },

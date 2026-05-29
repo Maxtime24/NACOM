@@ -17,8 +17,10 @@ router.post('/register', async (req: Request, res: Response): Promise<void> => {
     return;
   }
 
-  if (!email.endsWith('.hs.kr')) {
-    res.status(400).json({ message: '학교 이메일(@학교명.hs.kr)만 가입 가능합니다.' });
+  // 이메일 형식 검사
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    res.status(400).json({ message: '올바른 이메일 형식을 입력해주세요.' });
     return;
   }
 
