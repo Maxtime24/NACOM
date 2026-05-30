@@ -142,6 +142,7 @@ exports.Prisma.PostScalarFieldEnum = {
   id: 'id',
   title: 'title',
   content: 'content',
+  imageUrl: 'imageUrl',
   views: 'views',
   isResolved: 'isResolved',
   tags: 'tags',
@@ -187,6 +188,7 @@ exports.Prisma.CategoryOrderByRelevanceFieldEnum = {
 exports.Prisma.PostOrderByRelevanceFieldEnum = {
   title: 'title',
   content: 'content',
+  imageUrl: 'imageUrl',
   tags: 'tags'
 };
 

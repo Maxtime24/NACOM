@@ -39,6 +39,7 @@ model Post {
   id         Int      @id @default(autoincrement())
   title      String
   content    String   @db.Text
+  imageUrl   String?  @db.MediumText // Base64 이미지 저장
   views      Int      @default(0)
   isResolved Boolean  @default(false)
   tags       String? // JSON 배열 문자열로 저장

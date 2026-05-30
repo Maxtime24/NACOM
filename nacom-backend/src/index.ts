@@ -22,8 +22,8 @@ app.use(cors({
   ],
   credentials: true,
 }));
-app.use(express.json({ limit: '5mb' }));   // 보안: 요청 크기 제한
-app.use(express.urlencoded({ extended: true, limit: '5mb' }));
+app.use(express.json({ limit: '15mb' }));  // 보안: 요청 크기 제한 (base64 이미지 10MB 대응)
+app.use(express.urlencoded({ extended: true, limit: '15mb' }));
 
 // -----------------------------------------------
 // API Routes

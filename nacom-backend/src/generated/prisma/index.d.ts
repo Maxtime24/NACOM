@@ -3297,6 +3297,7 @@ export namespace Prisma {
     id: number | null
     title: string | null
     content: string | null
+    imageUrl: string | null
     views: number | null
     isResolved: boolean | null
     tags: string | null
@@ -3310,6 +3311,7 @@ export namespace Prisma {
     id: number | null
     title: string | null
     content: string | null
+    imageUrl: string | null
     views: number | null
     isResolved: boolean | null
     tags: string | null
@@ -3323,6 +3325,7 @@ export namespace Prisma {
     id: number
     title: number
     content: number
+    imageUrl: number
     views: number
     isResolved: number
     tags: number
@@ -3352,6 +3355,7 @@ export namespace Prisma {
     id?: true
     title?: true
     content?: true
+    imageUrl?: true
     views?: true
     isResolved?: true
     tags?: true
@@ -3365,6 +3369,7 @@ export namespace Prisma {
     id?: true
     title?: true
     content?: true
+    imageUrl?: true
     views?: true
     isResolved?: true
     tags?: true
@@ -3378,6 +3383,7 @@ export namespace Prisma {
     id?: true
     title?: true
     content?: true
+    imageUrl?: true
     views?: true
     isResolved?: true
     tags?: true
@@ -3478,6 +3484,7 @@ export namespace Prisma {
     id: number
     title: string
     content: string
+    imageUrl: string | null
     views: number
     isResolved: boolean
     tags: string | null
@@ -3510,6 +3517,7 @@ export namespace Prisma {
     id?: boolean
     title?: boolean
     content?: boolean
+    imageUrl?: boolean
     views?: boolean
     isResolved?: boolean
     tags?: boolean
@@ -3529,6 +3537,7 @@ export namespace Prisma {
     id?: boolean
     title?: boolean
     content?: boolean
+    imageUrl?: boolean
     views?: boolean
     isResolved?: boolean
     tags?: boolean
@@ -3538,7 +3547,7 @@ export namespace Prisma {
     categoryId?: boolean
   }
 
-  export type PostOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "content" | "views" | "isResolved" | "tags" | "createdAt" | "updatedAt" | "authorId" | "categoryId", ExtArgs["result"]["post"]>
+  export type PostOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "content" | "imageUrl" | "views" | "isResolved" | "tags" | "createdAt" | "updatedAt" | "authorId" | "categoryId", ExtArgs["result"]["post"]>
   export type PostInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     author?: boolean | UserDefaultArgs<ExtArgs>
     category?: boolean | CategoryDefaultArgs<ExtArgs>
@@ -3557,6 +3566,7 @@ export namespace Prisma {
       id: number
       title: string
       content: string
+      imageUrl: string | null
       views: number
       isResolved: boolean
       tags: string | null
@@ -3939,6 +3949,7 @@ export namespace Prisma {
     readonly id: FieldRef<"Post", 'Int'>
     readonly title: FieldRef<"Post", 'String'>
     readonly content: FieldRef<"Post", 'String'>
+    readonly imageUrl: FieldRef<"Post", 'String'>
     readonly views: FieldRef<"Post", 'Int'>
     readonly isResolved: FieldRef<"Post", 'Boolean'>
     readonly tags: FieldRef<"Post", 'String'>
@@ -5395,6 +5406,7 @@ export namespace Prisma {
     id: 'id',
     title: 'title',
     content: 'content',
+    imageUrl: 'imageUrl',
     views: 'views',
     isResolved: 'isResolved',
     tags: 'tags',
@@ -5458,6 +5470,7 @@ export namespace Prisma {
   export const PostOrderByRelevanceFieldEnum: {
     title: 'title',
     content: 'content',
+    imageUrl: 'imageUrl',
     tags: 'tags'
   };
 
@@ -5657,6 +5670,7 @@ export namespace Prisma {
     id?: IntFilter<"Post"> | number
     title?: StringFilter<"Post"> | string
     content?: StringFilter<"Post"> | string
+    imageUrl?: StringNullableFilter<"Post"> | string | null
     views?: IntFilter<"Post"> | number
     isResolved?: BoolFilter<"Post"> | boolean
     tags?: StringNullableFilter<"Post"> | string | null
@@ -5673,6 +5687,7 @@ export namespace Prisma {
     id?: SortOrder
     title?: SortOrder
     content?: SortOrder
+    imageUrl?: SortOrderInput | SortOrder
     views?: SortOrder
     isResolved?: SortOrder
     tags?: SortOrderInput | SortOrder
@@ -5693,6 +5708,7 @@ export namespace Prisma {
     NOT?: PostWhereInput | PostWhereInput[]
     title?: StringFilter<"Post"> | string
     content?: StringFilter<"Post"> | string
+    imageUrl?: StringNullableFilter<"Post"> | string | null
     views?: IntFilter<"Post"> | number
     isResolved?: BoolFilter<"Post"> | boolean
     tags?: StringNullableFilter<"Post"> | string | null
@@ -5709,6 +5725,7 @@ export namespace Prisma {
     id?: SortOrder
     title?: SortOrder
     content?: SortOrder
+    imageUrl?: SortOrderInput | SortOrder
     views?: SortOrder
     isResolved?: SortOrder
     tags?: SortOrderInput | SortOrder
@@ -5730,6 +5747,7 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"Post"> | number
     title?: StringWithAggregatesFilter<"Post"> | string
     content?: StringWithAggregatesFilter<"Post"> | string
+    imageUrl?: StringNullableWithAggregatesFilter<"Post"> | string | null
     views?: IntWithAggregatesFilter<"Post"> | number
     isResolved?: BoolWithAggregatesFilter<"Post"> | boolean
     tags?: StringNullableWithAggregatesFilter<"Post"> | string | null
@@ -5950,6 +5968,7 @@ export namespace Prisma {
   export type PostCreateInput = {
     title: string
     content: string
+    imageUrl?: string | null
     views?: number
     isResolved?: boolean
     tags?: string | null
@@ -5964,6 +5983,7 @@ export namespace Prisma {
     id?: number
     title: string
     content: string
+    imageUrl?: string | null
     views?: number
     isResolved?: boolean
     tags?: string | null
@@ -5977,6 +5997,7 @@ export namespace Prisma {
   export type PostUpdateInput = {
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     views?: IntFieldUpdateOperationsInput | number
     isResolved?: BoolFieldUpdateOperationsInput | boolean
     tags?: NullableStringFieldUpdateOperationsInput | string | null
@@ -5991,6 +6012,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     views?: IntFieldUpdateOperationsInput | number
     isResolved?: BoolFieldUpdateOperationsInput | boolean
     tags?: NullableStringFieldUpdateOperationsInput | string | null
@@ -6005,6 +6027,7 @@ export namespace Prisma {
     id?: number
     title: string
     content: string
+    imageUrl?: string | null
     views?: number
     isResolved?: boolean
     tags?: string | null
@@ -6017,6 +6040,7 @@ export namespace Prisma {
   export type PostUpdateManyMutationInput = {
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     views?: IntFieldUpdateOperationsInput | number
     isResolved?: BoolFieldUpdateOperationsInput | boolean
     tags?: NullableStringFieldUpdateOperationsInput | string | null
@@ -6028,6 +6052,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     views?: IntFieldUpdateOperationsInput | number
     isResolved?: BoolFieldUpdateOperationsInput | boolean
     tags?: NullableStringFieldUpdateOperationsInput | string | null
@@ -6378,6 +6403,7 @@ export namespace Prisma {
     id?: SortOrder
     title?: SortOrder
     content?: SortOrder
+    imageUrl?: SortOrder
     views?: SortOrder
     isResolved?: SortOrder
     tags?: SortOrder
@@ -6398,6 +6424,7 @@ export namespace Prisma {
     id?: SortOrder
     title?: SortOrder
     content?: SortOrder
+    imageUrl?: SortOrder
     views?: SortOrder
     isResolved?: SortOrder
     tags?: SortOrder
@@ -6411,6 +6438,7 @@ export namespace Prisma {
     id?: SortOrder
     title?: SortOrder
     content?: SortOrder
+    imageUrl?: SortOrder
     views?: SortOrder
     isResolved?: SortOrder
     tags?: SortOrder
@@ -6918,6 +6946,7 @@ export namespace Prisma {
   export type PostCreateWithoutAuthorInput = {
     title: string
     content: string
+    imageUrl?: string | null
     views?: number
     isResolved?: boolean
     tags?: string | null
@@ -6931,6 +6960,7 @@ export namespace Prisma {
     id?: number
     title: string
     content: string
+    imageUrl?: string | null
     views?: number
     isResolved?: boolean
     tags?: string | null
@@ -7002,6 +7032,7 @@ export namespace Prisma {
     id?: IntFilter<"Post"> | number
     title?: StringFilter<"Post"> | string
     content?: StringFilter<"Post"> | string
+    imageUrl?: StringNullableFilter<"Post"> | string | null
     views?: IntFilter<"Post"> | number
     isResolved?: BoolFilter<"Post"> | boolean
     tags?: StringNullableFilter<"Post"> | string | null
@@ -7044,6 +7075,7 @@ export namespace Prisma {
   export type PostCreateWithoutCategoryInput = {
     title: string
     content: string
+    imageUrl?: string | null
     views?: number
     isResolved?: boolean
     tags?: string | null
@@ -7057,6 +7089,7 @@ export namespace Prisma {
     id?: number
     title: string
     content: string
+    imageUrl?: string | null
     views?: number
     isResolved?: boolean
     tags?: string | null
@@ -7274,6 +7307,7 @@ export namespace Prisma {
   export type PostCreateWithoutAnswersInput = {
     title: string
     content: string
+    imageUrl?: string | null
     views?: number
     isResolved?: boolean
     tags?: string | null
@@ -7287,6 +7321,7 @@ export namespace Prisma {
     id?: number
     title: string
     content: string
+    imageUrl?: string | null
     views?: number
     isResolved?: boolean
     tags?: string | null
@@ -7351,6 +7386,7 @@ export namespace Prisma {
   export type PostUpdateWithoutAnswersInput = {
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     views?: IntFieldUpdateOperationsInput | number
     isResolved?: BoolFieldUpdateOperationsInput | boolean
     tags?: NullableStringFieldUpdateOperationsInput | string | null
@@ -7364,6 +7400,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     views?: IntFieldUpdateOperationsInput | number
     isResolved?: BoolFieldUpdateOperationsInput | boolean
     tags?: NullableStringFieldUpdateOperationsInput | string | null
@@ -7377,6 +7414,7 @@ export namespace Prisma {
     id?: number
     title: string
     content: string
+    imageUrl?: string | null
     views?: number
     isResolved?: boolean
     tags?: string | null
@@ -7398,6 +7436,7 @@ export namespace Prisma {
   export type PostUpdateWithoutAuthorInput = {
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     views?: IntFieldUpdateOperationsInput | number
     isResolved?: BoolFieldUpdateOperationsInput | boolean
     tags?: NullableStringFieldUpdateOperationsInput | string | null
@@ -7411,6 +7450,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     views?: IntFieldUpdateOperationsInput | number
     isResolved?: BoolFieldUpdateOperationsInput | boolean
     tags?: NullableStringFieldUpdateOperationsInput | string | null
@@ -7424,6 +7464,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     views?: IntFieldUpdateOperationsInput | number
     isResolved?: BoolFieldUpdateOperationsInput | boolean
     tags?: NullableStringFieldUpdateOperationsInput | string | null
@@ -7465,6 +7506,7 @@ export namespace Prisma {
     id?: number
     title: string
     content: string
+    imageUrl?: string | null
     views?: number
     isResolved?: boolean
     tags?: string | null
@@ -7476,6 +7518,7 @@ export namespace Prisma {
   export type PostUpdateWithoutCategoryInput = {
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     views?: IntFieldUpdateOperationsInput | number
     isResolved?: BoolFieldUpdateOperationsInput | boolean
     tags?: NullableStringFieldUpdateOperationsInput | string | null
@@ -7489,6 +7532,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     views?: IntFieldUpdateOperationsInput | number
     isResolved?: BoolFieldUpdateOperationsInput | boolean
     tags?: NullableStringFieldUpdateOperationsInput | string | null
@@ -7502,6 +7546,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     views?: IntFieldUpdateOperationsInput | number
     isResolved?: BoolFieldUpdateOperationsInput | boolean
     tags?: NullableStringFieldUpdateOperationsInput | string | null

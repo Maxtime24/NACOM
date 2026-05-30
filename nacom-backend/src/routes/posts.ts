@@ -143,9 +143,9 @@ router.post('/', authenticate, async (req: AuthRequest, res: Response): Promise<
     return;
   }
 
-  // 이미지 크기 제한 (Base64로 인코딩된 경우 약 5MB 제한)
-  if (imageUrl && imageUrl.length > 5 * 1024 * 1024) {
-    res.status(400).json({ message: '이미지 크기가 너무 큽니다. (최대 5MB)' });
+  // 이미지 크기 제한 (Base64로 인코딩된 경우 약 10MB 제한)
+  if (imageUrl && imageUrl.length > 10 * 1024 * 1024) {
+    res.status(400).json({ message: '이미지 크기가 너무 큽니다. (최대 10MB)' });
     return;
   }
 
