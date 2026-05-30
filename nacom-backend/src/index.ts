@@ -7,7 +7,7 @@ import answersRouter from './routes/answers';
 import categoriesRouter from './routes/categories';
 
 const app = express();
-const PORT = process.env.PORT ?? 3001;
+const PORT = parseInt(process.env.PORT ?? '3001', 10);
 const FRONTEND_URL = process.env.FRONTEND_URL ?? 'http://localhost:8081';
 
 // -----------------------------------------------
@@ -18,6 +18,7 @@ app.use(cors({
     FRONTEND_URL,
     /^http:\/\/localhost:\d+$/,    // 로컬 개발 환경 전체 허용
     /^http:\/\/192\.168\.\d+\.\d+:\d+$/, // 로컬 네트워크 (Expo Go)
+    /^http:\/\/\d+\.\d+\.\d+\.\d+:\d+$/, // 모든 외부 IP 허용 (테스트용)
   ],
   credentials: true,
 }));
@@ -51,8 +52,8 @@ app.use((err: Error, _req: express.Request, res: express.Response, _next: expres
   });
 });
 
-app.listen(PORT, () => {
-  console.log(`✅ NACOM API Server running on http://localhost:${PORT}`);
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`✅ NACOM API Server running on http://0.0.0.0:${PORT} (accessible at http://13.209.42.194:${PORT})`);
 });
 
 export default app;
