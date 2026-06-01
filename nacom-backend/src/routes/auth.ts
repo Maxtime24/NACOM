@@ -2,6 +2,7 @@ import { Router, Request, Response } from 'express';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import prisma from '../lib/prisma';
+import { refillTicketsIfNeeded } from '../lib/ticketSystem';
 
 const router = Router();
 
@@ -40,6 +41,16 @@ router.post('/register', async (req: Request, res: Response): Promise<void> => {
 
   const user = await prisma.user.create({
     data: { name, email, password: hashedPassword, school, grade: Number(grade) },
+    select: {
+      id: true,
+      name: true,
+      email: true,
+      school: true,
+      grade: true,
+      role: true,
+      points: true,
+      questionTickets: true,
+    }
   });
 
   const secret = process.env.JWT_SECRET!;
@@ -47,7 +58,16 @@ router.post('/register', async (req: Request, res: Response): Promise<void> => {
 
   res.status(201).json({
     token,
-    user: { id: user.id, name: user.name, email: user.email, school: user.school, grade: user.grade, role: user.role },
+    user: {
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      school: user.school,
+      grade: user.grade,
+      role: user.role,
+      points: user.points,
+      questionTickets: user.questionTickets,
+    },
   });
 });
 
@@ -62,7 +82,15 @@ router.post('/login', async (req: Request, res: Response): Promise<void> => {
     return;
   }
 
-  const user = await prisma.user.findUnique({ where: { email } });
+  const user = await prisma.user.findUnique({ 
+    where: { email },
+    select: {
+      id: true,
+      password: true,
+      email: true,
+      role: true,
+    }
+  });
 
   // 보안: 이메일/비밀번호 불일치를 동일한 메시지로 처리 (계정 열거 공격 방지)
   if (!user || !(await bcrypt.compare(password, user.password))) {
@@ -70,12 +98,39 @@ router.post('/login', async (req: Request, res: Response): Promise<void> => {
     return;
   }
 
+  // 티켓 자동 재충전
+  const ticketCount = await refillTicketsIfNeeded(user.id);
+
   const secret = process.env.JWT_SECRET!;
   const token = jwt.sign({ id: user.id, email: user.email, role: user.role }, secret, { expiresIn: '7d' });
 
+  // 업데이트된 사용자 정보 조회
+  const updatedUser = await prisma.user.findUnique({ 
+    where: { id: user.id },
+    select: {
+      id: true,
+      name: true,
+      email: true,
+      school: true,
+      grade: true,
+      role: true,
+      points: true,
+      questionTickets: true,
+    }
+  });
+
   res.json({
     token,
-    user: { id: user.id, name: user.name, email: user.email, school: user.school, grade: user.grade, role: user.role },
+    user: {
+      id: updatedUser!.id,
+      name: updatedUser!.name,
+      email: updatedUser!.email,
+      school: updatedUser!.school,
+      grade: updatedUser!.grade,
+      role: updatedUser!.role,
+      points: updatedUser!.points,
+      questionTickets: updatedUser!.questionTickets,
+    },
   });
 });
 

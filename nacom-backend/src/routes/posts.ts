@@ -1,6 +1,7 @@
 import { Router, Request, Response } from 'express';
 import prisma from '../lib/prisma';
 import { authenticate, AuthRequest } from '../middleware/auth';
+import { useTicket, addPoints, refillTicketsIfNeeded } from '../lib/ticketSystem';
 
 const router = Router();
 
@@ -137,6 +138,7 @@ router.get('/:id', async (req: Request, res: Response): Promise<void> => {
 // -----------------------------------------------
 router.post('/', authenticate, async (req: AuthRequest, res: Response): Promise<void> => {
   const { title, content, categoryId, tags, imageUrl } = req.body;
+  const userId = req.user!.id;
 
   if (!title || !content || !categoryId) {
     res.status(400).json({ message: '제목, 내용, 카테고리는 필수입니다.' });
@@ -149,12 +151,19 @@ router.post('/', authenticate, async (req: AuthRequest, res: Response): Promise<
     return;
   }
 
+  // 티켓 확인 및 소비
+  const hasTicket = await useTicket(userId);
+  if (!hasTicket) {
+    res.status(429).json({ message: '질문 티켓이 부족합니다. 광고를 시청하거나 5분을 기다려주세요.' });
+    return;
+  }
+
   const post = await prisma.post.create({
     data: {
       title: title.trim(),
       content: content.trim(),
       categoryId: Number(categoryId),
-      authorId: req.user!.id,
+      authorId: userId,
       tags: tags ? JSON.stringify(tags) : null,
       imageUrl: imageUrl || null,
     },
@@ -163,6 +172,9 @@ router.post('/', authenticate, async (req: AuthRequest, res: Response): Promise<
       category: true,
     },
   });
+
+  // 질문 작성 포인트 부여 (5점)
+  await addPoints(userId, 5, '질문 작성');
 
   res.status(201).json({ ...post, tags: tags ?? [], answerCount: 0 });
 });
@@ -173,6 +185,7 @@ router.post('/', authenticate, async (req: AuthRequest, res: Response): Promise<
 router.post('/:id/answers', authenticate, async (req: AuthRequest, res: Response): Promise<void> => {
   const postId = Number(req.params.id);
   const { content } = req.body;
+  const userId = req.user!.id;
 
   if (!content) {
     res.status(400).json({ message: '답변 내용을 입력해주세요.' });
@@ -189,12 +202,15 @@ router.post('/:id/answers', authenticate, async (req: AuthRequest, res: Response
     data: {
       content: content.trim(),
       postId,
-      authorId: req.user!.id,
+      authorId: userId,
     },
     include: {
       author: { select: { id: true, name: true, school: true, grade: true } },
     },
   });
+
+  // 답변 작성 포인트 부여 (3점)
+  await addPoints(userId, 3, '답변 작성');
 
   res.status(201).json(answer);
 });

@@ -128,6 +128,9 @@ exports.Prisma.UserScalarFieldEnum = {
   school: 'school',
   grade: 'grade',
   role: 'role',
+  points: 'points',
+  questionTickets: 'questionTickets',
+  lastTicketRefillAt: 'lastTicketRefillAt',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -163,9 +166,22 @@ exports.Prisma.AnswerScalarFieldEnum = {
   postId: 'postId'
 };
 
+exports.Prisma.TicketRefillHistoryScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  amount: 'amount',
+  reason: 'reason',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
+};
+
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
 };
 
 exports.Prisma.UserOrderByRelevanceFieldEnum = {
@@ -173,11 +189,6 @@ exports.Prisma.UserOrderByRelevanceFieldEnum = {
   email: 'email',
   password: 'password',
   school: 'school'
-};
-
-exports.Prisma.NullsOrder = {
-  first: 'first',
-  last: 'last'
 };
 
 exports.Prisma.CategoryOrderByRelevanceFieldEnum = {
@@ -195,6 +206,10 @@ exports.Prisma.PostOrderByRelevanceFieldEnum = {
 exports.Prisma.AnswerOrderByRelevanceFieldEnum = {
   content: 'content'
 };
+
+exports.Prisma.TicketRefillHistoryOrderByRelevanceFieldEnum = {
+  reason: 'reason'
+};
 exports.Role = exports.$Enums.Role = {
   STUDENT: 'STUDENT',
   ADMIN: 'ADMIN'
@@ -204,7 +219,8 @@ exports.Prisma.ModelName = {
   User: 'User',
   Category: 'Category',
   Post: 'Post',
-  Answer: 'Answer'
+  Answer: 'Answer',
+  TicketRefillHistory: 'TicketRefillHistory'
 };
 
 /**

@@ -11,18 +11,25 @@ datasource db {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  name      String
-  email     String   @unique
-  password  String // bcrypt hashed
-  school    String
-  grade     Int
-  role      Role     @default(STUDENT)
+  id       Int    @id @default(autoincrement())
+  name     String
+  email    String @unique
+  password String // bcrypt hashed
+  school   String
+  grade    Int
+  role     Role   @default(STUDENT)
+
+  // 포인트 및 티켓 시스템
+  points             Int       @default(0) // 내공
+  questionTickets    Int       @default(5) // 질문 티켓 (최대 10)
+  lastTicketRefillAt DateTime? // 마지막 티켓 충전 시간
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  posts   Post[]
-  answers Answer[]
+  posts               Post[]
+  answers             Answer[]
+  ticketRefillHistory TicketRefillHistory[]
 
   @@index([email])
 }
@@ -79,4 +86,18 @@ model Answer {
 enum Role {
   STUDENT
   ADMIN
+}
+
+// 티켓 재충전 기록 모델
+model TicketRefillHistory {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  amount    Int // 추가 티켓 수
+  reason    String // "AUTO" (자동), "AD" (광고 시청)
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([createdAt])
 }

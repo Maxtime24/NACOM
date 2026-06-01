@@ -1,8 +1,27 @@
 import { Router, Response } from 'express';
 import prisma from '../lib/prisma';
 import { authenticate, AuthRequest } from '../middleware/auth';
+import { addPoints, rewardTicketsForAd } from '../lib/ticketSystem';
 
 const router = Router();
+
+// -----------------------------------------------
+// POST /api/answers/watch-ad - 광고 시청 보상 (인증 필요) - 먼저 정의!
+// -----------------------------------------------
+router.post('/watch-ad', authenticate, async (req: AuthRequest, res: Response): Promise<void> => {
+  const userId = req.user!.id;
+
+  try {
+    const newTicketCount = await rewardTicketsForAd(userId);
+    
+    res.json({
+      message: '광고 시청 완료! 2개의 티켓을 획득했습니다.',
+      questionTickets: newTicketCount,
+    });
+  } catch (error) {
+    res.status(500).json({ message: '티켓 충전에 실패했습니다.' });
+  }
+});
 
 // -----------------------------------------------
 // PATCH /api/answers/:id/accept - 답변 채택 (작성자만)
@@ -41,6 +60,9 @@ router.patch('/:id/accept', authenticate, async (req: AuthRequest, res: Response
     prisma.answer.update({ where: { id: answerId }, data: { isAccepted: true } }),
     prisma.post.update({ where: { id: answer.postId }, data: { isResolved: true } }),
   ]);
+
+  // 답변 작성자에게 채택 보상 포인트 부여 (10점)
+  await addPoints(answer.authorId, 10, '답변 채택 보상');
 
   res.json(updatedAnswer);
 });

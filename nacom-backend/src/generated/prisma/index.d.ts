@@ -33,6 +33,11 @@ export type Post = $Result.DefaultSelection<Prisma.$PostPayload>
  * 
  */
 export type Answer = $Result.DefaultSelection<Prisma.$AnswerPayload>
+/**
+ * Model TicketRefillHistory
+ * 
+ */
+export type TicketRefillHistory = $Result.DefaultSelection<Prisma.$TicketRefillHistoryPayload>
 
 /**
  * Enums
@@ -211,6 +216,16 @@ export class PrismaClient<
     * ```
     */
   get answer(): Prisma.AnswerDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.ticketRefillHistory`: Exposes CRUD operations for the **TicketRefillHistory** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more TicketRefillHistories
+    * const ticketRefillHistories = await prisma.ticketRefillHistory.findMany()
+    * ```
+    */
+  get ticketRefillHistory(): Prisma.TicketRefillHistoryDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -648,7 +663,8 @@ export namespace Prisma {
     User: 'User',
     Category: 'Category',
     Post: 'Post',
-    Answer: 'Answer'
+    Answer: 'Answer',
+    TicketRefillHistory: 'TicketRefillHistory'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -664,7 +680,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "category" | "post" | "answer"
+      modelProps: "user" | "category" | "post" | "answer" | "ticketRefillHistory"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -932,6 +948,72 @@ export namespace Prisma {
           }
         }
       }
+      TicketRefillHistory: {
+        payload: Prisma.$TicketRefillHistoryPayload<ExtArgs>
+        fields: Prisma.TicketRefillHistoryFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.TicketRefillHistoryFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TicketRefillHistoryPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.TicketRefillHistoryFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TicketRefillHistoryPayload>
+          }
+          findFirst: {
+            args: Prisma.TicketRefillHistoryFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TicketRefillHistoryPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.TicketRefillHistoryFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TicketRefillHistoryPayload>
+          }
+          findMany: {
+            args: Prisma.TicketRefillHistoryFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TicketRefillHistoryPayload>[]
+          }
+          create: {
+            args: Prisma.TicketRefillHistoryCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TicketRefillHistoryPayload>
+          }
+          createMany: {
+            args: Prisma.TicketRefillHistoryCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.TicketRefillHistoryDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TicketRefillHistoryPayload>
+          }
+          update: {
+            args: Prisma.TicketRefillHistoryUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TicketRefillHistoryPayload>
+          }
+          deleteMany: {
+            args: Prisma.TicketRefillHistoryDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.TicketRefillHistoryUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.TicketRefillHistoryUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TicketRefillHistoryPayload>
+          }
+          aggregate: {
+            args: Prisma.TicketRefillHistoryAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateTicketRefillHistory>
+          }
+          groupBy: {
+            args: Prisma.TicketRefillHistoryGroupByArgs<ExtArgs>
+            result: $Utils.Optional<TicketRefillHistoryGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.TicketRefillHistoryCountArgs<ExtArgs>
+            result: $Utils.Optional<TicketRefillHistoryCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1044,6 +1126,7 @@ export namespace Prisma {
     category?: CategoryOmit
     post?: PostOmit
     answer?: AnswerOmit
+    ticketRefillHistory?: TicketRefillHistoryOmit
   }
 
   /* Types for Logging */
@@ -1126,11 +1209,13 @@ export namespace Prisma {
   export type UserCountOutputType = {
     posts: number
     answers: number
+    ticketRefillHistory: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     posts?: boolean | UserCountOutputTypeCountPostsArgs
     answers?: boolean | UserCountOutputTypeCountAnswersArgs
+    ticketRefillHistory?: boolean | UserCountOutputTypeCountTicketRefillHistoryArgs
   }
 
   // Custom InputTypes
@@ -1156,6 +1241,13 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountAnswersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: AnswerWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountTicketRefillHistoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TicketRefillHistoryWhereInput
   }
 
 
@@ -1240,11 +1332,15 @@ export namespace Prisma {
   export type UserAvgAggregateOutputType = {
     id: number | null
     grade: number | null
+    points: number | null
+    questionTickets: number | null
   }
 
   export type UserSumAggregateOutputType = {
     id: number | null
     grade: number | null
+    points: number | null
+    questionTickets: number | null
   }
 
   export type UserMinAggregateOutputType = {
@@ -1255,6 +1351,9 @@ export namespace Prisma {
     school: string | null
     grade: number | null
     role: $Enums.Role | null
+    points: number | null
+    questionTickets: number | null
+    lastTicketRefillAt: Date | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -1267,6 +1366,9 @@ export namespace Prisma {
     school: string | null
     grade: number | null
     role: $Enums.Role | null
+    points: number | null
+    questionTickets: number | null
+    lastTicketRefillAt: Date | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -1279,6 +1381,9 @@ export namespace Prisma {
     school: number
     grade: number
     role: number
+    points: number
+    questionTickets: number
+    lastTicketRefillAt: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -1288,11 +1393,15 @@ export namespace Prisma {
   export type UserAvgAggregateInputType = {
     id?: true
     grade?: true
+    points?: true
+    questionTickets?: true
   }
 
   export type UserSumAggregateInputType = {
     id?: true
     grade?: true
+    points?: true
+    questionTickets?: true
   }
 
   export type UserMinAggregateInputType = {
@@ -1303,6 +1412,9 @@ export namespace Prisma {
     school?: true
     grade?: true
     role?: true
+    points?: true
+    questionTickets?: true
+    lastTicketRefillAt?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -1315,6 +1427,9 @@ export namespace Prisma {
     school?: true
     grade?: true
     role?: true
+    points?: true
+    questionTickets?: true
+    lastTicketRefillAt?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -1327,6 +1442,9 @@ export namespace Prisma {
     school?: true
     grade?: true
     role?: true
+    points?: true
+    questionTickets?: true
+    lastTicketRefillAt?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -1426,6 +1544,9 @@ export namespace Prisma {
     school: string
     grade: number
     role: $Enums.Role
+    points: number
+    questionTickets: number
+    lastTicketRefillAt: Date | null
     createdAt: Date
     updatedAt: Date
     _count: UserCountAggregateOutputType | null
@@ -1457,10 +1578,14 @@ export namespace Prisma {
     school?: boolean
     grade?: boolean
     role?: boolean
+    points?: boolean
+    questionTickets?: boolean
+    lastTicketRefillAt?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     posts?: boolean | User$postsArgs<ExtArgs>
     answers?: boolean | User$answersArgs<ExtArgs>
+    ticketRefillHistory?: boolean | User$ticketRefillHistoryArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -1474,14 +1599,18 @@ export namespace Prisma {
     school?: boolean
     grade?: boolean
     role?: boolean
+    points?: boolean
+    questionTickets?: boolean
+    lastTicketRefillAt?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "password" | "school" | "grade" | "role" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "password" | "school" | "grade" | "role" | "points" | "questionTickets" | "lastTicketRefillAt" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     posts?: boolean | User$postsArgs<ExtArgs>
     answers?: boolean | User$answersArgs<ExtArgs>
+    ticketRefillHistory?: boolean | User$ticketRefillHistoryArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -1490,6 +1619,7 @@ export namespace Prisma {
     objects: {
       posts: Prisma.$PostPayload<ExtArgs>[]
       answers: Prisma.$AnswerPayload<ExtArgs>[]
+      ticketRefillHistory: Prisma.$TicketRefillHistoryPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -1499,6 +1629,9 @@ export namespace Prisma {
       school: string
       grade: number
       role: $Enums.Role
+      points: number
+      questionTickets: number
+      lastTicketRefillAt: Date | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["user"]>
@@ -1843,6 +1976,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     posts<T extends User$postsArgs<ExtArgs> = {}>(args?: Subset<T, User$postsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     answers<T extends User$answersArgs<ExtArgs> = {}>(args?: Subset<T, User$answersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AnswerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    ticketRefillHistory<T extends User$ticketRefillHistoryArgs<ExtArgs> = {}>(args?: Subset<T, User$ticketRefillHistoryArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TicketRefillHistoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1879,6 +2013,9 @@ export namespace Prisma {
     readonly school: FieldRef<"User", 'String'>
     readonly grade: FieldRef<"User", 'Int'>
     readonly role: FieldRef<"User", 'Role'>
+    readonly points: FieldRef<"User", 'Int'>
+    readonly questionTickets: FieldRef<"User", 'Int'>
+    readonly lastTicketRefillAt: FieldRef<"User", 'DateTime'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
     readonly updatedAt: FieldRef<"User", 'DateTime'>
   }
@@ -2274,6 +2411,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: AnswerScalarFieldEnum | AnswerScalarFieldEnum[]
+  }
+
+  /**
+   * User.ticketRefillHistory
+   */
+  export type User$ticketRefillHistoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TicketRefillHistory
+     */
+    select?: TicketRefillHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TicketRefillHistory
+     */
+    omit?: TicketRefillHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TicketRefillHistoryInclude<ExtArgs> | null
+    where?: TicketRefillHistoryWhereInput
+    orderBy?: TicketRefillHistoryOrderByWithRelationInput | TicketRefillHistoryOrderByWithRelationInput[]
+    cursor?: TicketRefillHistoryWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: TicketRefillHistoryScalarFieldEnum | TicketRefillHistoryScalarFieldEnum[]
   }
 
   /**
@@ -5365,6 +5526,982 @@ export namespace Prisma {
 
 
   /**
+   * Model TicketRefillHistory
+   */
+
+  export type AggregateTicketRefillHistory = {
+    _count: TicketRefillHistoryCountAggregateOutputType | null
+    _avg: TicketRefillHistoryAvgAggregateOutputType | null
+    _sum: TicketRefillHistorySumAggregateOutputType | null
+    _min: TicketRefillHistoryMinAggregateOutputType | null
+    _max: TicketRefillHistoryMaxAggregateOutputType | null
+  }
+
+  export type TicketRefillHistoryAvgAggregateOutputType = {
+    id: number | null
+    userId: number | null
+    amount: number | null
+  }
+
+  export type TicketRefillHistorySumAggregateOutputType = {
+    id: number | null
+    userId: number | null
+    amount: number | null
+  }
+
+  export type TicketRefillHistoryMinAggregateOutputType = {
+    id: number | null
+    userId: number | null
+    amount: number | null
+    reason: string | null
+    createdAt: Date | null
+  }
+
+  export type TicketRefillHistoryMaxAggregateOutputType = {
+    id: number | null
+    userId: number | null
+    amount: number | null
+    reason: string | null
+    createdAt: Date | null
+  }
+
+  export type TicketRefillHistoryCountAggregateOutputType = {
+    id: number
+    userId: number
+    amount: number
+    reason: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type TicketRefillHistoryAvgAggregateInputType = {
+    id?: true
+    userId?: true
+    amount?: true
+  }
+
+  export type TicketRefillHistorySumAggregateInputType = {
+    id?: true
+    userId?: true
+    amount?: true
+  }
+
+  export type TicketRefillHistoryMinAggregateInputType = {
+    id?: true
+    userId?: true
+    amount?: true
+    reason?: true
+    createdAt?: true
+  }
+
+  export type TicketRefillHistoryMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    amount?: true
+    reason?: true
+    createdAt?: true
+  }
+
+  export type TicketRefillHistoryCountAggregateInputType = {
+    id?: true
+    userId?: true
+    amount?: true
+    reason?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type TicketRefillHistoryAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TicketRefillHistory to aggregate.
+     */
+    where?: TicketRefillHistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TicketRefillHistories to fetch.
+     */
+    orderBy?: TicketRefillHistoryOrderByWithRelationInput | TicketRefillHistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: TicketRefillHistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TicketRefillHistories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TicketRefillHistories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned TicketRefillHistories
+    **/
+    _count?: true | TicketRefillHistoryCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: TicketRefillHistoryAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: TicketRefillHistorySumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: TicketRefillHistoryMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: TicketRefillHistoryMaxAggregateInputType
+  }
+
+  export type GetTicketRefillHistoryAggregateType<T extends TicketRefillHistoryAggregateArgs> = {
+        [P in keyof T & keyof AggregateTicketRefillHistory]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateTicketRefillHistory[P]>
+      : GetScalarType<T[P], AggregateTicketRefillHistory[P]>
+  }
+
+
+
+
+  export type TicketRefillHistoryGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TicketRefillHistoryWhereInput
+    orderBy?: TicketRefillHistoryOrderByWithAggregationInput | TicketRefillHistoryOrderByWithAggregationInput[]
+    by: TicketRefillHistoryScalarFieldEnum[] | TicketRefillHistoryScalarFieldEnum
+    having?: TicketRefillHistoryScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: TicketRefillHistoryCountAggregateInputType | true
+    _avg?: TicketRefillHistoryAvgAggregateInputType
+    _sum?: TicketRefillHistorySumAggregateInputType
+    _min?: TicketRefillHistoryMinAggregateInputType
+    _max?: TicketRefillHistoryMaxAggregateInputType
+  }
+
+  export type TicketRefillHistoryGroupByOutputType = {
+    id: number
+    userId: number
+    amount: number
+    reason: string
+    createdAt: Date
+    _count: TicketRefillHistoryCountAggregateOutputType | null
+    _avg: TicketRefillHistoryAvgAggregateOutputType | null
+    _sum: TicketRefillHistorySumAggregateOutputType | null
+    _min: TicketRefillHistoryMinAggregateOutputType | null
+    _max: TicketRefillHistoryMaxAggregateOutputType | null
+  }
+
+  type GetTicketRefillHistoryGroupByPayload<T extends TicketRefillHistoryGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<TicketRefillHistoryGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof TicketRefillHistoryGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], TicketRefillHistoryGroupByOutputType[P]>
+            : GetScalarType<T[P], TicketRefillHistoryGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type TicketRefillHistorySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    amount?: boolean
+    reason?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["ticketRefillHistory"]>
+
+
+
+  export type TicketRefillHistorySelectScalar = {
+    id?: boolean
+    userId?: boolean
+    amount?: boolean
+    reason?: boolean
+    createdAt?: boolean
+  }
+
+  export type TicketRefillHistoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "amount" | "reason" | "createdAt", ExtArgs["result"]["ticketRefillHistory"]>
+  export type TicketRefillHistoryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $TicketRefillHistoryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "TicketRefillHistory"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      userId: number
+      amount: number
+      reason: string
+      createdAt: Date
+    }, ExtArgs["result"]["ticketRefillHistory"]>
+    composites: {}
+  }
+
+  type TicketRefillHistoryGetPayload<S extends boolean | null | undefined | TicketRefillHistoryDefaultArgs> = $Result.GetResult<Prisma.$TicketRefillHistoryPayload, S>
+
+  type TicketRefillHistoryCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<TicketRefillHistoryFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: TicketRefillHistoryCountAggregateInputType | true
+    }
+
+  export interface TicketRefillHistoryDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['TicketRefillHistory'], meta: { name: 'TicketRefillHistory' } }
+    /**
+     * Find zero or one TicketRefillHistory that matches the filter.
+     * @param {TicketRefillHistoryFindUniqueArgs} args - Arguments to find a TicketRefillHistory
+     * @example
+     * // Get one TicketRefillHistory
+     * const ticketRefillHistory = await prisma.ticketRefillHistory.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends TicketRefillHistoryFindUniqueArgs>(args: SelectSubset<T, TicketRefillHistoryFindUniqueArgs<ExtArgs>>): Prisma__TicketRefillHistoryClient<$Result.GetResult<Prisma.$TicketRefillHistoryPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one TicketRefillHistory that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {TicketRefillHistoryFindUniqueOrThrowArgs} args - Arguments to find a TicketRefillHistory
+     * @example
+     * // Get one TicketRefillHistory
+     * const ticketRefillHistory = await prisma.ticketRefillHistory.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends TicketRefillHistoryFindUniqueOrThrowArgs>(args: SelectSubset<T, TicketRefillHistoryFindUniqueOrThrowArgs<ExtArgs>>): Prisma__TicketRefillHistoryClient<$Result.GetResult<Prisma.$TicketRefillHistoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TicketRefillHistory that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TicketRefillHistoryFindFirstArgs} args - Arguments to find a TicketRefillHistory
+     * @example
+     * // Get one TicketRefillHistory
+     * const ticketRefillHistory = await prisma.ticketRefillHistory.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends TicketRefillHistoryFindFirstArgs>(args?: SelectSubset<T, TicketRefillHistoryFindFirstArgs<ExtArgs>>): Prisma__TicketRefillHistoryClient<$Result.GetResult<Prisma.$TicketRefillHistoryPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TicketRefillHistory that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TicketRefillHistoryFindFirstOrThrowArgs} args - Arguments to find a TicketRefillHistory
+     * @example
+     * // Get one TicketRefillHistory
+     * const ticketRefillHistory = await prisma.ticketRefillHistory.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends TicketRefillHistoryFindFirstOrThrowArgs>(args?: SelectSubset<T, TicketRefillHistoryFindFirstOrThrowArgs<ExtArgs>>): Prisma__TicketRefillHistoryClient<$Result.GetResult<Prisma.$TicketRefillHistoryPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more TicketRefillHistories that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TicketRefillHistoryFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all TicketRefillHistories
+     * const ticketRefillHistories = await prisma.ticketRefillHistory.findMany()
+     * 
+     * // Get first 10 TicketRefillHistories
+     * const ticketRefillHistories = await prisma.ticketRefillHistory.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const ticketRefillHistoryWithIdOnly = await prisma.ticketRefillHistory.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends TicketRefillHistoryFindManyArgs>(args?: SelectSubset<T, TicketRefillHistoryFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TicketRefillHistoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a TicketRefillHistory.
+     * @param {TicketRefillHistoryCreateArgs} args - Arguments to create a TicketRefillHistory.
+     * @example
+     * // Create one TicketRefillHistory
+     * const TicketRefillHistory = await prisma.ticketRefillHistory.create({
+     *   data: {
+     *     // ... data to create a TicketRefillHistory
+     *   }
+     * })
+     * 
+     */
+    create<T extends TicketRefillHistoryCreateArgs>(args: SelectSubset<T, TicketRefillHistoryCreateArgs<ExtArgs>>): Prisma__TicketRefillHistoryClient<$Result.GetResult<Prisma.$TicketRefillHistoryPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many TicketRefillHistories.
+     * @param {TicketRefillHistoryCreateManyArgs} args - Arguments to create many TicketRefillHistories.
+     * @example
+     * // Create many TicketRefillHistories
+     * const ticketRefillHistory = await prisma.ticketRefillHistory.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends TicketRefillHistoryCreateManyArgs>(args?: SelectSubset<T, TicketRefillHistoryCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a TicketRefillHistory.
+     * @param {TicketRefillHistoryDeleteArgs} args - Arguments to delete one TicketRefillHistory.
+     * @example
+     * // Delete one TicketRefillHistory
+     * const TicketRefillHistory = await prisma.ticketRefillHistory.delete({
+     *   where: {
+     *     // ... filter to delete one TicketRefillHistory
+     *   }
+     * })
+     * 
+     */
+    delete<T extends TicketRefillHistoryDeleteArgs>(args: SelectSubset<T, TicketRefillHistoryDeleteArgs<ExtArgs>>): Prisma__TicketRefillHistoryClient<$Result.GetResult<Prisma.$TicketRefillHistoryPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one TicketRefillHistory.
+     * @param {TicketRefillHistoryUpdateArgs} args - Arguments to update one TicketRefillHistory.
+     * @example
+     * // Update one TicketRefillHistory
+     * const ticketRefillHistory = await prisma.ticketRefillHistory.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends TicketRefillHistoryUpdateArgs>(args: SelectSubset<T, TicketRefillHistoryUpdateArgs<ExtArgs>>): Prisma__TicketRefillHistoryClient<$Result.GetResult<Prisma.$TicketRefillHistoryPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more TicketRefillHistories.
+     * @param {TicketRefillHistoryDeleteManyArgs} args - Arguments to filter TicketRefillHistories to delete.
+     * @example
+     * // Delete a few TicketRefillHistories
+     * const { count } = await prisma.ticketRefillHistory.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends TicketRefillHistoryDeleteManyArgs>(args?: SelectSubset<T, TicketRefillHistoryDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TicketRefillHistories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TicketRefillHistoryUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many TicketRefillHistories
+     * const ticketRefillHistory = await prisma.ticketRefillHistory.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends TicketRefillHistoryUpdateManyArgs>(args: SelectSubset<T, TicketRefillHistoryUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one TicketRefillHistory.
+     * @param {TicketRefillHistoryUpsertArgs} args - Arguments to update or create a TicketRefillHistory.
+     * @example
+     * // Update or create a TicketRefillHistory
+     * const ticketRefillHistory = await prisma.ticketRefillHistory.upsert({
+     *   create: {
+     *     // ... data to create a TicketRefillHistory
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the TicketRefillHistory we want to update
+     *   }
+     * })
+     */
+    upsert<T extends TicketRefillHistoryUpsertArgs>(args: SelectSubset<T, TicketRefillHistoryUpsertArgs<ExtArgs>>): Prisma__TicketRefillHistoryClient<$Result.GetResult<Prisma.$TicketRefillHistoryPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of TicketRefillHistories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TicketRefillHistoryCountArgs} args - Arguments to filter TicketRefillHistories to count.
+     * @example
+     * // Count the number of TicketRefillHistories
+     * const count = await prisma.ticketRefillHistory.count({
+     *   where: {
+     *     // ... the filter for the TicketRefillHistories we want to count
+     *   }
+     * })
+    **/
+    count<T extends TicketRefillHistoryCountArgs>(
+      args?: Subset<T, TicketRefillHistoryCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], TicketRefillHistoryCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a TicketRefillHistory.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TicketRefillHistoryAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends TicketRefillHistoryAggregateArgs>(args: Subset<T, TicketRefillHistoryAggregateArgs>): Prisma.PrismaPromise<GetTicketRefillHistoryAggregateType<T>>
+
+    /**
+     * Group by TicketRefillHistory.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TicketRefillHistoryGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends TicketRefillHistoryGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: TicketRefillHistoryGroupByArgs['orderBy'] }
+        : { orderBy?: TicketRefillHistoryGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, TicketRefillHistoryGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTicketRefillHistoryGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the TicketRefillHistory model
+   */
+  readonly fields: TicketRefillHistoryFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for TicketRefillHistory.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__TicketRefillHistoryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the TicketRefillHistory model
+   */
+  interface TicketRefillHistoryFieldRefs {
+    readonly id: FieldRef<"TicketRefillHistory", 'Int'>
+    readonly userId: FieldRef<"TicketRefillHistory", 'Int'>
+    readonly amount: FieldRef<"TicketRefillHistory", 'Int'>
+    readonly reason: FieldRef<"TicketRefillHistory", 'String'>
+    readonly createdAt: FieldRef<"TicketRefillHistory", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * TicketRefillHistory findUnique
+   */
+  export type TicketRefillHistoryFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TicketRefillHistory
+     */
+    select?: TicketRefillHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TicketRefillHistory
+     */
+    omit?: TicketRefillHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TicketRefillHistoryInclude<ExtArgs> | null
+    /**
+     * Filter, which TicketRefillHistory to fetch.
+     */
+    where: TicketRefillHistoryWhereUniqueInput
+  }
+
+  /**
+   * TicketRefillHistory findUniqueOrThrow
+   */
+  export type TicketRefillHistoryFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TicketRefillHistory
+     */
+    select?: TicketRefillHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TicketRefillHistory
+     */
+    omit?: TicketRefillHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TicketRefillHistoryInclude<ExtArgs> | null
+    /**
+     * Filter, which TicketRefillHistory to fetch.
+     */
+    where: TicketRefillHistoryWhereUniqueInput
+  }
+
+  /**
+   * TicketRefillHistory findFirst
+   */
+  export type TicketRefillHistoryFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TicketRefillHistory
+     */
+    select?: TicketRefillHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TicketRefillHistory
+     */
+    omit?: TicketRefillHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TicketRefillHistoryInclude<ExtArgs> | null
+    /**
+     * Filter, which TicketRefillHistory to fetch.
+     */
+    where?: TicketRefillHistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TicketRefillHistories to fetch.
+     */
+    orderBy?: TicketRefillHistoryOrderByWithRelationInput | TicketRefillHistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TicketRefillHistories.
+     */
+    cursor?: TicketRefillHistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TicketRefillHistories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TicketRefillHistories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TicketRefillHistories.
+     */
+    distinct?: TicketRefillHistoryScalarFieldEnum | TicketRefillHistoryScalarFieldEnum[]
+  }
+
+  /**
+   * TicketRefillHistory findFirstOrThrow
+   */
+  export type TicketRefillHistoryFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TicketRefillHistory
+     */
+    select?: TicketRefillHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TicketRefillHistory
+     */
+    omit?: TicketRefillHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TicketRefillHistoryInclude<ExtArgs> | null
+    /**
+     * Filter, which TicketRefillHistory to fetch.
+     */
+    where?: TicketRefillHistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TicketRefillHistories to fetch.
+     */
+    orderBy?: TicketRefillHistoryOrderByWithRelationInput | TicketRefillHistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TicketRefillHistories.
+     */
+    cursor?: TicketRefillHistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TicketRefillHistories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TicketRefillHistories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TicketRefillHistories.
+     */
+    distinct?: TicketRefillHistoryScalarFieldEnum | TicketRefillHistoryScalarFieldEnum[]
+  }
+
+  /**
+   * TicketRefillHistory findMany
+   */
+  export type TicketRefillHistoryFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TicketRefillHistory
+     */
+    select?: TicketRefillHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TicketRefillHistory
+     */
+    omit?: TicketRefillHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TicketRefillHistoryInclude<ExtArgs> | null
+    /**
+     * Filter, which TicketRefillHistories to fetch.
+     */
+    where?: TicketRefillHistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TicketRefillHistories to fetch.
+     */
+    orderBy?: TicketRefillHistoryOrderByWithRelationInput | TicketRefillHistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing TicketRefillHistories.
+     */
+    cursor?: TicketRefillHistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TicketRefillHistories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TicketRefillHistories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TicketRefillHistories.
+     */
+    distinct?: TicketRefillHistoryScalarFieldEnum | TicketRefillHistoryScalarFieldEnum[]
+  }
+
+  /**
+   * TicketRefillHistory create
+   */
+  export type TicketRefillHistoryCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TicketRefillHistory
+     */
+    select?: TicketRefillHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TicketRefillHistory
+     */
+    omit?: TicketRefillHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TicketRefillHistoryInclude<ExtArgs> | null
+    /**
+     * The data needed to create a TicketRefillHistory.
+     */
+    data: XOR<TicketRefillHistoryCreateInput, TicketRefillHistoryUncheckedCreateInput>
+  }
+
+  /**
+   * TicketRefillHistory createMany
+   */
+  export type TicketRefillHistoryCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many TicketRefillHistories.
+     */
+    data: TicketRefillHistoryCreateManyInput | TicketRefillHistoryCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * TicketRefillHistory update
+   */
+  export type TicketRefillHistoryUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TicketRefillHistory
+     */
+    select?: TicketRefillHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TicketRefillHistory
+     */
+    omit?: TicketRefillHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TicketRefillHistoryInclude<ExtArgs> | null
+    /**
+     * The data needed to update a TicketRefillHistory.
+     */
+    data: XOR<TicketRefillHistoryUpdateInput, TicketRefillHistoryUncheckedUpdateInput>
+    /**
+     * Choose, which TicketRefillHistory to update.
+     */
+    where: TicketRefillHistoryWhereUniqueInput
+  }
+
+  /**
+   * TicketRefillHistory updateMany
+   */
+  export type TicketRefillHistoryUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update TicketRefillHistories.
+     */
+    data: XOR<TicketRefillHistoryUpdateManyMutationInput, TicketRefillHistoryUncheckedUpdateManyInput>
+    /**
+     * Filter which TicketRefillHistories to update
+     */
+    where?: TicketRefillHistoryWhereInput
+    /**
+     * Limit how many TicketRefillHistories to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * TicketRefillHistory upsert
+   */
+  export type TicketRefillHistoryUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TicketRefillHistory
+     */
+    select?: TicketRefillHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TicketRefillHistory
+     */
+    omit?: TicketRefillHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TicketRefillHistoryInclude<ExtArgs> | null
+    /**
+     * The filter to search for the TicketRefillHistory to update in case it exists.
+     */
+    where: TicketRefillHistoryWhereUniqueInput
+    /**
+     * In case the TicketRefillHistory found by the `where` argument doesn't exist, create a new TicketRefillHistory with this data.
+     */
+    create: XOR<TicketRefillHistoryCreateInput, TicketRefillHistoryUncheckedCreateInput>
+    /**
+     * In case the TicketRefillHistory was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<TicketRefillHistoryUpdateInput, TicketRefillHistoryUncheckedUpdateInput>
+  }
+
+  /**
+   * TicketRefillHistory delete
+   */
+  export type TicketRefillHistoryDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TicketRefillHistory
+     */
+    select?: TicketRefillHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TicketRefillHistory
+     */
+    omit?: TicketRefillHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TicketRefillHistoryInclude<ExtArgs> | null
+    /**
+     * Filter which TicketRefillHistory to delete.
+     */
+    where: TicketRefillHistoryWhereUniqueInput
+  }
+
+  /**
+   * TicketRefillHistory deleteMany
+   */
+  export type TicketRefillHistoryDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TicketRefillHistories to delete
+     */
+    where?: TicketRefillHistoryWhereInput
+    /**
+     * Limit how many TicketRefillHistories to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * TicketRefillHistory without action
+   */
+  export type TicketRefillHistoryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TicketRefillHistory
+     */
+    select?: TicketRefillHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TicketRefillHistory
+     */
+    omit?: TicketRefillHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TicketRefillHistoryInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -5386,6 +6523,9 @@ export namespace Prisma {
     school: 'school',
     grade: 'grade',
     role: 'role',
+    points: 'points',
+    questionTickets: 'questionTickets',
+    lastTicketRefillAt: 'lastTicketRefillAt',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -5433,12 +6573,31 @@ export namespace Prisma {
   export type AnswerScalarFieldEnum = (typeof AnswerScalarFieldEnum)[keyof typeof AnswerScalarFieldEnum]
 
 
+  export const TicketRefillHistoryScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    amount: 'amount',
+    reason: 'reason',
+    createdAt: 'createdAt'
+  };
+
+  export type TicketRefillHistoryScalarFieldEnum = (typeof TicketRefillHistoryScalarFieldEnum)[keyof typeof TicketRefillHistoryScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
   };
 
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+  export const NullsOrder: {
+    first: 'first',
+    last: 'last'
+  };
+
+  export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 
   export const UserOrderByRelevanceFieldEnum: {
@@ -5449,14 +6608,6 @@ export namespace Prisma {
   };
 
   export type UserOrderByRelevanceFieldEnum = (typeof UserOrderByRelevanceFieldEnum)[keyof typeof UserOrderByRelevanceFieldEnum]
-
-
-  export const NullsOrder: {
-    first: 'first',
-    last: 'last'
-  };
-
-  export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 
   export const CategoryOrderByRelevanceFieldEnum: {
@@ -5482,6 +6633,13 @@ export namespace Prisma {
   };
 
   export type AnswerOrderByRelevanceFieldEnum = (typeof AnswerOrderByRelevanceFieldEnum)[keyof typeof AnswerOrderByRelevanceFieldEnum]
+
+
+  export const TicketRefillHistoryOrderByRelevanceFieldEnum: {
+    reason: 'reason'
+  };
+
+  export type TicketRefillHistoryOrderByRelevanceFieldEnum = (typeof TicketRefillHistoryOrderByRelevanceFieldEnum)[keyof typeof TicketRefillHistoryOrderByRelevanceFieldEnum]
 
 
   /**
@@ -5545,10 +6703,14 @@ export namespace Prisma {
     school?: StringFilter<"User"> | string
     grade?: IntFilter<"User"> | number
     role?: EnumRoleFilter<"User"> | $Enums.Role
+    points?: IntFilter<"User"> | number
+    questionTickets?: IntFilter<"User"> | number
+    lastTicketRefillAt?: DateTimeNullableFilter<"User"> | Date | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
     posts?: PostListRelationFilter
     answers?: AnswerListRelationFilter
+    ticketRefillHistory?: TicketRefillHistoryListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -5559,10 +6721,14 @@ export namespace Prisma {
     school?: SortOrder
     grade?: SortOrder
     role?: SortOrder
+    points?: SortOrder
+    questionTickets?: SortOrder
+    lastTicketRefillAt?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     posts?: PostOrderByRelationAggregateInput
     answers?: AnswerOrderByRelationAggregateInput
+    ticketRefillHistory?: TicketRefillHistoryOrderByRelationAggregateInput
     _relevance?: UserOrderByRelevanceInput
   }
 
@@ -5577,10 +6743,14 @@ export namespace Prisma {
     school?: StringFilter<"User"> | string
     grade?: IntFilter<"User"> | number
     role?: EnumRoleFilter<"User"> | $Enums.Role
+    points?: IntFilter<"User"> | number
+    questionTickets?: IntFilter<"User"> | number
+    lastTicketRefillAt?: DateTimeNullableFilter<"User"> | Date | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
     posts?: PostListRelationFilter
     answers?: AnswerListRelationFilter
+    ticketRefillHistory?: TicketRefillHistoryListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -5591,6 +6761,9 @@ export namespace Prisma {
     school?: SortOrder
     grade?: SortOrder
     role?: SortOrder
+    points?: SortOrder
+    questionTickets?: SortOrder
+    lastTicketRefillAt?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: UserCountOrderByAggregateInput
@@ -5611,6 +6784,9 @@ export namespace Prisma {
     school?: StringWithAggregatesFilter<"User"> | string
     grade?: IntWithAggregatesFilter<"User"> | number
     role?: EnumRoleWithAggregatesFilter<"User"> | $Enums.Role
+    points?: IntWithAggregatesFilter<"User"> | number
+    questionTickets?: IntWithAggregatesFilter<"User"> | number
+    lastTicketRefillAt?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
   }
@@ -5833,6 +7009,64 @@ export namespace Prisma {
     postId?: IntWithAggregatesFilter<"Answer"> | number
   }
 
+  export type TicketRefillHistoryWhereInput = {
+    AND?: TicketRefillHistoryWhereInput | TicketRefillHistoryWhereInput[]
+    OR?: TicketRefillHistoryWhereInput[]
+    NOT?: TicketRefillHistoryWhereInput | TicketRefillHistoryWhereInput[]
+    id?: IntFilter<"TicketRefillHistory"> | number
+    userId?: IntFilter<"TicketRefillHistory"> | number
+    amount?: IntFilter<"TicketRefillHistory"> | number
+    reason?: StringFilter<"TicketRefillHistory"> | string
+    createdAt?: DateTimeFilter<"TicketRefillHistory"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type TicketRefillHistoryOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    amount?: SortOrder
+    reason?: SortOrder
+    createdAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+    _relevance?: TicketRefillHistoryOrderByRelevanceInput
+  }
+
+  export type TicketRefillHistoryWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: TicketRefillHistoryWhereInput | TicketRefillHistoryWhereInput[]
+    OR?: TicketRefillHistoryWhereInput[]
+    NOT?: TicketRefillHistoryWhereInput | TicketRefillHistoryWhereInput[]
+    userId?: IntFilter<"TicketRefillHistory"> | number
+    amount?: IntFilter<"TicketRefillHistory"> | number
+    reason?: StringFilter<"TicketRefillHistory"> | string
+    createdAt?: DateTimeFilter<"TicketRefillHistory"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id">
+
+  export type TicketRefillHistoryOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    amount?: SortOrder
+    reason?: SortOrder
+    createdAt?: SortOrder
+    _count?: TicketRefillHistoryCountOrderByAggregateInput
+    _avg?: TicketRefillHistoryAvgOrderByAggregateInput
+    _max?: TicketRefillHistoryMaxOrderByAggregateInput
+    _min?: TicketRefillHistoryMinOrderByAggregateInput
+    _sum?: TicketRefillHistorySumOrderByAggregateInput
+  }
+
+  export type TicketRefillHistoryScalarWhereWithAggregatesInput = {
+    AND?: TicketRefillHistoryScalarWhereWithAggregatesInput | TicketRefillHistoryScalarWhereWithAggregatesInput[]
+    OR?: TicketRefillHistoryScalarWhereWithAggregatesInput[]
+    NOT?: TicketRefillHistoryScalarWhereWithAggregatesInput | TicketRefillHistoryScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"TicketRefillHistory"> | number
+    userId?: IntWithAggregatesFilter<"TicketRefillHistory"> | number
+    amount?: IntWithAggregatesFilter<"TicketRefillHistory"> | number
+    reason?: StringWithAggregatesFilter<"TicketRefillHistory"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"TicketRefillHistory"> | Date | string
+  }
+
   export type UserCreateInput = {
     name: string
     email: string
@@ -5840,10 +7074,14 @@ export namespace Prisma {
     school: string
     grade: number
     role?: $Enums.Role
+    points?: number
+    questionTickets?: number
+    lastTicketRefillAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     posts?: PostCreateNestedManyWithoutAuthorInput
     answers?: AnswerCreateNestedManyWithoutAuthorInput
+    ticketRefillHistory?: TicketRefillHistoryCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -5854,10 +7092,14 @@ export namespace Prisma {
     school: string
     grade: number
     role?: $Enums.Role
+    points?: number
+    questionTickets?: number
+    lastTicketRefillAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     answers?: AnswerUncheckedCreateNestedManyWithoutAuthorInput
+    ticketRefillHistory?: TicketRefillHistoryUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -5867,10 +7109,14 @@ export namespace Prisma {
     school?: StringFieldUpdateOperationsInput | string
     grade?: IntFieldUpdateOperationsInput | number
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    points?: IntFieldUpdateOperationsInput | number
+    questionTickets?: IntFieldUpdateOperationsInput | number
+    lastTicketRefillAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     posts?: PostUpdateManyWithoutAuthorNestedInput
     answers?: AnswerUpdateManyWithoutAuthorNestedInput
+    ticketRefillHistory?: TicketRefillHistoryUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -5881,10 +7127,14 @@ export namespace Prisma {
     school?: StringFieldUpdateOperationsInput | string
     grade?: IntFieldUpdateOperationsInput | number
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    points?: IntFieldUpdateOperationsInput | number
+    questionTickets?: IntFieldUpdateOperationsInput | number
+    lastTicketRefillAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     answers?: AnswerUncheckedUpdateManyWithoutAuthorNestedInput
+    ticketRefillHistory?: TicketRefillHistoryUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -5895,6 +7145,9 @@ export namespace Prisma {
     school: string
     grade: number
     role?: $Enums.Role
+    points?: number
+    questionTickets?: number
+    lastTicketRefillAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -5906,6 +7159,9 @@ export namespace Prisma {
     school?: StringFieldUpdateOperationsInput | string
     grade?: IntFieldUpdateOperationsInput | number
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    points?: IntFieldUpdateOperationsInput | number
+    questionTickets?: IntFieldUpdateOperationsInput | number
+    lastTicketRefillAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -5918,6 +7174,9 @@ export namespace Prisma {
     school?: StringFieldUpdateOperationsInput | string
     grade?: IntFieldUpdateOperationsInput | number
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    points?: IntFieldUpdateOperationsInput | number
+    questionTickets?: IntFieldUpdateOperationsInput | number
+    lastTicketRefillAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -6134,6 +7393,58 @@ export namespace Prisma {
     postId?: IntFieldUpdateOperationsInput | number
   }
 
+  export type TicketRefillHistoryCreateInput = {
+    amount: number
+    reason: string
+    createdAt?: Date | string
+    user: UserCreateNestedOneWithoutTicketRefillHistoryInput
+  }
+
+  export type TicketRefillHistoryUncheckedCreateInput = {
+    id?: number
+    userId: number
+    amount: number
+    reason: string
+    createdAt?: Date | string
+  }
+
+  export type TicketRefillHistoryUpdateInput = {
+    amount?: IntFieldUpdateOperationsInput | number
+    reason?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutTicketRefillHistoryNestedInput
+  }
+
+  export type TicketRefillHistoryUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    amount?: IntFieldUpdateOperationsInput | number
+    reason?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TicketRefillHistoryCreateManyInput = {
+    id?: number
+    userId: number
+    amount: number
+    reason: string
+    createdAt?: Date | string
+  }
+
+  export type TicketRefillHistoryUpdateManyMutationInput = {
+    amount?: IntFieldUpdateOperationsInput | number
+    reason?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TicketRefillHistoryUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    amount?: IntFieldUpdateOperationsInput | number
+    reason?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[]
@@ -6167,6 +7478,17 @@ export namespace Prisma {
     not?: NestedEnumRoleFilter<$PrismaModel> | $Enums.Role
   }
 
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
   export type DateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[]
@@ -6190,11 +7512,26 @@ export namespace Prisma {
     none?: AnswerWhereInput
   }
 
+  export type TicketRefillHistoryListRelationFilter = {
+    every?: TicketRefillHistoryWhereInput
+    some?: TicketRefillHistoryWhereInput
+    none?: TicketRefillHistoryWhereInput
+  }
+
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
+  }
+
   export type PostOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
   export type AnswerOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type TicketRefillHistoryOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -6212,6 +7549,9 @@ export namespace Prisma {
     school?: SortOrder
     grade?: SortOrder
     role?: SortOrder
+    points?: SortOrder
+    questionTickets?: SortOrder
+    lastTicketRefillAt?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -6219,6 +7559,8 @@ export namespace Prisma {
   export type UserAvgOrderByAggregateInput = {
     id?: SortOrder
     grade?: SortOrder
+    points?: SortOrder
+    questionTickets?: SortOrder
   }
 
   export type UserMaxOrderByAggregateInput = {
@@ -6229,6 +7571,9 @@ export namespace Prisma {
     school?: SortOrder
     grade?: SortOrder
     role?: SortOrder
+    points?: SortOrder
+    questionTickets?: SortOrder
+    lastTicketRefillAt?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -6241,6 +7586,9 @@ export namespace Prisma {
     school?: SortOrder
     grade?: SortOrder
     role?: SortOrder
+    points?: SortOrder
+    questionTickets?: SortOrder
+    lastTicketRefillAt?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -6248,6 +7596,8 @@ export namespace Prisma {
   export type UserSumOrderByAggregateInput = {
     id?: SortOrder
     grade?: SortOrder
+    points?: SortOrder
+    questionTickets?: SortOrder
   }
 
   export type IntWithAggregatesFilter<$PrismaModel = never> = {
@@ -6294,6 +7644,20 @@ export namespace Prisma {
     _max?: NestedEnumRoleFilter<$PrismaModel>
   }
 
+  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[]
@@ -6321,11 +7685,6 @@ export namespace Prisma {
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     search?: string
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
-
-  export type SortOrderInput = {
-    sort: SortOrder
-    nulls?: NullsOrder
   }
 
   export type CategoryOrderByRelevanceInput = {
@@ -6521,6 +7880,48 @@ export namespace Prisma {
     postId?: SortOrder
   }
 
+  export type TicketRefillHistoryOrderByRelevanceInput = {
+    fields: TicketRefillHistoryOrderByRelevanceFieldEnum | TicketRefillHistoryOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type TicketRefillHistoryCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    amount?: SortOrder
+    reason?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type TicketRefillHistoryAvgOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    amount?: SortOrder
+  }
+
+  export type TicketRefillHistoryMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    amount?: SortOrder
+    reason?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type TicketRefillHistoryMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    amount?: SortOrder
+    reason?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type TicketRefillHistorySumOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    amount?: SortOrder
+  }
+
   export type PostCreateNestedManyWithoutAuthorInput = {
     create?: XOR<PostCreateWithoutAuthorInput, PostUncheckedCreateWithoutAuthorInput> | PostCreateWithoutAuthorInput[] | PostUncheckedCreateWithoutAuthorInput[]
     connectOrCreate?: PostCreateOrConnectWithoutAuthorInput | PostCreateOrConnectWithoutAuthorInput[]
@@ -6533,6 +7934,13 @@ export namespace Prisma {
     connectOrCreate?: AnswerCreateOrConnectWithoutAuthorInput | AnswerCreateOrConnectWithoutAuthorInput[]
     createMany?: AnswerCreateManyAuthorInputEnvelope
     connect?: AnswerWhereUniqueInput | AnswerWhereUniqueInput[]
+  }
+
+  export type TicketRefillHistoryCreateNestedManyWithoutUserInput = {
+    create?: XOR<TicketRefillHistoryCreateWithoutUserInput, TicketRefillHistoryUncheckedCreateWithoutUserInput> | TicketRefillHistoryCreateWithoutUserInput[] | TicketRefillHistoryUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: TicketRefillHistoryCreateOrConnectWithoutUserInput | TicketRefillHistoryCreateOrConnectWithoutUserInput[]
+    createMany?: TicketRefillHistoryCreateManyUserInputEnvelope
+    connect?: TicketRefillHistoryWhereUniqueInput | TicketRefillHistoryWhereUniqueInput[]
   }
 
   export type PostUncheckedCreateNestedManyWithoutAuthorInput = {
@@ -6549,6 +7957,13 @@ export namespace Prisma {
     connect?: AnswerWhereUniqueInput | AnswerWhereUniqueInput[]
   }
 
+  export type TicketRefillHistoryUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<TicketRefillHistoryCreateWithoutUserInput, TicketRefillHistoryUncheckedCreateWithoutUserInput> | TicketRefillHistoryCreateWithoutUserInput[] | TicketRefillHistoryUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: TicketRefillHistoryCreateOrConnectWithoutUserInput | TicketRefillHistoryCreateOrConnectWithoutUserInput[]
+    createMany?: TicketRefillHistoryCreateManyUserInputEnvelope
+    connect?: TicketRefillHistoryWhereUniqueInput | TicketRefillHistoryWhereUniqueInput[]
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -6563,6 +7978,10 @@ export namespace Prisma {
 
   export type EnumRoleFieldUpdateOperationsInput = {
     set?: $Enums.Role
+  }
+
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
   }
 
   export type DateTimeFieldUpdateOperationsInput = {
@@ -6597,6 +8016,20 @@ export namespace Prisma {
     deleteMany?: AnswerScalarWhereInput | AnswerScalarWhereInput[]
   }
 
+  export type TicketRefillHistoryUpdateManyWithoutUserNestedInput = {
+    create?: XOR<TicketRefillHistoryCreateWithoutUserInput, TicketRefillHistoryUncheckedCreateWithoutUserInput> | TicketRefillHistoryCreateWithoutUserInput[] | TicketRefillHistoryUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: TicketRefillHistoryCreateOrConnectWithoutUserInput | TicketRefillHistoryCreateOrConnectWithoutUserInput[]
+    upsert?: TicketRefillHistoryUpsertWithWhereUniqueWithoutUserInput | TicketRefillHistoryUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: TicketRefillHistoryCreateManyUserInputEnvelope
+    set?: TicketRefillHistoryWhereUniqueInput | TicketRefillHistoryWhereUniqueInput[]
+    disconnect?: TicketRefillHistoryWhereUniqueInput | TicketRefillHistoryWhereUniqueInput[]
+    delete?: TicketRefillHistoryWhereUniqueInput | TicketRefillHistoryWhereUniqueInput[]
+    connect?: TicketRefillHistoryWhereUniqueInput | TicketRefillHistoryWhereUniqueInput[]
+    update?: TicketRefillHistoryUpdateWithWhereUniqueWithoutUserInput | TicketRefillHistoryUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: TicketRefillHistoryUpdateManyWithWhereWithoutUserInput | TicketRefillHistoryUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: TicketRefillHistoryScalarWhereInput | TicketRefillHistoryScalarWhereInput[]
+  }
+
   export type PostUncheckedUpdateManyWithoutAuthorNestedInput = {
     create?: XOR<PostCreateWithoutAuthorInput, PostUncheckedCreateWithoutAuthorInput> | PostCreateWithoutAuthorInput[] | PostUncheckedCreateWithoutAuthorInput[]
     connectOrCreate?: PostCreateOrConnectWithoutAuthorInput | PostCreateOrConnectWithoutAuthorInput[]
@@ -6623,6 +8056,20 @@ export namespace Prisma {
     update?: AnswerUpdateWithWhereUniqueWithoutAuthorInput | AnswerUpdateWithWhereUniqueWithoutAuthorInput[]
     updateMany?: AnswerUpdateManyWithWhereWithoutAuthorInput | AnswerUpdateManyWithWhereWithoutAuthorInput[]
     deleteMany?: AnswerScalarWhereInput | AnswerScalarWhereInput[]
+  }
+
+  export type TicketRefillHistoryUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<TicketRefillHistoryCreateWithoutUserInput, TicketRefillHistoryUncheckedCreateWithoutUserInput> | TicketRefillHistoryCreateWithoutUserInput[] | TicketRefillHistoryUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: TicketRefillHistoryCreateOrConnectWithoutUserInput | TicketRefillHistoryCreateOrConnectWithoutUserInput[]
+    upsert?: TicketRefillHistoryUpsertWithWhereUniqueWithoutUserInput | TicketRefillHistoryUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: TicketRefillHistoryCreateManyUserInputEnvelope
+    set?: TicketRefillHistoryWhereUniqueInput | TicketRefillHistoryWhereUniqueInput[]
+    disconnect?: TicketRefillHistoryWhereUniqueInput | TicketRefillHistoryWhereUniqueInput[]
+    delete?: TicketRefillHistoryWhereUniqueInput | TicketRefillHistoryWhereUniqueInput[]
+    connect?: TicketRefillHistoryWhereUniqueInput | TicketRefillHistoryWhereUniqueInput[]
+    update?: TicketRefillHistoryUpdateWithWhereUniqueWithoutUserInput | TicketRefillHistoryUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: TicketRefillHistoryUpdateManyWithWhereWithoutUserInput | TicketRefillHistoryUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: TicketRefillHistoryScalarWhereInput | TicketRefillHistoryScalarWhereInput[]
   }
 
   export type PostCreateNestedManyWithoutCategoryInput = {
@@ -6773,6 +8220,20 @@ export namespace Prisma {
     update?: XOR<XOR<PostUpdateToOneWithWhereWithoutAnswersInput, PostUpdateWithoutAnswersInput>, PostUncheckedUpdateWithoutAnswersInput>
   }
 
+  export type UserCreateNestedOneWithoutTicketRefillHistoryInput = {
+    create?: XOR<UserCreateWithoutTicketRefillHistoryInput, UserUncheckedCreateWithoutTicketRefillHistoryInput>
+    connectOrCreate?: UserCreateOrConnectWithoutTicketRefillHistoryInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutTicketRefillHistoryNestedInput = {
+    create?: XOR<UserCreateWithoutTicketRefillHistoryInput, UserUncheckedCreateWithoutTicketRefillHistoryInput>
+    connectOrCreate?: UserCreateOrConnectWithoutTicketRefillHistoryInput
+    upsert?: UserUpsertWithoutTicketRefillHistoryInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutTicketRefillHistoryInput, UserUpdateWithoutTicketRefillHistoryInput>, UserUncheckedUpdateWithoutTicketRefillHistoryInput>
+  }
+
   export type NestedIntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[]
@@ -6804,6 +8265,17 @@ export namespace Prisma {
     in?: $Enums.Role[]
     notIn?: $Enums.Role[]
     not?: NestedEnumRoleFilter<$PrismaModel> | $Enums.Role
+  }
+
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
   export type NestedDateTimeFilter<$PrismaModel = never> = {
@@ -6872,6 +8344,31 @@ export namespace Prisma {
     _max?: NestedEnumRoleFilter<$PrismaModel>
   }
 
+  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[]
@@ -6917,17 +8414,6 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedStringNullableFilter<$PrismaModel>
     _max?: NestedStringNullableFilter<$PrismaModel>
-  }
-
-  export type NestedIntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | null
-    notIn?: number[] | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
   export type NestedBoolFilter<$PrismaModel = never> = {
@@ -7009,6 +8495,29 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type TicketRefillHistoryCreateWithoutUserInput = {
+    amount: number
+    reason: string
+    createdAt?: Date | string
+  }
+
+  export type TicketRefillHistoryUncheckedCreateWithoutUserInput = {
+    id?: number
+    amount: number
+    reason: string
+    createdAt?: Date | string
+  }
+
+  export type TicketRefillHistoryCreateOrConnectWithoutUserInput = {
+    where: TicketRefillHistoryWhereUniqueInput
+    create: XOR<TicketRefillHistoryCreateWithoutUserInput, TicketRefillHistoryUncheckedCreateWithoutUserInput>
+  }
+
+  export type TicketRefillHistoryCreateManyUserInputEnvelope = {
+    data: TicketRefillHistoryCreateManyUserInput | TicketRefillHistoryCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
   export type PostUpsertWithWhereUniqueWithoutAuthorInput = {
     where: PostWhereUniqueInput
     update: XOR<PostUpdateWithoutAuthorInput, PostUncheckedUpdateWithoutAuthorInput>
@@ -7072,6 +8581,33 @@ export namespace Prisma {
     postId?: IntFilter<"Answer"> | number
   }
 
+  export type TicketRefillHistoryUpsertWithWhereUniqueWithoutUserInput = {
+    where: TicketRefillHistoryWhereUniqueInput
+    update: XOR<TicketRefillHistoryUpdateWithoutUserInput, TicketRefillHistoryUncheckedUpdateWithoutUserInput>
+    create: XOR<TicketRefillHistoryCreateWithoutUserInput, TicketRefillHistoryUncheckedCreateWithoutUserInput>
+  }
+
+  export type TicketRefillHistoryUpdateWithWhereUniqueWithoutUserInput = {
+    where: TicketRefillHistoryWhereUniqueInput
+    data: XOR<TicketRefillHistoryUpdateWithoutUserInput, TicketRefillHistoryUncheckedUpdateWithoutUserInput>
+  }
+
+  export type TicketRefillHistoryUpdateManyWithWhereWithoutUserInput = {
+    where: TicketRefillHistoryScalarWhereInput
+    data: XOR<TicketRefillHistoryUpdateManyMutationInput, TicketRefillHistoryUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type TicketRefillHistoryScalarWhereInput = {
+    AND?: TicketRefillHistoryScalarWhereInput | TicketRefillHistoryScalarWhereInput[]
+    OR?: TicketRefillHistoryScalarWhereInput[]
+    NOT?: TicketRefillHistoryScalarWhereInput | TicketRefillHistoryScalarWhereInput[]
+    id?: IntFilter<"TicketRefillHistory"> | number
+    userId?: IntFilter<"TicketRefillHistory"> | number
+    amount?: IntFilter<"TicketRefillHistory"> | number
+    reason?: StringFilter<"TicketRefillHistory"> | string
+    createdAt?: DateTimeFilter<"TicketRefillHistory"> | Date | string
+  }
+
   export type PostCreateWithoutCategoryInput = {
     title: string
     content: string
@@ -7132,9 +8668,13 @@ export namespace Prisma {
     school: string
     grade: number
     role?: $Enums.Role
+    points?: number
+    questionTickets?: number
+    lastTicketRefillAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     answers?: AnswerCreateNestedManyWithoutAuthorInput
+    ticketRefillHistory?: TicketRefillHistoryCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutPostsInput = {
@@ -7145,9 +8685,13 @@ export namespace Prisma {
     school: string
     grade: number
     role?: $Enums.Role
+    points?: number
+    questionTickets?: number
+    lastTicketRefillAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     answers?: AnswerUncheckedCreateNestedManyWithoutAuthorInput
+    ticketRefillHistory?: TicketRefillHistoryUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutPostsInput = {
@@ -7218,9 +8762,13 @@ export namespace Prisma {
     school?: StringFieldUpdateOperationsInput | string
     grade?: IntFieldUpdateOperationsInput | number
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    points?: IntFieldUpdateOperationsInput | number
+    questionTickets?: IntFieldUpdateOperationsInput | number
+    lastTicketRefillAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     answers?: AnswerUpdateManyWithoutAuthorNestedInput
+    ticketRefillHistory?: TicketRefillHistoryUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPostsInput = {
@@ -7231,9 +8779,13 @@ export namespace Prisma {
     school?: StringFieldUpdateOperationsInput | string
     grade?: IntFieldUpdateOperationsInput | number
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    points?: IntFieldUpdateOperationsInput | number
+    questionTickets?: IntFieldUpdateOperationsInput | number
+    lastTicketRefillAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     answers?: AnswerUncheckedUpdateManyWithoutAuthorNestedInput
+    ticketRefillHistory?: TicketRefillHistoryUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type CategoryUpsertWithoutPostsInput = {
@@ -7281,9 +8833,13 @@ export namespace Prisma {
     school: string
     grade: number
     role?: $Enums.Role
+    points?: number
+    questionTickets?: number
+    lastTicketRefillAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     posts?: PostCreateNestedManyWithoutAuthorInput
+    ticketRefillHistory?: TicketRefillHistoryCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutAnswersInput = {
@@ -7294,9 +8850,13 @@ export namespace Prisma {
     school: string
     grade: number
     role?: $Enums.Role
+    points?: number
+    questionTickets?: number
+    lastTicketRefillAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
+    ticketRefillHistory?: TicketRefillHistoryUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutAnswersInput = {
@@ -7354,9 +8914,13 @@ export namespace Prisma {
     school?: StringFieldUpdateOperationsInput | string
     grade?: IntFieldUpdateOperationsInput | number
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    points?: IntFieldUpdateOperationsInput | number
+    questionTickets?: IntFieldUpdateOperationsInput | number
+    lastTicketRefillAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     posts?: PostUpdateManyWithoutAuthorNestedInput
+    ticketRefillHistory?: TicketRefillHistoryUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAnswersInput = {
@@ -7367,9 +8931,13 @@ export namespace Prisma {
     school?: StringFieldUpdateOperationsInput | string
     grade?: IntFieldUpdateOperationsInput | number
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    points?: IntFieldUpdateOperationsInput | number
+    questionTickets?: IntFieldUpdateOperationsInput | number
+    lastTicketRefillAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
+    ticketRefillHistory?: TicketRefillHistoryUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type PostUpsertWithoutAnswersInput = {
@@ -7410,6 +8978,88 @@ export namespace Prisma {
     categoryId?: IntFieldUpdateOperationsInput | number
   }
 
+  export type UserCreateWithoutTicketRefillHistoryInput = {
+    name: string
+    email: string
+    password: string
+    school: string
+    grade: number
+    role?: $Enums.Role
+    points?: number
+    questionTickets?: number
+    lastTicketRefillAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    posts?: PostCreateNestedManyWithoutAuthorInput
+    answers?: AnswerCreateNestedManyWithoutAuthorInput
+  }
+
+  export type UserUncheckedCreateWithoutTicketRefillHistoryInput = {
+    id?: number
+    name: string
+    email: string
+    password: string
+    school: string
+    grade: number
+    role?: $Enums.Role
+    points?: number
+    questionTickets?: number
+    lastTicketRefillAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
+    answers?: AnswerUncheckedCreateNestedManyWithoutAuthorInput
+  }
+
+  export type UserCreateOrConnectWithoutTicketRefillHistoryInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutTicketRefillHistoryInput, UserUncheckedCreateWithoutTicketRefillHistoryInput>
+  }
+
+  export type UserUpsertWithoutTicketRefillHistoryInput = {
+    update: XOR<UserUpdateWithoutTicketRefillHistoryInput, UserUncheckedUpdateWithoutTicketRefillHistoryInput>
+    create: XOR<UserCreateWithoutTicketRefillHistoryInput, UserUncheckedCreateWithoutTicketRefillHistoryInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutTicketRefillHistoryInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutTicketRefillHistoryInput, UserUncheckedUpdateWithoutTicketRefillHistoryInput>
+  }
+
+  export type UserUpdateWithoutTicketRefillHistoryInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    school?: StringFieldUpdateOperationsInput | string
+    grade?: IntFieldUpdateOperationsInput | number
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    points?: IntFieldUpdateOperationsInput | number
+    questionTickets?: IntFieldUpdateOperationsInput | number
+    lastTicketRefillAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    posts?: PostUpdateManyWithoutAuthorNestedInput
+    answers?: AnswerUpdateManyWithoutAuthorNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutTicketRefillHistoryInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    school?: StringFieldUpdateOperationsInput | string
+    grade?: IntFieldUpdateOperationsInput | number
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    points?: IntFieldUpdateOperationsInput | number
+    questionTickets?: IntFieldUpdateOperationsInput | number
+    lastTicketRefillAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
+    answers?: AnswerUncheckedUpdateManyWithoutAuthorNestedInput
+  }
+
   export type PostCreateManyAuthorInput = {
     id?: number
     title: string
@@ -7431,6 +9081,13 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     postId: number
+  }
+
+  export type TicketRefillHistoryCreateManyUserInput = {
+    id?: number
+    amount: number
+    reason: string
+    createdAt?: Date | string
   }
 
   export type PostUpdateWithoutAuthorInput = {
@@ -7500,6 +9157,26 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     postId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type TicketRefillHistoryUpdateWithoutUserInput = {
+    amount?: IntFieldUpdateOperationsInput | number
+    reason?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TicketRefillHistoryUncheckedUpdateWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    amount?: IntFieldUpdateOperationsInput | number
+    reason?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TicketRefillHistoryUncheckedUpdateManyWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    amount?: IntFieldUpdateOperationsInput | number
+    reason?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type PostCreateManyCategoryInput = {
