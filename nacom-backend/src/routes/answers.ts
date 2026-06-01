@@ -57,7 +57,11 @@ router.patch('/:id/accept', authenticate, async (req: AuthRequest, res: Response
 
   // 채택 처리 + 게시글 resolved 상태 업데이트 (트랜잭션)
   const [updatedAnswer] = await prisma.$transaction([
-    prisma.answer.update({ where: { id: answerId }, data: { isAccepted: true } }),
+    prisma.answer.update({
+      where: { id: answerId },
+      data: { isAccepted: true },
+      include: { author: { select: { id: true, name: true, school: true, grade: true } } },
+    }),
     prisma.post.update({ where: { id: answer.postId }, data: { isResolved: true } }),
   ]);
 

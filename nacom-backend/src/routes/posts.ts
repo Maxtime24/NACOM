@@ -215,4 +215,85 @@ router.post('/:id/answers', authenticate, async (req: AuthRequest, res: Response
   res.status(201).json(answer);
 });
 
+// -----------------------------------------------
+// PATCH /api/posts/:id - 게시글 수정 (작성자만)
+// -----------------------------------------------
+router.patch('/:id', authenticate, async (req: AuthRequest, res: Response): Promise<void> => {
+  const postId = Number(req.params.id);
+  const { title, content, categoryId, tags, imageUrl } = req.body;
+  const userId = req.user!.id;
+
+  const post = await prisma.post.findUnique({ where: { id: postId } });
+  if (!post) {
+    res.status(404).json({ message: '게시글을 찾을 수 없습니다.' });
+    return;
+  }
+
+  // 보안: 작성자만 수정 가능
+  if (post.authorId !== userId) {
+    res.status(403).json({ message: '작성자만 게시글을 수정할 수 있습니다.' });
+    return;
+  }
+
+  // 이미지 크기 제한
+  if (imageUrl && imageUrl.length > 10 * 1024 * 1024) {
+    res.status(400).json({ message: '이미지 크기가 너무 큽니다. (최대 10MB)' });
+    return;
+  }
+
+  const updatedPost = await prisma.post.update({
+    where: { id: postId },
+    data: {
+      title: title ? title.trim() : undefined,
+      content: content ? content.trim() : undefined,
+      categoryId: categoryId ? Number(categoryId) : undefined,
+      tags: tags ? JSON.stringify(tags) : undefined,
+      imageUrl: imageUrl !== undefined ? imageUrl : undefined,
+    },
+    include: {
+      author: { select: { id: true, name: true, school: true, grade: true } },
+      category: true,
+      _count: { select: { answers: true } },
+    },
+  });
+
+  res.json({
+    ...updatedPost,
+    tags: updatedPost.tags ? JSON.parse(updatedPost.tags) : [],
+    answerCount: updatedPost._count.answers,
+  });
+});
+
+// -----------------------------------------------
+// DELETE /api/posts/:id - 게시글 삭제 (작성자만)
+// -----------------------------------------------
+router.delete('/:id', authenticate, async (req: AuthRequest, res: Response): Promise<void> => {
+  const postId = Number(req.params.id);
+  const userId = req.user!.id;
+
+  const post = await prisma.post.findUnique({
+    where: { id: postId },
+    include: { answers: true },
+  });
+
+  if (!post) {
+    res.status(404).json({ message: '게시글을 찾을 수 없습니다.' });
+    return;
+  }
+
+  // 보안: 작성자만 삭제 가능
+  if (post.authorId !== userId) {
+    res.status(403).json({ message: '작성자만 게시글을 삭제할 수 있습니다.' });
+    return;
+  }
+
+  // 트랜잭션으로 게시글과 관련 답변 삭제
+  await prisma.$transaction([
+    prisma.answer.deleteMany({ where: { postId } }),
+    prisma.post.delete({ where: { id: postId } }),
+  ]);
+
+  res.json({ message: '게시글이 삭제되었습니다.' });
+});
+
 export default router;
