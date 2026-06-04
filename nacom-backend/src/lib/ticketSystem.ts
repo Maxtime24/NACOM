@@ -23,27 +23,47 @@ export async function refillTicketsIfNeeded(userId: number): Promise<number> {
   const now = new Date();
   const lastRefill = user.lastTicketRefillAt;
 
-  // 마지막 충전 이후 5분이 지났는지 확인
-  if (lastRefill && now.getTime() - lastRefill.getTime() < REFILL_INTERVAL_MS) {
+  // 1. 마지막 충전 시간이 없으면 현재 시간으로 기록하고 티켓 수는 유지
+  if (!lastRefill) {
+    await prisma.user.update({
+      where: { id: userId },
+      data: { lastTicketRefillAt: now },
+    });
     return user.questionTickets;
   }
 
-  // 최대 개수에 미치지 못했으면 자동 충전
-  if (user.questionTickets < MAX_TICKETS) {
-    const newTicketCount = Math.min(user.questionTickets + AUTO_REFILL_AMOUNT, MAX_TICKETS);
-    
+  // 2. 이미 최대 개수 이상 보유 중이면 기준 충전 시간을 현재 시간으로 갱신
+  if (user.questionTickets >= MAX_TICKETS) {
+    await prisma.user.update({
+      where: { id: userId },
+      data: { lastTicketRefillAt: now },
+    });
+    return user.questionTickets;
+  }
+
+  // 3. 마지막 충전 이후 경과 시간 계산
+  const elapsedMs = now.getTime() - lastRefill.getTime();
+  const elapsedIntervals = Math.floor(elapsedMs / REFILL_INTERVAL_MS);
+
+  // 5분 단위가 1번 이상 지났으면 충전 진행
+  if (elapsedIntervals >= 1) {
+    const refillAmount = elapsedIntervals * AUTO_REFILL_AMOUNT;
+    const newTicketCount = Math.min(user.questionTickets + refillAmount, MAX_TICKETS);
+    // 남은 잔여 시간(단수 ms)을 보존하기 위해 흘러간 간격만큼만 가산
+    const nextRefillTime = new Date(lastRefill.getTime() + elapsedIntervals * REFILL_INTERVAL_MS);
+
     await prisma.$transaction([
       prisma.user.update({
         where: { id: userId },
         data: {
           questionTickets: newTicketCount,
-          lastTicketRefillAt: now,
+          lastTicketRefillAt: nextRefillTime,
         },
       }),
       prisma.ticketRefillHistory.create({
         data: {
           userId,
-          amount: AUTO_REFILL_AMOUNT,
+          amount: refillAmount,
           reason: 'AUTO',
         },
       }),

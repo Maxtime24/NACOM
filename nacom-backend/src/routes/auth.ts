@@ -3,6 +3,7 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import prisma from '../lib/prisma';
 import { refillTicketsIfNeeded } from '../lib/ticketSystem';
+import { authenticate, AuthRequest } from '../middleware/auth';
 
 const router = Router();
 
@@ -132,6 +133,42 @@ router.post('/login', async (req: Request, res: Response): Promise<void> => {
       questionTickets: updatedUser!.questionTickets,
     },
   });
+});
+
+// -----------------------------------------------
+// GET /api/auth/me - 내 정보 조회 (인증 필요, 티켓 자동 충전 수행)
+// -----------------------------------------------
+router.get('/me', authenticate, async (req: AuthRequest, res: Response): Promise<void> => {
+  const userId = req.user!.id;
+
+  try {
+    // 티켓 자동 재충전 확인 및 수행
+    await refillTicketsIfNeeded(userId);
+
+    const user = await prisma.user.findUnique({
+      where: { id: userId },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        school: true,
+        grade: true,
+        role: true,
+        points: true,
+        questionTickets: true,
+      },
+    });
+
+    if (!user) {
+      res.status(404).json({ message: '사용자를 찾을 수 없습니다.' });
+      return;
+    }
+
+    res.json(user);
+  } catch (error: any) {
+    console.error('[GET /me ERROR]', error.message);
+    res.status(500).json({ message: '내 정보를 가져오는 중 오류가 발생했습니다.' });
+  }
 });
 
 export default router;
