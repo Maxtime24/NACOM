@@ -8,14 +8,20 @@ import categoriesRouter from './routes/categories';
 
 const app = express();
 const PORT = parseInt(process.env.PORT ?? '3001', 10);
-const FRONTEND_URL = process.env.FRONTEND_URL ?? 'http://localhost:8081';
+
+// FRONTEND_URL은 쉼표(,)로 여러 주소 지정 가능
+// 예: "https://gyesan-co.vercel.app,http://localhost:8081"
+const FRONTEND_URLS = (process.env.FRONTEND_URL ?? 'http://localhost:8081')
+  .split(',')
+  .map(url => url.trim())
+  .filter(Boolean);
 
 // -----------------------------------------------
 // 미들웨어
 // -----------------------------------------------
 app.use(cors({
   origin: [
-    FRONTEND_URL,
+    ...FRONTEND_URLS,
     /^http:\/\/localhost:\d+$/,    // 로컬 개발 환경 전체 허용
     /^http:\/\/192\.168\.\d+\.\d+:\d+$/, // 로컬 네트워크 (Expo Go)
     /^http:\/\/\d+\.\d+\.\d+\.\d+:\d+$/, // 모든 외부 IP 허용 (테스트용)
