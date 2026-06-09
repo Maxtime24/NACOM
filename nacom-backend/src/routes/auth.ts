@@ -169,6 +169,38 @@ router.get('/me', authenticate, async (req: AuthRequest, res: Response): Promise
     console.error('[GET /me ERROR]', error.message);
     res.status(500).json({ message: '내 정보를 가져오는 중 오류가 발생했습니다.' });
   }
+
+  // -----------------------------------------------
+// GET /api/auth/ranking
+// -----------------------------------------------
+router.get('/ranking', async (_req: Request, res: Response): Promise<void> => {
+  try {
+    const users = await prisma.user.findMany({
+      select: {
+        id: true,
+        name: true,
+        school: true,
+        grade: true,
+        points: true,
+      },
+      orderBy: {
+        points: 'desc',
+      },
+      take: 100,
+    });
+
+    res.json({
+      data: users,
+    });
+  } catch (error) {
+    console.error('[GET /ranking ERROR]', error);
+
+    res.status(500).json({
+      message: '랭킹을 불러오는 중 오류가 발생했습니다.',
+    });
+  }
+});
+
 });
 
 export default router;
