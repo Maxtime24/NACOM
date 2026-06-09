@@ -136,13 +136,12 @@ router.post('/login', async (req: Request, res: Response): Promise<void> => {
 });
 
 // -----------------------------------------------
-// GET /api/auth/me - 내 정보 조회 (인증 필요, 티켓 자동 충전 수행)
+// GET /api/auth/me
 // -----------------------------------------------
 router.get('/me', authenticate, async (req: AuthRequest, res: Response): Promise<void> => {
   const userId = req.user!.id;
 
   try {
-    // 티켓 자동 재충전 확인 및 수행
     await refillTicketsIfNeeded(userId);
 
     const user = await prisma.user.findUnique({
@@ -167,10 +166,13 @@ router.get('/me', authenticate, async (req: AuthRequest, res: Response): Promise
     res.json(user);
   } catch (error: any) {
     console.error('[GET /me ERROR]', error.message);
-    res.status(500).json({ message: '내 정보를 가져오는 중 오류가 발생했습니다.' });
+    res.status(500).json({
+      message: '내 정보를 가져오는 중 오류가 발생했습니다.',
+    });
   }
+});
 
-  // -----------------------------------------------
+// -----------------------------------------------
 // GET /api/auth/ranking
 // -----------------------------------------------
 router.get('/ranking', async (_req: Request, res: Response): Promise<void> => {
@@ -199,8 +201,6 @@ router.get('/ranking', async (_req: Request, res: Response): Promise<void> => {
       message: '랭킹을 불러오는 중 오류가 발생했습니다.',
     });
   }
-});
-
 });
 
 export default router;
