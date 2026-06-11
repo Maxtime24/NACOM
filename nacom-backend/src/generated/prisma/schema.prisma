@@ -19,6 +19,9 @@ model User {
   grade    Int
   role     Role   @default(STUDENT)
 
+  phone         String? @unique
+  phoneVerified Boolean @default(false)
+
   // 포인트 및 티켓 시스템
   points             Int       @default(0) // 내공
   questionTickets    Int       @default(5) // 질문 티켓 (최대 10)
@@ -100,4 +103,41 @@ model TicketRefillHistory {
 
   @@index([userId])
   @@index([createdAt])
+}
+
+// 게시글 조회 기록 (중복 방지)
+model PostView {
+  id       Int      @id @default(autoincrement())
+  userId   Int
+  postId   Int
+  viewedAt DateTime @default(now()) @updatedAt
+
+  @@unique([userId, postId])
+  @@index([userId])
+  @@index([postId])
+}
+
+// 답변 추천 기록 (중복 방지)
+model AnswerUpvote {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  answerId  Int
+  createdAt DateTime @default(now())
+
+  @@unique([userId, answerId])
+  @@index([userId])
+  @@index([answerId])
+}
+
+// 광고 시청 세션 (heartbeat 검증)
+model AdSession {
+  id            String    @id @default(uuid())
+  userId        Int
+  status        String    @default("STARTED") // "STARTED", "COMPLETED", "CLAIMED"
+  heartbeats    Int       @default(0)
+  startedAt     DateTime  @default(now())
+  lastHeartbeat DateTime  @default(now())
+  completedAt   DateTime?
+
+  @@index([userId])
 }

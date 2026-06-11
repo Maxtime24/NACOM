@@ -128,6 +128,8 @@ exports.Prisma.UserScalarFieldEnum = {
   school: 'school',
   grade: 'grade',
   role: 'role',
+  phone: 'phone',
+  phoneVerified: 'phoneVerified',
   points: 'points',
   questionTickets: 'questionTickets',
   lastTicketRefillAt: 'lastTicketRefillAt',
@@ -174,6 +176,30 @@ exports.Prisma.TicketRefillHistoryScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.PostViewScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  postId: 'postId',
+  viewedAt: 'viewedAt'
+};
+
+exports.Prisma.AnswerUpvoteScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  answerId: 'answerId',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.AdSessionScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  status: 'status',
+  heartbeats: 'heartbeats',
+  startedAt: 'startedAt',
+  lastHeartbeat: 'lastHeartbeat',
+  completedAt: 'completedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -188,7 +214,8 @@ exports.Prisma.UserOrderByRelevanceFieldEnum = {
   name: 'name',
   email: 'email',
   password: 'password',
-  school: 'school'
+  school: 'school',
+  phone: 'phone'
 };
 
 exports.Prisma.CategoryOrderByRelevanceFieldEnum = {
@@ -210,6 +237,11 @@ exports.Prisma.AnswerOrderByRelevanceFieldEnum = {
 exports.Prisma.TicketRefillHistoryOrderByRelevanceFieldEnum = {
   reason: 'reason'
 };
+
+exports.Prisma.AdSessionOrderByRelevanceFieldEnum = {
+  id: 'id',
+  status: 'status'
+};
 exports.Role = exports.$Enums.Role = {
   STUDENT: 'STUDENT',
   ADMIN: 'ADMIN'
@@ -220,7 +252,10 @@ exports.Prisma.ModelName = {
   Category: 'Category',
   Post: 'Post',
   Answer: 'Answer',
-  TicketRefillHistory: 'TicketRefillHistory'
+  TicketRefillHistory: 'TicketRefillHistory',
+  PostView: 'PostView',
+  AnswerUpvote: 'AnswerUpvote',
+  AdSession: 'AdSession'
 };
 
 /**

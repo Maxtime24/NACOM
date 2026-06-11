@@ -4,13 +4,15 @@ import jwt from 'jsonwebtoken';
 import prisma from '../lib/prisma';
 import { refillTicketsIfNeeded } from '../lib/ticketSystem';
 import { authenticate, AuthRequest } from '../middleware/auth';
+import { asyncHandler } from '../lib/asyncHandler';
+
 
 const router = Router();
 
 // -----------------------------------------------
 // POST /api/auth/register - 회원가입
 // -----------------------------------------------
-router.post('/register', async (req: Request, res: Response): Promise<void> => {
+router.post('/register', asyncHandler(async (req: Request, res: Response): Promise<void> => {
   const { name, email, password, school, grade } = req.body;
 
   // 보안: 입력값 유효성 검사
@@ -70,12 +72,12 @@ router.post('/register', async (req: Request, res: Response): Promise<void> => {
       questionTickets: user.questionTickets,
     },
   });
-});
+}));
 
 // -----------------------------------------------
 // POST /api/auth/login - 로그인
 // -----------------------------------------------
-router.post('/login', async (req: Request, res: Response): Promise<void> => {
+router.post('/login', asyncHandler(async (req: Request, res: Response): Promise<void> => {
   const { email, password } = req.body;
 
   if (!email || !password) {
@@ -133,12 +135,13 @@ router.post('/login', async (req: Request, res: Response): Promise<void> => {
       questionTickets: updatedUser!.questionTickets,
     },
   });
-});
+}));
 
 // -----------------------------------------------
 // GET /api/auth/me
 // -----------------------------------------------
-router.get('/me', authenticate, async (req: AuthRequest, res: Response): Promise<void> => {
+router.get('/me', authenticate, asyncHandler(async (req: AuthRequest, res: Response): Promise<void> => {
+  res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
   const userId = req.user!.id;
 
   try {
@@ -170,12 +173,12 @@ router.get('/me', authenticate, async (req: AuthRequest, res: Response): Promise
       message: '내 정보를 가져오는 중 오류가 발생했습니다.',
     });
   }
-});
+}));
 
 // -----------------------------------------------
 // GET /api/auth/ranking
 // -----------------------------------------------
-router.get('/ranking', async (_req: Request, res: Response): Promise<void> => {
+router.get('/ranking', asyncHandler(async (_req: Request, res: Response): Promise<void> => {
   try {
     const users = await prisma.user.findMany({
       select: {
@@ -201,6 +204,6 @@ router.get('/ranking', async (_req: Request, res: Response): Promise<void> => {
       message: '랭킹을 불러오는 중 오류가 발생했습니다.',
     });
   }
-});
+}));
 
 export default router;

@@ -1,14 +1,17 @@
 import { Router, Request, Response } from 'express';
+import jwt from 'jsonwebtoken';
 import prisma from '../lib/prisma';
 import { authenticate, AuthRequest } from '../middleware/auth';
 import { useTicket, addPoints, refillTicketsIfNeeded } from '../lib/ticketSystem';
+import { asyncHandler } from '../lib/asyncHandler';
+
 
 const router = Router();
 
 // -----------------------------------------------
 // GET /api/posts - 게시글 목록 조회 (검색 기능 포함)
 // -----------------------------------------------
-router.get('/', async (req: Request, res: Response): Promise<void> => {
+router.get('/', asyncHandler(async (req: Request, res: Response): Promise<void> => {
   const { categoryId, resolved, search, page = '1', limit = '20' } = req.query;
 
   const skip = (Number(page) - 1) * Number(limit);
@@ -56,12 +59,12 @@ router.get('/', async (req: Request, res: Response): Promise<void> => {
     })),
     meta: { total, page: Number(page), limit: Number(limit) },
   });
-});
+}));
 
 // -----------------------------------------------
 // GET /api/posts/my/notifications - 내 게시물에 달린 답변 알림 (인증 필요)
 // -----------------------------------------------
-router.get('/my/notifications', authenticate, async (req: AuthRequest, res: Response): Promise<void> => {
+router.get('/my/notifications', authenticate, asyncHandler(async (req: AuthRequest, res: Response): Promise<void> => {
   const userId = req.user!.id;
 
   // 내가 작성한 게시물들을 조회
@@ -94,12 +97,12 @@ router.get('/my/notifications', authenticate, async (req: AuthRequest, res: Resp
     })),
     total: notifications.length,
   });
-});
+}));
 
 // -----------------------------------------------
 // GET /api/posts/:id - 게시글 상세 조회
 // -----------------------------------------------
-router.get('/:id', async (req: Request, res: Response): Promise<void> => {
+router.get('/:id', asyncHandler(async (req: Request, res: Response): Promise<void> => {
   const id = Number(req.params.id);
 
   const post = await prisma.post.findUnique({
@@ -121,22 +124,73 @@ router.get('/:id', async (req: Request, res: Response): Promise<void> => {
     return;
   }
 
-  // 조회수 증가
-  await prisma.post.update({ where: { id }, data: { views: { increment: 1 } } });
+  // 토큰 기반 중복 조회 방지 (1시간에 1회)
+  const authHeader = req.headers.authorization;
+  if (authHeader && authHeader.startsWith('Bearer ')) {
+    const token = authHeader.split(' ')[1];
+    try {
+      const decoded = jwt.verify(token, process.env.JWT_SECRET!) as { id: number };
+      const userId = decoded.id;
+      
+      const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000);
+      
+      // 기존 조회 이력 확인
+      const postView = await prisma.postView.findUnique({
+        where: {
+          userId_postId: {
+            userId,
+            postId: id,
+          },
+        },
+      });
+
+      if (!postView) {
+        // 이력이 없으면 새로 생성하고 조회수 증가
+        await prisma.$transaction([
+          prisma.postView.create({
+            data: { userId, postId: id },
+          }),
+          prisma.post.update({
+            where: { id },
+            data: { views: { increment: 1 } },
+          }),
+        ]);
+        post.views += 1;
+      } else if (postView.viewedAt < oneHourAgo) {
+        // 1시간이 지났으면 갱신하고 조회수 증가
+        await prisma.$transaction([
+          prisma.postView.update({
+            where: {
+              userId_postId: {
+                userId,
+                postId: id,
+              },
+            },
+            data: { viewedAt: new Date() },
+          }),
+          prisma.post.update({
+            where: { id },
+            data: { views: { increment: 1 } },
+          }),
+        ]);
+        post.views += 1;
+      }
+    } catch (jwtError) {
+      console.warn('[JWT VERIFY WARNING for POST VIEW]', jwtError);
+    }
+  }
 
   res.json({
     ...post,
     tags: post.tags ? JSON.parse(post.tags) : [],
     answerCount: post.answers.length,
   });
-});
+}));
 
-// -----------------------------------------------
-// POST /api/posts - 게시글 작성 (인증 필요)
 // -----------------------------------------------
 // POST /api/posts - 게시글 작성 (인증 필요, 이미지 첨부 가능)
 // -----------------------------------------------
-router.post('/', authenticate, async (req: AuthRequest, res: Response): Promise<void> => {
+router.post('/', authenticate, asyncHandler(async (req: AuthRequest, res: Response): Promise<void> => {
   const { title, content, categoryId, tags, imageUrl } = req.body;
   const userId = req.user!.id;
 
@@ -177,12 +231,12 @@ router.post('/', authenticate, async (req: AuthRequest, res: Response): Promise<
   await addPoints(userId, 5, '질문 작성');
 
   res.status(201).json({ ...post, tags: tags ?? [], answerCount: 0 });
-});
+}));
 
 // -----------------------------------------------
 // POST /api/posts/:id/answers - 답변 작성 (인증 필요)
 // -----------------------------------------------
-router.post('/:id/answers', authenticate, async (req: AuthRequest, res: Response): Promise<void> => {
+router.post('/:id/answers', authenticate, asyncHandler(async (req: AuthRequest, res: Response): Promise<void> => {
   const postId = Number(req.params.id);
   const { content } = req.body;
   const userId = req.user!.id;
@@ -213,12 +267,12 @@ router.post('/:id/answers', authenticate, async (req: AuthRequest, res: Response
   await addPoints(userId, 3, '답변 작성');
 
   res.status(201).json(answer);
-});
+}));
 
 // -----------------------------------------------
 // PATCH /api/posts/:id - 게시글 수정 (작성자만)
 // -----------------------------------------------
-router.patch('/:id', authenticate, async (req: AuthRequest, res: Response): Promise<void> => {
+router.patch('/:id', authenticate, asyncHandler(async (req: AuthRequest, res: Response): Promise<void> => {
   const postId = Number(req.params.id);
   const { title, content, categoryId, tags, imageUrl } = req.body;
   const userId = req.user!.id;
@@ -262,12 +316,12 @@ router.patch('/:id', authenticate, async (req: AuthRequest, res: Response): Prom
     tags: updatedPost.tags ? JSON.parse(updatedPost.tags) : [],
     answerCount: updatedPost._count.answers,
   });
-});
+}));
 
 // -----------------------------------------------
 // DELETE /api/posts/:id - 게시글 삭제 (작성자만)
 // -----------------------------------------------
-router.delete('/:id', authenticate, async (req: AuthRequest, res: Response): Promise<void> => {
+router.delete('/:id', authenticate, asyncHandler(async (req: AuthRequest, res: Response): Promise<void> => {
   const postId = Number(req.params.id);
   const userId = req.user!.id;
 
@@ -294,6 +348,6 @@ router.delete('/:id', authenticate, async (req: AuthRequest, res: Response): Pro
   ]);
 
   res.json({ message: '게시글이 삭제되었습니다.' });
-});
+}));
 
 export default router;

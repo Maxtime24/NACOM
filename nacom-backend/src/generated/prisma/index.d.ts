@@ -38,6 +38,21 @@ export type Answer = $Result.DefaultSelection<Prisma.$AnswerPayload>
  * 
  */
 export type TicketRefillHistory = $Result.DefaultSelection<Prisma.$TicketRefillHistoryPayload>
+/**
+ * Model PostView
+ * 
+ */
+export type PostView = $Result.DefaultSelection<Prisma.$PostViewPayload>
+/**
+ * Model AnswerUpvote
+ * 
+ */
+export type AnswerUpvote = $Result.DefaultSelection<Prisma.$AnswerUpvotePayload>
+/**
+ * Model AdSession
+ * 
+ */
+export type AdSession = $Result.DefaultSelection<Prisma.$AdSessionPayload>
 
 /**
  * Enums
@@ -226,6 +241,36 @@ export class PrismaClient<
     * ```
     */
   get ticketRefillHistory(): Prisma.TicketRefillHistoryDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.postView`: Exposes CRUD operations for the **PostView** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more PostViews
+    * const postViews = await prisma.postView.findMany()
+    * ```
+    */
+  get postView(): Prisma.PostViewDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.answerUpvote`: Exposes CRUD operations for the **AnswerUpvote** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more AnswerUpvotes
+    * const answerUpvotes = await prisma.answerUpvote.findMany()
+    * ```
+    */
+  get answerUpvote(): Prisma.AnswerUpvoteDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.adSession`: Exposes CRUD operations for the **AdSession** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more AdSessions
+    * const adSessions = await prisma.adSession.findMany()
+    * ```
+    */
+  get adSession(): Prisma.AdSessionDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -664,7 +709,10 @@ export namespace Prisma {
     Category: 'Category',
     Post: 'Post',
     Answer: 'Answer',
-    TicketRefillHistory: 'TicketRefillHistory'
+    TicketRefillHistory: 'TicketRefillHistory',
+    PostView: 'PostView',
+    AnswerUpvote: 'AnswerUpvote',
+    AdSession: 'AdSession'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -680,7 +728,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "category" | "post" | "answer" | "ticketRefillHistory"
+      modelProps: "user" | "category" | "post" | "answer" | "ticketRefillHistory" | "postView" | "answerUpvote" | "adSession"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1014,6 +1062,204 @@ export namespace Prisma {
           }
         }
       }
+      PostView: {
+        payload: Prisma.$PostViewPayload<ExtArgs>
+        fields: Prisma.PostViewFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.PostViewFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PostViewPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.PostViewFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PostViewPayload>
+          }
+          findFirst: {
+            args: Prisma.PostViewFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PostViewPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.PostViewFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PostViewPayload>
+          }
+          findMany: {
+            args: Prisma.PostViewFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PostViewPayload>[]
+          }
+          create: {
+            args: Prisma.PostViewCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PostViewPayload>
+          }
+          createMany: {
+            args: Prisma.PostViewCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.PostViewDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PostViewPayload>
+          }
+          update: {
+            args: Prisma.PostViewUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PostViewPayload>
+          }
+          deleteMany: {
+            args: Prisma.PostViewDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.PostViewUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.PostViewUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PostViewPayload>
+          }
+          aggregate: {
+            args: Prisma.PostViewAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregatePostView>
+          }
+          groupBy: {
+            args: Prisma.PostViewGroupByArgs<ExtArgs>
+            result: $Utils.Optional<PostViewGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.PostViewCountArgs<ExtArgs>
+            result: $Utils.Optional<PostViewCountAggregateOutputType> | number
+          }
+        }
+      }
+      AnswerUpvote: {
+        payload: Prisma.$AnswerUpvotePayload<ExtArgs>
+        fields: Prisma.AnswerUpvoteFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AnswerUpvoteFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnswerUpvotePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AnswerUpvoteFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnswerUpvotePayload>
+          }
+          findFirst: {
+            args: Prisma.AnswerUpvoteFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnswerUpvotePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AnswerUpvoteFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnswerUpvotePayload>
+          }
+          findMany: {
+            args: Prisma.AnswerUpvoteFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnswerUpvotePayload>[]
+          }
+          create: {
+            args: Prisma.AnswerUpvoteCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnswerUpvotePayload>
+          }
+          createMany: {
+            args: Prisma.AnswerUpvoteCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.AnswerUpvoteDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnswerUpvotePayload>
+          }
+          update: {
+            args: Prisma.AnswerUpvoteUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnswerUpvotePayload>
+          }
+          deleteMany: {
+            args: Prisma.AnswerUpvoteDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AnswerUpvoteUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.AnswerUpvoteUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnswerUpvotePayload>
+          }
+          aggregate: {
+            args: Prisma.AnswerUpvoteAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAnswerUpvote>
+          }
+          groupBy: {
+            args: Prisma.AnswerUpvoteGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AnswerUpvoteGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AnswerUpvoteCountArgs<ExtArgs>
+            result: $Utils.Optional<AnswerUpvoteCountAggregateOutputType> | number
+          }
+        }
+      }
+      AdSession: {
+        payload: Prisma.$AdSessionPayload<ExtArgs>
+        fields: Prisma.AdSessionFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AdSessionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdSessionPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AdSessionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdSessionPayload>
+          }
+          findFirst: {
+            args: Prisma.AdSessionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdSessionPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AdSessionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdSessionPayload>
+          }
+          findMany: {
+            args: Prisma.AdSessionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdSessionPayload>[]
+          }
+          create: {
+            args: Prisma.AdSessionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdSessionPayload>
+          }
+          createMany: {
+            args: Prisma.AdSessionCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.AdSessionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdSessionPayload>
+          }
+          update: {
+            args: Prisma.AdSessionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdSessionPayload>
+          }
+          deleteMany: {
+            args: Prisma.AdSessionDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AdSessionUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.AdSessionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdSessionPayload>
+          }
+          aggregate: {
+            args: Prisma.AdSessionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAdSession>
+          }
+          groupBy: {
+            args: Prisma.AdSessionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AdSessionGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AdSessionCountArgs<ExtArgs>
+            result: $Utils.Optional<AdSessionCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1127,6 +1373,9 @@ export namespace Prisma {
     post?: PostOmit
     answer?: AnswerOmit
     ticketRefillHistory?: TicketRefillHistoryOmit
+    postView?: PostViewOmit
+    answerUpvote?: AnswerUpvoteOmit
+    adSession?: AdSessionOmit
   }
 
   /* Types for Logging */
@@ -1351,6 +1600,8 @@ export namespace Prisma {
     school: string | null
     grade: number | null
     role: $Enums.Role | null
+    phone: string | null
+    phoneVerified: boolean | null
     points: number | null
     questionTickets: number | null
     lastTicketRefillAt: Date | null
@@ -1366,6 +1617,8 @@ export namespace Prisma {
     school: string | null
     grade: number | null
     role: $Enums.Role | null
+    phone: string | null
+    phoneVerified: boolean | null
     points: number | null
     questionTickets: number | null
     lastTicketRefillAt: Date | null
@@ -1381,6 +1634,8 @@ export namespace Prisma {
     school: number
     grade: number
     role: number
+    phone: number
+    phoneVerified: number
     points: number
     questionTickets: number
     lastTicketRefillAt: number
@@ -1412,6 +1667,8 @@ export namespace Prisma {
     school?: true
     grade?: true
     role?: true
+    phone?: true
+    phoneVerified?: true
     points?: true
     questionTickets?: true
     lastTicketRefillAt?: true
@@ -1427,6 +1684,8 @@ export namespace Prisma {
     school?: true
     grade?: true
     role?: true
+    phone?: true
+    phoneVerified?: true
     points?: true
     questionTickets?: true
     lastTicketRefillAt?: true
@@ -1442,6 +1701,8 @@ export namespace Prisma {
     school?: true
     grade?: true
     role?: true
+    phone?: true
+    phoneVerified?: true
     points?: true
     questionTickets?: true
     lastTicketRefillAt?: true
@@ -1544,6 +1805,8 @@ export namespace Prisma {
     school: string
     grade: number
     role: $Enums.Role
+    phone: string | null
+    phoneVerified: boolean
     points: number
     questionTickets: number
     lastTicketRefillAt: Date | null
@@ -1578,6 +1841,8 @@ export namespace Prisma {
     school?: boolean
     grade?: boolean
     role?: boolean
+    phone?: boolean
+    phoneVerified?: boolean
     points?: boolean
     questionTickets?: boolean
     lastTicketRefillAt?: boolean
@@ -1599,6 +1864,8 @@ export namespace Prisma {
     school?: boolean
     grade?: boolean
     role?: boolean
+    phone?: boolean
+    phoneVerified?: boolean
     points?: boolean
     questionTickets?: boolean
     lastTicketRefillAt?: boolean
@@ -1606,7 +1873,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "password" | "school" | "grade" | "role" | "points" | "questionTickets" | "lastTicketRefillAt" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "password" | "school" | "grade" | "role" | "phone" | "phoneVerified" | "points" | "questionTickets" | "lastTicketRefillAt" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     posts?: boolean | User$postsArgs<ExtArgs>
     answers?: boolean | User$answersArgs<ExtArgs>
@@ -1629,6 +1896,8 @@ export namespace Prisma {
       school: string
       grade: number
       role: $Enums.Role
+      phone: string | null
+      phoneVerified: boolean
       points: number
       questionTickets: number
       lastTicketRefillAt: Date | null
@@ -2013,6 +2282,8 @@ export namespace Prisma {
     readonly school: FieldRef<"User", 'String'>
     readonly grade: FieldRef<"User", 'Int'>
     readonly role: FieldRef<"User", 'Role'>
+    readonly phone: FieldRef<"User", 'String'>
+    readonly phoneVerified: FieldRef<"User", 'Boolean'>
     readonly points: FieldRef<"User", 'Int'>
     readonly questionTickets: FieldRef<"User", 'Int'>
     readonly lastTicketRefillAt: FieldRef<"User", 'DateTime'>
@@ -6502,6 +6773,2789 @@ export namespace Prisma {
 
 
   /**
+   * Model PostView
+   */
+
+  export type AggregatePostView = {
+    _count: PostViewCountAggregateOutputType | null
+    _avg: PostViewAvgAggregateOutputType | null
+    _sum: PostViewSumAggregateOutputType | null
+    _min: PostViewMinAggregateOutputType | null
+    _max: PostViewMaxAggregateOutputType | null
+  }
+
+  export type PostViewAvgAggregateOutputType = {
+    id: number | null
+    userId: number | null
+    postId: number | null
+  }
+
+  export type PostViewSumAggregateOutputType = {
+    id: number | null
+    userId: number | null
+    postId: number | null
+  }
+
+  export type PostViewMinAggregateOutputType = {
+    id: number | null
+    userId: number | null
+    postId: number | null
+    viewedAt: Date | null
+  }
+
+  export type PostViewMaxAggregateOutputType = {
+    id: number | null
+    userId: number | null
+    postId: number | null
+    viewedAt: Date | null
+  }
+
+  export type PostViewCountAggregateOutputType = {
+    id: number
+    userId: number
+    postId: number
+    viewedAt: number
+    _all: number
+  }
+
+
+  export type PostViewAvgAggregateInputType = {
+    id?: true
+    userId?: true
+    postId?: true
+  }
+
+  export type PostViewSumAggregateInputType = {
+    id?: true
+    userId?: true
+    postId?: true
+  }
+
+  export type PostViewMinAggregateInputType = {
+    id?: true
+    userId?: true
+    postId?: true
+    viewedAt?: true
+  }
+
+  export type PostViewMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    postId?: true
+    viewedAt?: true
+  }
+
+  export type PostViewCountAggregateInputType = {
+    id?: true
+    userId?: true
+    postId?: true
+    viewedAt?: true
+    _all?: true
+  }
+
+  export type PostViewAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PostView to aggregate.
+     */
+    where?: PostViewWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PostViews to fetch.
+     */
+    orderBy?: PostViewOrderByWithRelationInput | PostViewOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: PostViewWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PostViews from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PostViews.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned PostViews
+    **/
+    _count?: true | PostViewCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: PostViewAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: PostViewSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: PostViewMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: PostViewMaxAggregateInputType
+  }
+
+  export type GetPostViewAggregateType<T extends PostViewAggregateArgs> = {
+        [P in keyof T & keyof AggregatePostView]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregatePostView[P]>
+      : GetScalarType<T[P], AggregatePostView[P]>
+  }
+
+
+
+
+  export type PostViewGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PostViewWhereInput
+    orderBy?: PostViewOrderByWithAggregationInput | PostViewOrderByWithAggregationInput[]
+    by: PostViewScalarFieldEnum[] | PostViewScalarFieldEnum
+    having?: PostViewScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: PostViewCountAggregateInputType | true
+    _avg?: PostViewAvgAggregateInputType
+    _sum?: PostViewSumAggregateInputType
+    _min?: PostViewMinAggregateInputType
+    _max?: PostViewMaxAggregateInputType
+  }
+
+  export type PostViewGroupByOutputType = {
+    id: number
+    userId: number
+    postId: number
+    viewedAt: Date
+    _count: PostViewCountAggregateOutputType | null
+    _avg: PostViewAvgAggregateOutputType | null
+    _sum: PostViewSumAggregateOutputType | null
+    _min: PostViewMinAggregateOutputType | null
+    _max: PostViewMaxAggregateOutputType | null
+  }
+
+  type GetPostViewGroupByPayload<T extends PostViewGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<PostViewGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof PostViewGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], PostViewGroupByOutputType[P]>
+            : GetScalarType<T[P], PostViewGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type PostViewSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    postId?: boolean
+    viewedAt?: boolean
+  }, ExtArgs["result"]["postView"]>
+
+
+
+  export type PostViewSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    postId?: boolean
+    viewedAt?: boolean
+  }
+
+  export type PostViewOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "postId" | "viewedAt", ExtArgs["result"]["postView"]>
+
+  export type $PostViewPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "PostView"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      userId: number
+      postId: number
+      viewedAt: Date
+    }, ExtArgs["result"]["postView"]>
+    composites: {}
+  }
+
+  type PostViewGetPayload<S extends boolean | null | undefined | PostViewDefaultArgs> = $Result.GetResult<Prisma.$PostViewPayload, S>
+
+  type PostViewCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<PostViewFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: PostViewCountAggregateInputType | true
+    }
+
+  export interface PostViewDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['PostView'], meta: { name: 'PostView' } }
+    /**
+     * Find zero or one PostView that matches the filter.
+     * @param {PostViewFindUniqueArgs} args - Arguments to find a PostView
+     * @example
+     * // Get one PostView
+     * const postView = await prisma.postView.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends PostViewFindUniqueArgs>(args: SelectSubset<T, PostViewFindUniqueArgs<ExtArgs>>): Prisma__PostViewClient<$Result.GetResult<Prisma.$PostViewPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one PostView that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {PostViewFindUniqueOrThrowArgs} args - Arguments to find a PostView
+     * @example
+     * // Get one PostView
+     * const postView = await prisma.postView.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends PostViewFindUniqueOrThrowArgs>(args: SelectSubset<T, PostViewFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PostViewClient<$Result.GetResult<Prisma.$PostViewPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first PostView that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PostViewFindFirstArgs} args - Arguments to find a PostView
+     * @example
+     * // Get one PostView
+     * const postView = await prisma.postView.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends PostViewFindFirstArgs>(args?: SelectSubset<T, PostViewFindFirstArgs<ExtArgs>>): Prisma__PostViewClient<$Result.GetResult<Prisma.$PostViewPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first PostView that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PostViewFindFirstOrThrowArgs} args - Arguments to find a PostView
+     * @example
+     * // Get one PostView
+     * const postView = await prisma.postView.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends PostViewFindFirstOrThrowArgs>(args?: SelectSubset<T, PostViewFindFirstOrThrowArgs<ExtArgs>>): Prisma__PostViewClient<$Result.GetResult<Prisma.$PostViewPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more PostViews that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PostViewFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all PostViews
+     * const postViews = await prisma.postView.findMany()
+     * 
+     * // Get first 10 PostViews
+     * const postViews = await prisma.postView.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const postViewWithIdOnly = await prisma.postView.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends PostViewFindManyArgs>(args?: SelectSubset<T, PostViewFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PostViewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a PostView.
+     * @param {PostViewCreateArgs} args - Arguments to create a PostView.
+     * @example
+     * // Create one PostView
+     * const PostView = await prisma.postView.create({
+     *   data: {
+     *     // ... data to create a PostView
+     *   }
+     * })
+     * 
+     */
+    create<T extends PostViewCreateArgs>(args: SelectSubset<T, PostViewCreateArgs<ExtArgs>>): Prisma__PostViewClient<$Result.GetResult<Prisma.$PostViewPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many PostViews.
+     * @param {PostViewCreateManyArgs} args - Arguments to create many PostViews.
+     * @example
+     * // Create many PostViews
+     * const postView = await prisma.postView.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends PostViewCreateManyArgs>(args?: SelectSubset<T, PostViewCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a PostView.
+     * @param {PostViewDeleteArgs} args - Arguments to delete one PostView.
+     * @example
+     * // Delete one PostView
+     * const PostView = await prisma.postView.delete({
+     *   where: {
+     *     // ... filter to delete one PostView
+     *   }
+     * })
+     * 
+     */
+    delete<T extends PostViewDeleteArgs>(args: SelectSubset<T, PostViewDeleteArgs<ExtArgs>>): Prisma__PostViewClient<$Result.GetResult<Prisma.$PostViewPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one PostView.
+     * @param {PostViewUpdateArgs} args - Arguments to update one PostView.
+     * @example
+     * // Update one PostView
+     * const postView = await prisma.postView.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends PostViewUpdateArgs>(args: SelectSubset<T, PostViewUpdateArgs<ExtArgs>>): Prisma__PostViewClient<$Result.GetResult<Prisma.$PostViewPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more PostViews.
+     * @param {PostViewDeleteManyArgs} args - Arguments to filter PostViews to delete.
+     * @example
+     * // Delete a few PostViews
+     * const { count } = await prisma.postView.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends PostViewDeleteManyArgs>(args?: SelectSubset<T, PostViewDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PostViews.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PostViewUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many PostViews
+     * const postView = await prisma.postView.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends PostViewUpdateManyArgs>(args: SelectSubset<T, PostViewUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one PostView.
+     * @param {PostViewUpsertArgs} args - Arguments to update or create a PostView.
+     * @example
+     * // Update or create a PostView
+     * const postView = await prisma.postView.upsert({
+     *   create: {
+     *     // ... data to create a PostView
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the PostView we want to update
+     *   }
+     * })
+     */
+    upsert<T extends PostViewUpsertArgs>(args: SelectSubset<T, PostViewUpsertArgs<ExtArgs>>): Prisma__PostViewClient<$Result.GetResult<Prisma.$PostViewPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of PostViews.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PostViewCountArgs} args - Arguments to filter PostViews to count.
+     * @example
+     * // Count the number of PostViews
+     * const count = await prisma.postView.count({
+     *   where: {
+     *     // ... the filter for the PostViews we want to count
+     *   }
+     * })
+    **/
+    count<T extends PostViewCountArgs>(
+      args?: Subset<T, PostViewCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], PostViewCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a PostView.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PostViewAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends PostViewAggregateArgs>(args: Subset<T, PostViewAggregateArgs>): Prisma.PrismaPromise<GetPostViewAggregateType<T>>
+
+    /**
+     * Group by PostView.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PostViewGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends PostViewGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: PostViewGroupByArgs['orderBy'] }
+        : { orderBy?: PostViewGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, PostViewGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPostViewGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the PostView model
+   */
+  readonly fields: PostViewFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for PostView.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__PostViewClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the PostView model
+   */
+  interface PostViewFieldRefs {
+    readonly id: FieldRef<"PostView", 'Int'>
+    readonly userId: FieldRef<"PostView", 'Int'>
+    readonly postId: FieldRef<"PostView", 'Int'>
+    readonly viewedAt: FieldRef<"PostView", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * PostView findUnique
+   */
+  export type PostViewFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PostView
+     */
+    select?: PostViewSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PostView
+     */
+    omit?: PostViewOmit<ExtArgs> | null
+    /**
+     * Filter, which PostView to fetch.
+     */
+    where: PostViewWhereUniqueInput
+  }
+
+  /**
+   * PostView findUniqueOrThrow
+   */
+  export type PostViewFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PostView
+     */
+    select?: PostViewSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PostView
+     */
+    omit?: PostViewOmit<ExtArgs> | null
+    /**
+     * Filter, which PostView to fetch.
+     */
+    where: PostViewWhereUniqueInput
+  }
+
+  /**
+   * PostView findFirst
+   */
+  export type PostViewFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PostView
+     */
+    select?: PostViewSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PostView
+     */
+    omit?: PostViewOmit<ExtArgs> | null
+    /**
+     * Filter, which PostView to fetch.
+     */
+    where?: PostViewWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PostViews to fetch.
+     */
+    orderBy?: PostViewOrderByWithRelationInput | PostViewOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PostViews.
+     */
+    cursor?: PostViewWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PostViews from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PostViews.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PostViews.
+     */
+    distinct?: PostViewScalarFieldEnum | PostViewScalarFieldEnum[]
+  }
+
+  /**
+   * PostView findFirstOrThrow
+   */
+  export type PostViewFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PostView
+     */
+    select?: PostViewSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PostView
+     */
+    omit?: PostViewOmit<ExtArgs> | null
+    /**
+     * Filter, which PostView to fetch.
+     */
+    where?: PostViewWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PostViews to fetch.
+     */
+    orderBy?: PostViewOrderByWithRelationInput | PostViewOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PostViews.
+     */
+    cursor?: PostViewWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PostViews from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PostViews.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PostViews.
+     */
+    distinct?: PostViewScalarFieldEnum | PostViewScalarFieldEnum[]
+  }
+
+  /**
+   * PostView findMany
+   */
+  export type PostViewFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PostView
+     */
+    select?: PostViewSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PostView
+     */
+    omit?: PostViewOmit<ExtArgs> | null
+    /**
+     * Filter, which PostViews to fetch.
+     */
+    where?: PostViewWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PostViews to fetch.
+     */
+    orderBy?: PostViewOrderByWithRelationInput | PostViewOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing PostViews.
+     */
+    cursor?: PostViewWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PostViews from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PostViews.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PostViews.
+     */
+    distinct?: PostViewScalarFieldEnum | PostViewScalarFieldEnum[]
+  }
+
+  /**
+   * PostView create
+   */
+  export type PostViewCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PostView
+     */
+    select?: PostViewSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PostView
+     */
+    omit?: PostViewOmit<ExtArgs> | null
+    /**
+     * The data needed to create a PostView.
+     */
+    data: XOR<PostViewCreateInput, PostViewUncheckedCreateInput>
+  }
+
+  /**
+   * PostView createMany
+   */
+  export type PostViewCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many PostViews.
+     */
+    data: PostViewCreateManyInput | PostViewCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * PostView update
+   */
+  export type PostViewUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PostView
+     */
+    select?: PostViewSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PostView
+     */
+    omit?: PostViewOmit<ExtArgs> | null
+    /**
+     * The data needed to update a PostView.
+     */
+    data: XOR<PostViewUpdateInput, PostViewUncheckedUpdateInput>
+    /**
+     * Choose, which PostView to update.
+     */
+    where: PostViewWhereUniqueInput
+  }
+
+  /**
+   * PostView updateMany
+   */
+  export type PostViewUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update PostViews.
+     */
+    data: XOR<PostViewUpdateManyMutationInput, PostViewUncheckedUpdateManyInput>
+    /**
+     * Filter which PostViews to update
+     */
+    where?: PostViewWhereInput
+    /**
+     * Limit how many PostViews to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * PostView upsert
+   */
+  export type PostViewUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PostView
+     */
+    select?: PostViewSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PostView
+     */
+    omit?: PostViewOmit<ExtArgs> | null
+    /**
+     * The filter to search for the PostView to update in case it exists.
+     */
+    where: PostViewWhereUniqueInput
+    /**
+     * In case the PostView found by the `where` argument doesn't exist, create a new PostView with this data.
+     */
+    create: XOR<PostViewCreateInput, PostViewUncheckedCreateInput>
+    /**
+     * In case the PostView was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<PostViewUpdateInput, PostViewUncheckedUpdateInput>
+  }
+
+  /**
+   * PostView delete
+   */
+  export type PostViewDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PostView
+     */
+    select?: PostViewSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PostView
+     */
+    omit?: PostViewOmit<ExtArgs> | null
+    /**
+     * Filter which PostView to delete.
+     */
+    where: PostViewWhereUniqueInput
+  }
+
+  /**
+   * PostView deleteMany
+   */
+  export type PostViewDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PostViews to delete
+     */
+    where?: PostViewWhereInput
+    /**
+     * Limit how many PostViews to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * PostView without action
+   */
+  export type PostViewDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PostView
+     */
+    select?: PostViewSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PostView
+     */
+    omit?: PostViewOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model AnswerUpvote
+   */
+
+  export type AggregateAnswerUpvote = {
+    _count: AnswerUpvoteCountAggregateOutputType | null
+    _avg: AnswerUpvoteAvgAggregateOutputType | null
+    _sum: AnswerUpvoteSumAggregateOutputType | null
+    _min: AnswerUpvoteMinAggregateOutputType | null
+    _max: AnswerUpvoteMaxAggregateOutputType | null
+  }
+
+  export type AnswerUpvoteAvgAggregateOutputType = {
+    id: number | null
+    userId: number | null
+    answerId: number | null
+  }
+
+  export type AnswerUpvoteSumAggregateOutputType = {
+    id: number | null
+    userId: number | null
+    answerId: number | null
+  }
+
+  export type AnswerUpvoteMinAggregateOutputType = {
+    id: number | null
+    userId: number | null
+    answerId: number | null
+    createdAt: Date | null
+  }
+
+  export type AnswerUpvoteMaxAggregateOutputType = {
+    id: number | null
+    userId: number | null
+    answerId: number | null
+    createdAt: Date | null
+  }
+
+  export type AnswerUpvoteCountAggregateOutputType = {
+    id: number
+    userId: number
+    answerId: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type AnswerUpvoteAvgAggregateInputType = {
+    id?: true
+    userId?: true
+    answerId?: true
+  }
+
+  export type AnswerUpvoteSumAggregateInputType = {
+    id?: true
+    userId?: true
+    answerId?: true
+  }
+
+  export type AnswerUpvoteMinAggregateInputType = {
+    id?: true
+    userId?: true
+    answerId?: true
+    createdAt?: true
+  }
+
+  export type AnswerUpvoteMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    answerId?: true
+    createdAt?: true
+  }
+
+  export type AnswerUpvoteCountAggregateInputType = {
+    id?: true
+    userId?: true
+    answerId?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type AnswerUpvoteAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AnswerUpvote to aggregate.
+     */
+    where?: AnswerUpvoteWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AnswerUpvotes to fetch.
+     */
+    orderBy?: AnswerUpvoteOrderByWithRelationInput | AnswerUpvoteOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AnswerUpvoteWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AnswerUpvotes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AnswerUpvotes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned AnswerUpvotes
+    **/
+    _count?: true | AnswerUpvoteCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: AnswerUpvoteAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: AnswerUpvoteSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AnswerUpvoteMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AnswerUpvoteMaxAggregateInputType
+  }
+
+  export type GetAnswerUpvoteAggregateType<T extends AnswerUpvoteAggregateArgs> = {
+        [P in keyof T & keyof AggregateAnswerUpvote]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAnswerUpvote[P]>
+      : GetScalarType<T[P], AggregateAnswerUpvote[P]>
+  }
+
+
+
+
+  export type AnswerUpvoteGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AnswerUpvoteWhereInput
+    orderBy?: AnswerUpvoteOrderByWithAggregationInput | AnswerUpvoteOrderByWithAggregationInput[]
+    by: AnswerUpvoteScalarFieldEnum[] | AnswerUpvoteScalarFieldEnum
+    having?: AnswerUpvoteScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AnswerUpvoteCountAggregateInputType | true
+    _avg?: AnswerUpvoteAvgAggregateInputType
+    _sum?: AnswerUpvoteSumAggregateInputType
+    _min?: AnswerUpvoteMinAggregateInputType
+    _max?: AnswerUpvoteMaxAggregateInputType
+  }
+
+  export type AnswerUpvoteGroupByOutputType = {
+    id: number
+    userId: number
+    answerId: number
+    createdAt: Date
+    _count: AnswerUpvoteCountAggregateOutputType | null
+    _avg: AnswerUpvoteAvgAggregateOutputType | null
+    _sum: AnswerUpvoteSumAggregateOutputType | null
+    _min: AnswerUpvoteMinAggregateOutputType | null
+    _max: AnswerUpvoteMaxAggregateOutputType | null
+  }
+
+  type GetAnswerUpvoteGroupByPayload<T extends AnswerUpvoteGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AnswerUpvoteGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AnswerUpvoteGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AnswerUpvoteGroupByOutputType[P]>
+            : GetScalarType<T[P], AnswerUpvoteGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AnswerUpvoteSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    answerId?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["answerUpvote"]>
+
+
+
+  export type AnswerUpvoteSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    answerId?: boolean
+    createdAt?: boolean
+  }
+
+  export type AnswerUpvoteOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "answerId" | "createdAt", ExtArgs["result"]["answerUpvote"]>
+
+  export type $AnswerUpvotePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "AnswerUpvote"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      userId: number
+      answerId: number
+      createdAt: Date
+    }, ExtArgs["result"]["answerUpvote"]>
+    composites: {}
+  }
+
+  type AnswerUpvoteGetPayload<S extends boolean | null | undefined | AnswerUpvoteDefaultArgs> = $Result.GetResult<Prisma.$AnswerUpvotePayload, S>
+
+  type AnswerUpvoteCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AnswerUpvoteFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AnswerUpvoteCountAggregateInputType | true
+    }
+
+  export interface AnswerUpvoteDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AnswerUpvote'], meta: { name: 'AnswerUpvote' } }
+    /**
+     * Find zero or one AnswerUpvote that matches the filter.
+     * @param {AnswerUpvoteFindUniqueArgs} args - Arguments to find a AnswerUpvote
+     * @example
+     * // Get one AnswerUpvote
+     * const answerUpvote = await prisma.answerUpvote.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AnswerUpvoteFindUniqueArgs>(args: SelectSubset<T, AnswerUpvoteFindUniqueArgs<ExtArgs>>): Prisma__AnswerUpvoteClient<$Result.GetResult<Prisma.$AnswerUpvotePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one AnswerUpvote that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AnswerUpvoteFindUniqueOrThrowArgs} args - Arguments to find a AnswerUpvote
+     * @example
+     * // Get one AnswerUpvote
+     * const answerUpvote = await prisma.answerUpvote.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AnswerUpvoteFindUniqueOrThrowArgs>(args: SelectSubset<T, AnswerUpvoteFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AnswerUpvoteClient<$Result.GetResult<Prisma.$AnswerUpvotePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AnswerUpvote that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AnswerUpvoteFindFirstArgs} args - Arguments to find a AnswerUpvote
+     * @example
+     * // Get one AnswerUpvote
+     * const answerUpvote = await prisma.answerUpvote.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AnswerUpvoteFindFirstArgs>(args?: SelectSubset<T, AnswerUpvoteFindFirstArgs<ExtArgs>>): Prisma__AnswerUpvoteClient<$Result.GetResult<Prisma.$AnswerUpvotePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AnswerUpvote that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AnswerUpvoteFindFirstOrThrowArgs} args - Arguments to find a AnswerUpvote
+     * @example
+     * // Get one AnswerUpvote
+     * const answerUpvote = await prisma.answerUpvote.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AnswerUpvoteFindFirstOrThrowArgs>(args?: SelectSubset<T, AnswerUpvoteFindFirstOrThrowArgs<ExtArgs>>): Prisma__AnswerUpvoteClient<$Result.GetResult<Prisma.$AnswerUpvotePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more AnswerUpvotes that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AnswerUpvoteFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all AnswerUpvotes
+     * const answerUpvotes = await prisma.answerUpvote.findMany()
+     * 
+     * // Get first 10 AnswerUpvotes
+     * const answerUpvotes = await prisma.answerUpvote.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const answerUpvoteWithIdOnly = await prisma.answerUpvote.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AnswerUpvoteFindManyArgs>(args?: SelectSubset<T, AnswerUpvoteFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AnswerUpvotePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a AnswerUpvote.
+     * @param {AnswerUpvoteCreateArgs} args - Arguments to create a AnswerUpvote.
+     * @example
+     * // Create one AnswerUpvote
+     * const AnswerUpvote = await prisma.answerUpvote.create({
+     *   data: {
+     *     // ... data to create a AnswerUpvote
+     *   }
+     * })
+     * 
+     */
+    create<T extends AnswerUpvoteCreateArgs>(args: SelectSubset<T, AnswerUpvoteCreateArgs<ExtArgs>>): Prisma__AnswerUpvoteClient<$Result.GetResult<Prisma.$AnswerUpvotePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many AnswerUpvotes.
+     * @param {AnswerUpvoteCreateManyArgs} args - Arguments to create many AnswerUpvotes.
+     * @example
+     * // Create many AnswerUpvotes
+     * const answerUpvote = await prisma.answerUpvote.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AnswerUpvoteCreateManyArgs>(args?: SelectSubset<T, AnswerUpvoteCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a AnswerUpvote.
+     * @param {AnswerUpvoteDeleteArgs} args - Arguments to delete one AnswerUpvote.
+     * @example
+     * // Delete one AnswerUpvote
+     * const AnswerUpvote = await prisma.answerUpvote.delete({
+     *   where: {
+     *     // ... filter to delete one AnswerUpvote
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AnswerUpvoteDeleteArgs>(args: SelectSubset<T, AnswerUpvoteDeleteArgs<ExtArgs>>): Prisma__AnswerUpvoteClient<$Result.GetResult<Prisma.$AnswerUpvotePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one AnswerUpvote.
+     * @param {AnswerUpvoteUpdateArgs} args - Arguments to update one AnswerUpvote.
+     * @example
+     * // Update one AnswerUpvote
+     * const answerUpvote = await prisma.answerUpvote.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AnswerUpvoteUpdateArgs>(args: SelectSubset<T, AnswerUpvoteUpdateArgs<ExtArgs>>): Prisma__AnswerUpvoteClient<$Result.GetResult<Prisma.$AnswerUpvotePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more AnswerUpvotes.
+     * @param {AnswerUpvoteDeleteManyArgs} args - Arguments to filter AnswerUpvotes to delete.
+     * @example
+     * // Delete a few AnswerUpvotes
+     * const { count } = await prisma.answerUpvote.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AnswerUpvoteDeleteManyArgs>(args?: SelectSubset<T, AnswerUpvoteDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AnswerUpvotes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AnswerUpvoteUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many AnswerUpvotes
+     * const answerUpvote = await prisma.answerUpvote.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AnswerUpvoteUpdateManyArgs>(args: SelectSubset<T, AnswerUpvoteUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one AnswerUpvote.
+     * @param {AnswerUpvoteUpsertArgs} args - Arguments to update or create a AnswerUpvote.
+     * @example
+     * // Update or create a AnswerUpvote
+     * const answerUpvote = await prisma.answerUpvote.upsert({
+     *   create: {
+     *     // ... data to create a AnswerUpvote
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the AnswerUpvote we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AnswerUpvoteUpsertArgs>(args: SelectSubset<T, AnswerUpvoteUpsertArgs<ExtArgs>>): Prisma__AnswerUpvoteClient<$Result.GetResult<Prisma.$AnswerUpvotePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of AnswerUpvotes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AnswerUpvoteCountArgs} args - Arguments to filter AnswerUpvotes to count.
+     * @example
+     * // Count the number of AnswerUpvotes
+     * const count = await prisma.answerUpvote.count({
+     *   where: {
+     *     // ... the filter for the AnswerUpvotes we want to count
+     *   }
+     * })
+    **/
+    count<T extends AnswerUpvoteCountArgs>(
+      args?: Subset<T, AnswerUpvoteCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AnswerUpvoteCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a AnswerUpvote.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AnswerUpvoteAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AnswerUpvoteAggregateArgs>(args: Subset<T, AnswerUpvoteAggregateArgs>): Prisma.PrismaPromise<GetAnswerUpvoteAggregateType<T>>
+
+    /**
+     * Group by AnswerUpvote.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AnswerUpvoteGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AnswerUpvoteGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AnswerUpvoteGroupByArgs['orderBy'] }
+        : { orderBy?: AnswerUpvoteGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AnswerUpvoteGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAnswerUpvoteGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the AnswerUpvote model
+   */
+  readonly fields: AnswerUpvoteFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for AnswerUpvote.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AnswerUpvoteClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the AnswerUpvote model
+   */
+  interface AnswerUpvoteFieldRefs {
+    readonly id: FieldRef<"AnswerUpvote", 'Int'>
+    readonly userId: FieldRef<"AnswerUpvote", 'Int'>
+    readonly answerId: FieldRef<"AnswerUpvote", 'Int'>
+    readonly createdAt: FieldRef<"AnswerUpvote", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * AnswerUpvote findUnique
+   */
+  export type AnswerUpvoteFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnswerUpvote
+     */
+    select?: AnswerUpvoteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnswerUpvote
+     */
+    omit?: AnswerUpvoteOmit<ExtArgs> | null
+    /**
+     * Filter, which AnswerUpvote to fetch.
+     */
+    where: AnswerUpvoteWhereUniqueInput
+  }
+
+  /**
+   * AnswerUpvote findUniqueOrThrow
+   */
+  export type AnswerUpvoteFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnswerUpvote
+     */
+    select?: AnswerUpvoteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnswerUpvote
+     */
+    omit?: AnswerUpvoteOmit<ExtArgs> | null
+    /**
+     * Filter, which AnswerUpvote to fetch.
+     */
+    where: AnswerUpvoteWhereUniqueInput
+  }
+
+  /**
+   * AnswerUpvote findFirst
+   */
+  export type AnswerUpvoteFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnswerUpvote
+     */
+    select?: AnswerUpvoteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnswerUpvote
+     */
+    omit?: AnswerUpvoteOmit<ExtArgs> | null
+    /**
+     * Filter, which AnswerUpvote to fetch.
+     */
+    where?: AnswerUpvoteWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AnswerUpvotes to fetch.
+     */
+    orderBy?: AnswerUpvoteOrderByWithRelationInput | AnswerUpvoteOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AnswerUpvotes.
+     */
+    cursor?: AnswerUpvoteWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AnswerUpvotes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AnswerUpvotes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AnswerUpvotes.
+     */
+    distinct?: AnswerUpvoteScalarFieldEnum | AnswerUpvoteScalarFieldEnum[]
+  }
+
+  /**
+   * AnswerUpvote findFirstOrThrow
+   */
+  export type AnswerUpvoteFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnswerUpvote
+     */
+    select?: AnswerUpvoteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnswerUpvote
+     */
+    omit?: AnswerUpvoteOmit<ExtArgs> | null
+    /**
+     * Filter, which AnswerUpvote to fetch.
+     */
+    where?: AnswerUpvoteWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AnswerUpvotes to fetch.
+     */
+    orderBy?: AnswerUpvoteOrderByWithRelationInput | AnswerUpvoteOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AnswerUpvotes.
+     */
+    cursor?: AnswerUpvoteWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AnswerUpvotes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AnswerUpvotes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AnswerUpvotes.
+     */
+    distinct?: AnswerUpvoteScalarFieldEnum | AnswerUpvoteScalarFieldEnum[]
+  }
+
+  /**
+   * AnswerUpvote findMany
+   */
+  export type AnswerUpvoteFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnswerUpvote
+     */
+    select?: AnswerUpvoteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnswerUpvote
+     */
+    omit?: AnswerUpvoteOmit<ExtArgs> | null
+    /**
+     * Filter, which AnswerUpvotes to fetch.
+     */
+    where?: AnswerUpvoteWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AnswerUpvotes to fetch.
+     */
+    orderBy?: AnswerUpvoteOrderByWithRelationInput | AnswerUpvoteOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing AnswerUpvotes.
+     */
+    cursor?: AnswerUpvoteWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AnswerUpvotes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AnswerUpvotes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AnswerUpvotes.
+     */
+    distinct?: AnswerUpvoteScalarFieldEnum | AnswerUpvoteScalarFieldEnum[]
+  }
+
+  /**
+   * AnswerUpvote create
+   */
+  export type AnswerUpvoteCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnswerUpvote
+     */
+    select?: AnswerUpvoteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnswerUpvote
+     */
+    omit?: AnswerUpvoteOmit<ExtArgs> | null
+    /**
+     * The data needed to create a AnswerUpvote.
+     */
+    data: XOR<AnswerUpvoteCreateInput, AnswerUpvoteUncheckedCreateInput>
+  }
+
+  /**
+   * AnswerUpvote createMany
+   */
+  export type AnswerUpvoteCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many AnswerUpvotes.
+     */
+    data: AnswerUpvoteCreateManyInput | AnswerUpvoteCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AnswerUpvote update
+   */
+  export type AnswerUpvoteUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnswerUpvote
+     */
+    select?: AnswerUpvoteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnswerUpvote
+     */
+    omit?: AnswerUpvoteOmit<ExtArgs> | null
+    /**
+     * The data needed to update a AnswerUpvote.
+     */
+    data: XOR<AnswerUpvoteUpdateInput, AnswerUpvoteUncheckedUpdateInput>
+    /**
+     * Choose, which AnswerUpvote to update.
+     */
+    where: AnswerUpvoteWhereUniqueInput
+  }
+
+  /**
+   * AnswerUpvote updateMany
+   */
+  export type AnswerUpvoteUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update AnswerUpvotes.
+     */
+    data: XOR<AnswerUpvoteUpdateManyMutationInput, AnswerUpvoteUncheckedUpdateManyInput>
+    /**
+     * Filter which AnswerUpvotes to update
+     */
+    where?: AnswerUpvoteWhereInput
+    /**
+     * Limit how many AnswerUpvotes to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AnswerUpvote upsert
+   */
+  export type AnswerUpvoteUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnswerUpvote
+     */
+    select?: AnswerUpvoteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnswerUpvote
+     */
+    omit?: AnswerUpvoteOmit<ExtArgs> | null
+    /**
+     * The filter to search for the AnswerUpvote to update in case it exists.
+     */
+    where: AnswerUpvoteWhereUniqueInput
+    /**
+     * In case the AnswerUpvote found by the `where` argument doesn't exist, create a new AnswerUpvote with this data.
+     */
+    create: XOR<AnswerUpvoteCreateInput, AnswerUpvoteUncheckedCreateInput>
+    /**
+     * In case the AnswerUpvote was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AnswerUpvoteUpdateInput, AnswerUpvoteUncheckedUpdateInput>
+  }
+
+  /**
+   * AnswerUpvote delete
+   */
+  export type AnswerUpvoteDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnswerUpvote
+     */
+    select?: AnswerUpvoteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnswerUpvote
+     */
+    omit?: AnswerUpvoteOmit<ExtArgs> | null
+    /**
+     * Filter which AnswerUpvote to delete.
+     */
+    where: AnswerUpvoteWhereUniqueInput
+  }
+
+  /**
+   * AnswerUpvote deleteMany
+   */
+  export type AnswerUpvoteDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AnswerUpvotes to delete
+     */
+    where?: AnswerUpvoteWhereInput
+    /**
+     * Limit how many AnswerUpvotes to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * AnswerUpvote without action
+   */
+  export type AnswerUpvoteDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnswerUpvote
+     */
+    select?: AnswerUpvoteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnswerUpvote
+     */
+    omit?: AnswerUpvoteOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model AdSession
+   */
+
+  export type AggregateAdSession = {
+    _count: AdSessionCountAggregateOutputType | null
+    _avg: AdSessionAvgAggregateOutputType | null
+    _sum: AdSessionSumAggregateOutputType | null
+    _min: AdSessionMinAggregateOutputType | null
+    _max: AdSessionMaxAggregateOutputType | null
+  }
+
+  export type AdSessionAvgAggregateOutputType = {
+    userId: number | null
+    heartbeats: number | null
+  }
+
+  export type AdSessionSumAggregateOutputType = {
+    userId: number | null
+    heartbeats: number | null
+  }
+
+  export type AdSessionMinAggregateOutputType = {
+    id: string | null
+    userId: number | null
+    status: string | null
+    heartbeats: number | null
+    startedAt: Date | null
+    lastHeartbeat: Date | null
+    completedAt: Date | null
+  }
+
+  export type AdSessionMaxAggregateOutputType = {
+    id: string | null
+    userId: number | null
+    status: string | null
+    heartbeats: number | null
+    startedAt: Date | null
+    lastHeartbeat: Date | null
+    completedAt: Date | null
+  }
+
+  export type AdSessionCountAggregateOutputType = {
+    id: number
+    userId: number
+    status: number
+    heartbeats: number
+    startedAt: number
+    lastHeartbeat: number
+    completedAt: number
+    _all: number
+  }
+
+
+  export type AdSessionAvgAggregateInputType = {
+    userId?: true
+    heartbeats?: true
+  }
+
+  export type AdSessionSumAggregateInputType = {
+    userId?: true
+    heartbeats?: true
+  }
+
+  export type AdSessionMinAggregateInputType = {
+    id?: true
+    userId?: true
+    status?: true
+    heartbeats?: true
+    startedAt?: true
+    lastHeartbeat?: true
+    completedAt?: true
+  }
+
+  export type AdSessionMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    status?: true
+    heartbeats?: true
+    startedAt?: true
+    lastHeartbeat?: true
+    completedAt?: true
+  }
+
+  export type AdSessionCountAggregateInputType = {
+    id?: true
+    userId?: true
+    status?: true
+    heartbeats?: true
+    startedAt?: true
+    lastHeartbeat?: true
+    completedAt?: true
+    _all?: true
+  }
+
+  export type AdSessionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AdSession to aggregate.
+     */
+    where?: AdSessionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AdSessions to fetch.
+     */
+    orderBy?: AdSessionOrderByWithRelationInput | AdSessionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AdSessionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AdSessions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AdSessions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned AdSessions
+    **/
+    _count?: true | AdSessionCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: AdSessionAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: AdSessionSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AdSessionMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AdSessionMaxAggregateInputType
+  }
+
+  export type GetAdSessionAggregateType<T extends AdSessionAggregateArgs> = {
+        [P in keyof T & keyof AggregateAdSession]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAdSession[P]>
+      : GetScalarType<T[P], AggregateAdSession[P]>
+  }
+
+
+
+
+  export type AdSessionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AdSessionWhereInput
+    orderBy?: AdSessionOrderByWithAggregationInput | AdSessionOrderByWithAggregationInput[]
+    by: AdSessionScalarFieldEnum[] | AdSessionScalarFieldEnum
+    having?: AdSessionScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AdSessionCountAggregateInputType | true
+    _avg?: AdSessionAvgAggregateInputType
+    _sum?: AdSessionSumAggregateInputType
+    _min?: AdSessionMinAggregateInputType
+    _max?: AdSessionMaxAggregateInputType
+  }
+
+  export type AdSessionGroupByOutputType = {
+    id: string
+    userId: number
+    status: string
+    heartbeats: number
+    startedAt: Date
+    lastHeartbeat: Date
+    completedAt: Date | null
+    _count: AdSessionCountAggregateOutputType | null
+    _avg: AdSessionAvgAggregateOutputType | null
+    _sum: AdSessionSumAggregateOutputType | null
+    _min: AdSessionMinAggregateOutputType | null
+    _max: AdSessionMaxAggregateOutputType | null
+  }
+
+  type GetAdSessionGroupByPayload<T extends AdSessionGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AdSessionGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AdSessionGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AdSessionGroupByOutputType[P]>
+            : GetScalarType<T[P], AdSessionGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AdSessionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    status?: boolean
+    heartbeats?: boolean
+    startedAt?: boolean
+    lastHeartbeat?: boolean
+    completedAt?: boolean
+  }, ExtArgs["result"]["adSession"]>
+
+
+
+  export type AdSessionSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    status?: boolean
+    heartbeats?: boolean
+    startedAt?: boolean
+    lastHeartbeat?: boolean
+    completedAt?: boolean
+  }
+
+  export type AdSessionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "status" | "heartbeats" | "startedAt" | "lastHeartbeat" | "completedAt", ExtArgs["result"]["adSession"]>
+
+  export type $AdSessionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "AdSession"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: number
+      status: string
+      heartbeats: number
+      startedAt: Date
+      lastHeartbeat: Date
+      completedAt: Date | null
+    }, ExtArgs["result"]["adSession"]>
+    composites: {}
+  }
+
+  type AdSessionGetPayload<S extends boolean | null | undefined | AdSessionDefaultArgs> = $Result.GetResult<Prisma.$AdSessionPayload, S>
+
+  type AdSessionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AdSessionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AdSessionCountAggregateInputType | true
+    }
+
+  export interface AdSessionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AdSession'], meta: { name: 'AdSession' } }
+    /**
+     * Find zero or one AdSession that matches the filter.
+     * @param {AdSessionFindUniqueArgs} args - Arguments to find a AdSession
+     * @example
+     * // Get one AdSession
+     * const adSession = await prisma.adSession.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AdSessionFindUniqueArgs>(args: SelectSubset<T, AdSessionFindUniqueArgs<ExtArgs>>): Prisma__AdSessionClient<$Result.GetResult<Prisma.$AdSessionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one AdSession that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AdSessionFindUniqueOrThrowArgs} args - Arguments to find a AdSession
+     * @example
+     * // Get one AdSession
+     * const adSession = await prisma.adSession.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AdSessionFindUniqueOrThrowArgs>(args: SelectSubset<T, AdSessionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AdSessionClient<$Result.GetResult<Prisma.$AdSessionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AdSession that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AdSessionFindFirstArgs} args - Arguments to find a AdSession
+     * @example
+     * // Get one AdSession
+     * const adSession = await prisma.adSession.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AdSessionFindFirstArgs>(args?: SelectSubset<T, AdSessionFindFirstArgs<ExtArgs>>): Prisma__AdSessionClient<$Result.GetResult<Prisma.$AdSessionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AdSession that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AdSessionFindFirstOrThrowArgs} args - Arguments to find a AdSession
+     * @example
+     * // Get one AdSession
+     * const adSession = await prisma.adSession.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AdSessionFindFirstOrThrowArgs>(args?: SelectSubset<T, AdSessionFindFirstOrThrowArgs<ExtArgs>>): Prisma__AdSessionClient<$Result.GetResult<Prisma.$AdSessionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more AdSessions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AdSessionFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all AdSessions
+     * const adSessions = await prisma.adSession.findMany()
+     * 
+     * // Get first 10 AdSessions
+     * const adSessions = await prisma.adSession.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const adSessionWithIdOnly = await prisma.adSession.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AdSessionFindManyArgs>(args?: SelectSubset<T, AdSessionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AdSessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a AdSession.
+     * @param {AdSessionCreateArgs} args - Arguments to create a AdSession.
+     * @example
+     * // Create one AdSession
+     * const AdSession = await prisma.adSession.create({
+     *   data: {
+     *     // ... data to create a AdSession
+     *   }
+     * })
+     * 
+     */
+    create<T extends AdSessionCreateArgs>(args: SelectSubset<T, AdSessionCreateArgs<ExtArgs>>): Prisma__AdSessionClient<$Result.GetResult<Prisma.$AdSessionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many AdSessions.
+     * @param {AdSessionCreateManyArgs} args - Arguments to create many AdSessions.
+     * @example
+     * // Create many AdSessions
+     * const adSession = await prisma.adSession.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AdSessionCreateManyArgs>(args?: SelectSubset<T, AdSessionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a AdSession.
+     * @param {AdSessionDeleteArgs} args - Arguments to delete one AdSession.
+     * @example
+     * // Delete one AdSession
+     * const AdSession = await prisma.adSession.delete({
+     *   where: {
+     *     // ... filter to delete one AdSession
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AdSessionDeleteArgs>(args: SelectSubset<T, AdSessionDeleteArgs<ExtArgs>>): Prisma__AdSessionClient<$Result.GetResult<Prisma.$AdSessionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one AdSession.
+     * @param {AdSessionUpdateArgs} args - Arguments to update one AdSession.
+     * @example
+     * // Update one AdSession
+     * const adSession = await prisma.adSession.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AdSessionUpdateArgs>(args: SelectSubset<T, AdSessionUpdateArgs<ExtArgs>>): Prisma__AdSessionClient<$Result.GetResult<Prisma.$AdSessionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more AdSessions.
+     * @param {AdSessionDeleteManyArgs} args - Arguments to filter AdSessions to delete.
+     * @example
+     * // Delete a few AdSessions
+     * const { count } = await prisma.adSession.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AdSessionDeleteManyArgs>(args?: SelectSubset<T, AdSessionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AdSessions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AdSessionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many AdSessions
+     * const adSession = await prisma.adSession.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AdSessionUpdateManyArgs>(args: SelectSubset<T, AdSessionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one AdSession.
+     * @param {AdSessionUpsertArgs} args - Arguments to update or create a AdSession.
+     * @example
+     * // Update or create a AdSession
+     * const adSession = await prisma.adSession.upsert({
+     *   create: {
+     *     // ... data to create a AdSession
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the AdSession we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AdSessionUpsertArgs>(args: SelectSubset<T, AdSessionUpsertArgs<ExtArgs>>): Prisma__AdSessionClient<$Result.GetResult<Prisma.$AdSessionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of AdSessions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AdSessionCountArgs} args - Arguments to filter AdSessions to count.
+     * @example
+     * // Count the number of AdSessions
+     * const count = await prisma.adSession.count({
+     *   where: {
+     *     // ... the filter for the AdSessions we want to count
+     *   }
+     * })
+    **/
+    count<T extends AdSessionCountArgs>(
+      args?: Subset<T, AdSessionCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AdSessionCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a AdSession.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AdSessionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AdSessionAggregateArgs>(args: Subset<T, AdSessionAggregateArgs>): Prisma.PrismaPromise<GetAdSessionAggregateType<T>>
+
+    /**
+     * Group by AdSession.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AdSessionGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AdSessionGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AdSessionGroupByArgs['orderBy'] }
+        : { orderBy?: AdSessionGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AdSessionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAdSessionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the AdSession model
+   */
+  readonly fields: AdSessionFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for AdSession.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AdSessionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the AdSession model
+   */
+  interface AdSessionFieldRefs {
+    readonly id: FieldRef<"AdSession", 'String'>
+    readonly userId: FieldRef<"AdSession", 'Int'>
+    readonly status: FieldRef<"AdSession", 'String'>
+    readonly heartbeats: FieldRef<"AdSession", 'Int'>
+    readonly startedAt: FieldRef<"AdSession", 'DateTime'>
+    readonly lastHeartbeat: FieldRef<"AdSession", 'DateTime'>
+    readonly completedAt: FieldRef<"AdSession", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * AdSession findUnique
+   */
+  export type AdSessionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdSession
+     */
+    select?: AdSessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AdSession
+     */
+    omit?: AdSessionOmit<ExtArgs> | null
+    /**
+     * Filter, which AdSession to fetch.
+     */
+    where: AdSessionWhereUniqueInput
+  }
+
+  /**
+   * AdSession findUniqueOrThrow
+   */
+  export type AdSessionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdSession
+     */
+    select?: AdSessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AdSession
+     */
+    omit?: AdSessionOmit<ExtArgs> | null
+    /**
+     * Filter, which AdSession to fetch.
+     */
+    where: AdSessionWhereUniqueInput
+  }
+
+  /**
+   * AdSession findFirst
+   */
+  export type AdSessionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdSession
+     */
+    select?: AdSessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AdSession
+     */
+    omit?: AdSessionOmit<ExtArgs> | null
+    /**
+     * Filter, which AdSession to fetch.
+     */
+    where?: AdSessionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AdSessions to fetch.
+     */
+    orderBy?: AdSessionOrderByWithRelationInput | AdSessionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AdSessions.
+     */
+    cursor?: AdSessionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AdSessions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AdSessions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AdSessions.
+     */
+    distinct?: AdSessionScalarFieldEnum | AdSessionScalarFieldEnum[]
+  }
+
+  /**
+   * AdSession findFirstOrThrow
+   */
+  export type AdSessionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdSession
+     */
+    select?: AdSessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AdSession
+     */
+    omit?: AdSessionOmit<ExtArgs> | null
+    /**
+     * Filter, which AdSession to fetch.
+     */
+    where?: AdSessionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AdSessions to fetch.
+     */
+    orderBy?: AdSessionOrderByWithRelationInput | AdSessionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AdSessions.
+     */
+    cursor?: AdSessionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AdSessions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AdSessions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AdSessions.
+     */
+    distinct?: AdSessionScalarFieldEnum | AdSessionScalarFieldEnum[]
+  }
+
+  /**
+   * AdSession findMany
+   */
+  export type AdSessionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdSession
+     */
+    select?: AdSessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AdSession
+     */
+    omit?: AdSessionOmit<ExtArgs> | null
+    /**
+     * Filter, which AdSessions to fetch.
+     */
+    where?: AdSessionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AdSessions to fetch.
+     */
+    orderBy?: AdSessionOrderByWithRelationInput | AdSessionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing AdSessions.
+     */
+    cursor?: AdSessionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AdSessions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AdSessions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AdSessions.
+     */
+    distinct?: AdSessionScalarFieldEnum | AdSessionScalarFieldEnum[]
+  }
+
+  /**
+   * AdSession create
+   */
+  export type AdSessionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdSession
+     */
+    select?: AdSessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AdSession
+     */
+    omit?: AdSessionOmit<ExtArgs> | null
+    /**
+     * The data needed to create a AdSession.
+     */
+    data: XOR<AdSessionCreateInput, AdSessionUncheckedCreateInput>
+  }
+
+  /**
+   * AdSession createMany
+   */
+  export type AdSessionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many AdSessions.
+     */
+    data: AdSessionCreateManyInput | AdSessionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AdSession update
+   */
+  export type AdSessionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdSession
+     */
+    select?: AdSessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AdSession
+     */
+    omit?: AdSessionOmit<ExtArgs> | null
+    /**
+     * The data needed to update a AdSession.
+     */
+    data: XOR<AdSessionUpdateInput, AdSessionUncheckedUpdateInput>
+    /**
+     * Choose, which AdSession to update.
+     */
+    where: AdSessionWhereUniqueInput
+  }
+
+  /**
+   * AdSession updateMany
+   */
+  export type AdSessionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update AdSessions.
+     */
+    data: XOR<AdSessionUpdateManyMutationInput, AdSessionUncheckedUpdateManyInput>
+    /**
+     * Filter which AdSessions to update
+     */
+    where?: AdSessionWhereInput
+    /**
+     * Limit how many AdSessions to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AdSession upsert
+   */
+  export type AdSessionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdSession
+     */
+    select?: AdSessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AdSession
+     */
+    omit?: AdSessionOmit<ExtArgs> | null
+    /**
+     * The filter to search for the AdSession to update in case it exists.
+     */
+    where: AdSessionWhereUniqueInput
+    /**
+     * In case the AdSession found by the `where` argument doesn't exist, create a new AdSession with this data.
+     */
+    create: XOR<AdSessionCreateInput, AdSessionUncheckedCreateInput>
+    /**
+     * In case the AdSession was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AdSessionUpdateInput, AdSessionUncheckedUpdateInput>
+  }
+
+  /**
+   * AdSession delete
+   */
+  export type AdSessionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdSession
+     */
+    select?: AdSessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AdSession
+     */
+    omit?: AdSessionOmit<ExtArgs> | null
+    /**
+     * Filter which AdSession to delete.
+     */
+    where: AdSessionWhereUniqueInput
+  }
+
+  /**
+   * AdSession deleteMany
+   */
+  export type AdSessionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AdSessions to delete
+     */
+    where?: AdSessionWhereInput
+    /**
+     * Limit how many AdSessions to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * AdSession without action
+   */
+  export type AdSessionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdSession
+     */
+    select?: AdSessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AdSession
+     */
+    omit?: AdSessionOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -6523,6 +9577,8 @@ export namespace Prisma {
     school: 'school',
     grade: 'grade',
     role: 'role',
+    phone: 'phone',
+    phoneVerified: 'phoneVerified',
     points: 'points',
     questionTickets: 'questionTickets',
     lastTicketRefillAt: 'lastTicketRefillAt',
@@ -6584,6 +9640,39 @@ export namespace Prisma {
   export type TicketRefillHistoryScalarFieldEnum = (typeof TicketRefillHistoryScalarFieldEnum)[keyof typeof TicketRefillHistoryScalarFieldEnum]
 
 
+  export const PostViewScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    postId: 'postId',
+    viewedAt: 'viewedAt'
+  };
+
+  export type PostViewScalarFieldEnum = (typeof PostViewScalarFieldEnum)[keyof typeof PostViewScalarFieldEnum]
+
+
+  export const AnswerUpvoteScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    answerId: 'answerId',
+    createdAt: 'createdAt'
+  };
+
+  export type AnswerUpvoteScalarFieldEnum = (typeof AnswerUpvoteScalarFieldEnum)[keyof typeof AnswerUpvoteScalarFieldEnum]
+
+
+  export const AdSessionScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    status: 'status',
+    heartbeats: 'heartbeats',
+    startedAt: 'startedAt',
+    lastHeartbeat: 'lastHeartbeat',
+    completedAt: 'completedAt'
+  };
+
+  export type AdSessionScalarFieldEnum = (typeof AdSessionScalarFieldEnum)[keyof typeof AdSessionScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -6604,7 +9693,8 @@ export namespace Prisma {
     name: 'name',
     email: 'email',
     password: 'password',
-    school: 'school'
+    school: 'school',
+    phone: 'phone'
   };
 
   export type UserOrderByRelevanceFieldEnum = (typeof UserOrderByRelevanceFieldEnum)[keyof typeof UserOrderByRelevanceFieldEnum]
@@ -6642,6 +9732,14 @@ export namespace Prisma {
   export type TicketRefillHistoryOrderByRelevanceFieldEnum = (typeof TicketRefillHistoryOrderByRelevanceFieldEnum)[keyof typeof TicketRefillHistoryOrderByRelevanceFieldEnum]
 
 
+  export const AdSessionOrderByRelevanceFieldEnum: {
+    id: 'id',
+    status: 'status'
+  };
+
+  export type AdSessionOrderByRelevanceFieldEnum = (typeof AdSessionOrderByRelevanceFieldEnum)[keyof typeof AdSessionOrderByRelevanceFieldEnum]
+
+
   /**
    * Field references
    */
@@ -6669,16 +9767,16 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'DateTime'
+   * Reference to a field of type 'Boolean'
    */
-  export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 
   /**
-   * Reference to a field of type 'Boolean'
+   * Reference to a field of type 'DateTime'
    */
-  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+  export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
     
 
 
@@ -6703,6 +9801,8 @@ export namespace Prisma {
     school?: StringFilter<"User"> | string
     grade?: IntFilter<"User"> | number
     role?: EnumRoleFilter<"User"> | $Enums.Role
+    phone?: StringNullableFilter<"User"> | string | null
+    phoneVerified?: BoolFilter<"User"> | boolean
     points?: IntFilter<"User"> | number
     questionTickets?: IntFilter<"User"> | number
     lastTicketRefillAt?: DateTimeNullableFilter<"User"> | Date | string | null
@@ -6721,6 +9821,8 @@ export namespace Prisma {
     school?: SortOrder
     grade?: SortOrder
     role?: SortOrder
+    phone?: SortOrderInput | SortOrder
+    phoneVerified?: SortOrder
     points?: SortOrder
     questionTickets?: SortOrder
     lastTicketRefillAt?: SortOrderInput | SortOrder
@@ -6735,6 +9837,7 @@ export namespace Prisma {
   export type UserWhereUniqueInput = Prisma.AtLeast<{
     id?: number
     email?: string
+    phone?: string
     AND?: UserWhereInput | UserWhereInput[]
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
@@ -6743,6 +9846,7 @@ export namespace Prisma {
     school?: StringFilter<"User"> | string
     grade?: IntFilter<"User"> | number
     role?: EnumRoleFilter<"User"> | $Enums.Role
+    phoneVerified?: BoolFilter<"User"> | boolean
     points?: IntFilter<"User"> | number
     questionTickets?: IntFilter<"User"> | number
     lastTicketRefillAt?: DateTimeNullableFilter<"User"> | Date | string | null
@@ -6751,7 +9855,7 @@ export namespace Prisma {
     posts?: PostListRelationFilter
     answers?: AnswerListRelationFilter
     ticketRefillHistory?: TicketRefillHistoryListRelationFilter
-  }, "id" | "email">
+  }, "id" | "email" | "phone">
 
   export type UserOrderByWithAggregationInput = {
     id?: SortOrder
@@ -6761,6 +9865,8 @@ export namespace Prisma {
     school?: SortOrder
     grade?: SortOrder
     role?: SortOrder
+    phone?: SortOrderInput | SortOrder
+    phoneVerified?: SortOrder
     points?: SortOrder
     questionTickets?: SortOrder
     lastTicketRefillAt?: SortOrderInput | SortOrder
@@ -6784,6 +9890,8 @@ export namespace Prisma {
     school?: StringWithAggregatesFilter<"User"> | string
     grade?: IntWithAggregatesFilter<"User"> | number
     role?: EnumRoleWithAggregatesFilter<"User"> | $Enums.Role
+    phone?: StringNullableWithAggregatesFilter<"User"> | string | null
+    phoneVerified?: BoolWithAggregatesFilter<"User"> | boolean
     points?: IntWithAggregatesFilter<"User"> | number
     questionTickets?: IntWithAggregatesFilter<"User"> | number
     lastTicketRefillAt?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
@@ -7067,6 +10175,171 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"TicketRefillHistory"> | Date | string
   }
 
+  export type PostViewWhereInput = {
+    AND?: PostViewWhereInput | PostViewWhereInput[]
+    OR?: PostViewWhereInput[]
+    NOT?: PostViewWhereInput | PostViewWhereInput[]
+    id?: IntFilter<"PostView"> | number
+    userId?: IntFilter<"PostView"> | number
+    postId?: IntFilter<"PostView"> | number
+    viewedAt?: DateTimeFilter<"PostView"> | Date | string
+  }
+
+  export type PostViewOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    postId?: SortOrder
+    viewedAt?: SortOrder
+  }
+
+  export type PostViewWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    userId_postId?: PostViewUserIdPostIdCompoundUniqueInput
+    AND?: PostViewWhereInput | PostViewWhereInput[]
+    OR?: PostViewWhereInput[]
+    NOT?: PostViewWhereInput | PostViewWhereInput[]
+    userId?: IntFilter<"PostView"> | number
+    postId?: IntFilter<"PostView"> | number
+    viewedAt?: DateTimeFilter<"PostView"> | Date | string
+  }, "id" | "userId_postId">
+
+  export type PostViewOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    postId?: SortOrder
+    viewedAt?: SortOrder
+    _count?: PostViewCountOrderByAggregateInput
+    _avg?: PostViewAvgOrderByAggregateInput
+    _max?: PostViewMaxOrderByAggregateInput
+    _min?: PostViewMinOrderByAggregateInput
+    _sum?: PostViewSumOrderByAggregateInput
+  }
+
+  export type PostViewScalarWhereWithAggregatesInput = {
+    AND?: PostViewScalarWhereWithAggregatesInput | PostViewScalarWhereWithAggregatesInput[]
+    OR?: PostViewScalarWhereWithAggregatesInput[]
+    NOT?: PostViewScalarWhereWithAggregatesInput | PostViewScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"PostView"> | number
+    userId?: IntWithAggregatesFilter<"PostView"> | number
+    postId?: IntWithAggregatesFilter<"PostView"> | number
+    viewedAt?: DateTimeWithAggregatesFilter<"PostView"> | Date | string
+  }
+
+  export type AnswerUpvoteWhereInput = {
+    AND?: AnswerUpvoteWhereInput | AnswerUpvoteWhereInput[]
+    OR?: AnswerUpvoteWhereInput[]
+    NOT?: AnswerUpvoteWhereInput | AnswerUpvoteWhereInput[]
+    id?: IntFilter<"AnswerUpvote"> | number
+    userId?: IntFilter<"AnswerUpvote"> | number
+    answerId?: IntFilter<"AnswerUpvote"> | number
+    createdAt?: DateTimeFilter<"AnswerUpvote"> | Date | string
+  }
+
+  export type AnswerUpvoteOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    answerId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type AnswerUpvoteWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    userId_answerId?: AnswerUpvoteUserIdAnswerIdCompoundUniqueInput
+    AND?: AnswerUpvoteWhereInput | AnswerUpvoteWhereInput[]
+    OR?: AnswerUpvoteWhereInput[]
+    NOT?: AnswerUpvoteWhereInput | AnswerUpvoteWhereInput[]
+    userId?: IntFilter<"AnswerUpvote"> | number
+    answerId?: IntFilter<"AnswerUpvote"> | number
+    createdAt?: DateTimeFilter<"AnswerUpvote"> | Date | string
+  }, "id" | "userId_answerId">
+
+  export type AnswerUpvoteOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    answerId?: SortOrder
+    createdAt?: SortOrder
+    _count?: AnswerUpvoteCountOrderByAggregateInput
+    _avg?: AnswerUpvoteAvgOrderByAggregateInput
+    _max?: AnswerUpvoteMaxOrderByAggregateInput
+    _min?: AnswerUpvoteMinOrderByAggregateInput
+    _sum?: AnswerUpvoteSumOrderByAggregateInput
+  }
+
+  export type AnswerUpvoteScalarWhereWithAggregatesInput = {
+    AND?: AnswerUpvoteScalarWhereWithAggregatesInput | AnswerUpvoteScalarWhereWithAggregatesInput[]
+    OR?: AnswerUpvoteScalarWhereWithAggregatesInput[]
+    NOT?: AnswerUpvoteScalarWhereWithAggregatesInput | AnswerUpvoteScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"AnswerUpvote"> | number
+    userId?: IntWithAggregatesFilter<"AnswerUpvote"> | number
+    answerId?: IntWithAggregatesFilter<"AnswerUpvote"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"AnswerUpvote"> | Date | string
+  }
+
+  export type AdSessionWhereInput = {
+    AND?: AdSessionWhereInput | AdSessionWhereInput[]
+    OR?: AdSessionWhereInput[]
+    NOT?: AdSessionWhereInput | AdSessionWhereInput[]
+    id?: StringFilter<"AdSession"> | string
+    userId?: IntFilter<"AdSession"> | number
+    status?: StringFilter<"AdSession"> | string
+    heartbeats?: IntFilter<"AdSession"> | number
+    startedAt?: DateTimeFilter<"AdSession"> | Date | string
+    lastHeartbeat?: DateTimeFilter<"AdSession"> | Date | string
+    completedAt?: DateTimeNullableFilter<"AdSession"> | Date | string | null
+  }
+
+  export type AdSessionOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    status?: SortOrder
+    heartbeats?: SortOrder
+    startedAt?: SortOrder
+    lastHeartbeat?: SortOrder
+    completedAt?: SortOrderInput | SortOrder
+    _relevance?: AdSessionOrderByRelevanceInput
+  }
+
+  export type AdSessionWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: AdSessionWhereInput | AdSessionWhereInput[]
+    OR?: AdSessionWhereInput[]
+    NOT?: AdSessionWhereInput | AdSessionWhereInput[]
+    userId?: IntFilter<"AdSession"> | number
+    status?: StringFilter<"AdSession"> | string
+    heartbeats?: IntFilter<"AdSession"> | number
+    startedAt?: DateTimeFilter<"AdSession"> | Date | string
+    lastHeartbeat?: DateTimeFilter<"AdSession"> | Date | string
+    completedAt?: DateTimeNullableFilter<"AdSession"> | Date | string | null
+  }, "id">
+
+  export type AdSessionOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    status?: SortOrder
+    heartbeats?: SortOrder
+    startedAt?: SortOrder
+    lastHeartbeat?: SortOrder
+    completedAt?: SortOrderInput | SortOrder
+    _count?: AdSessionCountOrderByAggregateInput
+    _avg?: AdSessionAvgOrderByAggregateInput
+    _max?: AdSessionMaxOrderByAggregateInput
+    _min?: AdSessionMinOrderByAggregateInput
+    _sum?: AdSessionSumOrderByAggregateInput
+  }
+
+  export type AdSessionScalarWhereWithAggregatesInput = {
+    AND?: AdSessionScalarWhereWithAggregatesInput | AdSessionScalarWhereWithAggregatesInput[]
+    OR?: AdSessionScalarWhereWithAggregatesInput[]
+    NOT?: AdSessionScalarWhereWithAggregatesInput | AdSessionScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"AdSession"> | string
+    userId?: IntWithAggregatesFilter<"AdSession"> | number
+    status?: StringWithAggregatesFilter<"AdSession"> | string
+    heartbeats?: IntWithAggregatesFilter<"AdSession"> | number
+    startedAt?: DateTimeWithAggregatesFilter<"AdSession"> | Date | string
+    lastHeartbeat?: DateTimeWithAggregatesFilter<"AdSession"> | Date | string
+    completedAt?: DateTimeNullableWithAggregatesFilter<"AdSession"> | Date | string | null
+  }
+
   export type UserCreateInput = {
     name: string
     email: string
@@ -7074,6 +10347,8 @@ export namespace Prisma {
     school: string
     grade: number
     role?: $Enums.Role
+    phone?: string | null
+    phoneVerified?: boolean
     points?: number
     questionTickets?: number
     lastTicketRefillAt?: Date | string | null
@@ -7092,6 +10367,8 @@ export namespace Prisma {
     school: string
     grade: number
     role?: $Enums.Role
+    phone?: string | null
+    phoneVerified?: boolean
     points?: number
     questionTickets?: number
     lastTicketRefillAt?: Date | string | null
@@ -7109,6 +10386,8 @@ export namespace Prisma {
     school?: StringFieldUpdateOperationsInput | string
     grade?: IntFieldUpdateOperationsInput | number
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneVerified?: BoolFieldUpdateOperationsInput | boolean
     points?: IntFieldUpdateOperationsInput | number
     questionTickets?: IntFieldUpdateOperationsInput | number
     lastTicketRefillAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -7127,6 +10406,8 @@ export namespace Prisma {
     school?: StringFieldUpdateOperationsInput | string
     grade?: IntFieldUpdateOperationsInput | number
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneVerified?: BoolFieldUpdateOperationsInput | boolean
     points?: IntFieldUpdateOperationsInput | number
     questionTickets?: IntFieldUpdateOperationsInput | number
     lastTicketRefillAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -7145,6 +10426,8 @@ export namespace Prisma {
     school: string
     grade: number
     role?: $Enums.Role
+    phone?: string | null
+    phoneVerified?: boolean
     points?: number
     questionTickets?: number
     lastTicketRefillAt?: Date | string | null
@@ -7159,6 +10442,8 @@ export namespace Prisma {
     school?: StringFieldUpdateOperationsInput | string
     grade?: IntFieldUpdateOperationsInput | number
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneVerified?: BoolFieldUpdateOperationsInput | boolean
     points?: IntFieldUpdateOperationsInput | number
     questionTickets?: IntFieldUpdateOperationsInput | number
     lastTicketRefillAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -7174,6 +10459,8 @@ export namespace Prisma {
     school?: StringFieldUpdateOperationsInput | string
     grade?: IntFieldUpdateOperationsInput | number
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneVerified?: BoolFieldUpdateOperationsInput | boolean
     points?: IntFieldUpdateOperationsInput | number
     questionTickets?: IntFieldUpdateOperationsInput | number
     lastTicketRefillAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -7445,6 +10732,168 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type PostViewCreateInput = {
+    userId: number
+    postId: number
+    viewedAt?: Date | string
+  }
+
+  export type PostViewUncheckedCreateInput = {
+    id?: number
+    userId: number
+    postId: number
+    viewedAt?: Date | string
+  }
+
+  export type PostViewUpdateInput = {
+    userId?: IntFieldUpdateOperationsInput | number
+    postId?: IntFieldUpdateOperationsInput | number
+    viewedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PostViewUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    postId?: IntFieldUpdateOperationsInput | number
+    viewedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PostViewCreateManyInput = {
+    id?: number
+    userId: number
+    postId: number
+    viewedAt?: Date | string
+  }
+
+  export type PostViewUpdateManyMutationInput = {
+    userId?: IntFieldUpdateOperationsInput | number
+    postId?: IntFieldUpdateOperationsInput | number
+    viewedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PostViewUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    postId?: IntFieldUpdateOperationsInput | number
+    viewedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AnswerUpvoteCreateInput = {
+    userId: number
+    answerId: number
+    createdAt?: Date | string
+  }
+
+  export type AnswerUpvoteUncheckedCreateInput = {
+    id?: number
+    userId: number
+    answerId: number
+    createdAt?: Date | string
+  }
+
+  export type AnswerUpvoteUpdateInput = {
+    userId?: IntFieldUpdateOperationsInput | number
+    answerId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AnswerUpvoteUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    answerId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AnswerUpvoteCreateManyInput = {
+    id?: number
+    userId: number
+    answerId: number
+    createdAt?: Date | string
+  }
+
+  export type AnswerUpvoteUpdateManyMutationInput = {
+    userId?: IntFieldUpdateOperationsInput | number
+    answerId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AnswerUpvoteUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    answerId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AdSessionCreateInput = {
+    id?: string
+    userId: number
+    status?: string
+    heartbeats?: number
+    startedAt?: Date | string
+    lastHeartbeat?: Date | string
+    completedAt?: Date | string | null
+  }
+
+  export type AdSessionUncheckedCreateInput = {
+    id?: string
+    userId: number
+    status?: string
+    heartbeats?: number
+    startedAt?: Date | string
+    lastHeartbeat?: Date | string
+    completedAt?: Date | string | null
+  }
+
+  export type AdSessionUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: IntFieldUpdateOperationsInput | number
+    status?: StringFieldUpdateOperationsInput | string
+    heartbeats?: IntFieldUpdateOperationsInput | number
+    startedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lastHeartbeat?: DateTimeFieldUpdateOperationsInput | Date | string
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type AdSessionUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: IntFieldUpdateOperationsInput | number
+    status?: StringFieldUpdateOperationsInput | string
+    heartbeats?: IntFieldUpdateOperationsInput | number
+    startedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lastHeartbeat?: DateTimeFieldUpdateOperationsInput | Date | string
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type AdSessionCreateManyInput = {
+    id?: string
+    userId: number
+    status?: string
+    heartbeats?: number
+    startedAt?: Date | string
+    lastHeartbeat?: Date | string
+    completedAt?: Date | string | null
+  }
+
+  export type AdSessionUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: IntFieldUpdateOperationsInput | number
+    status?: StringFieldUpdateOperationsInput | string
+    heartbeats?: IntFieldUpdateOperationsInput | number
+    startedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lastHeartbeat?: DateTimeFieldUpdateOperationsInput | Date | string
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type AdSessionUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: IntFieldUpdateOperationsInput | number
+    status?: StringFieldUpdateOperationsInput | string
+    heartbeats?: IntFieldUpdateOperationsInput | number
+    startedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lastHeartbeat?: DateTimeFieldUpdateOperationsInput | Date | string
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[]
@@ -7476,6 +10925,26 @@ export namespace Prisma {
     in?: $Enums.Role[]
     notIn?: $Enums.Role[]
     not?: NestedEnumRoleFilter<$PrismaModel> | $Enums.Role
+  }
+
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
   export type DateTimeNullableFilter<$PrismaModel = never> = {
@@ -7549,6 +11018,8 @@ export namespace Prisma {
     school?: SortOrder
     grade?: SortOrder
     role?: SortOrder
+    phone?: SortOrder
+    phoneVerified?: SortOrder
     points?: SortOrder
     questionTickets?: SortOrder
     lastTicketRefillAt?: SortOrder
@@ -7571,6 +11042,8 @@ export namespace Prisma {
     school?: SortOrder
     grade?: SortOrder
     role?: SortOrder
+    phone?: SortOrder
+    phoneVerified?: SortOrder
     points?: SortOrder
     questionTickets?: SortOrder
     lastTicketRefillAt?: SortOrder
@@ -7586,6 +11059,8 @@ export namespace Prisma {
     school?: SortOrder
     grade?: SortOrder
     role?: SortOrder
+    phone?: SortOrder
+    phoneVerified?: SortOrder
     points?: SortOrder
     questionTickets?: SortOrder
     lastTicketRefillAt?: SortOrder
@@ -7644,6 +11119,32 @@ export namespace Prisma {
     _max?: NestedEnumRoleFilter<$PrismaModel>
   }
 
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
   export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
     in?: Date[] | string[] | null
@@ -7670,21 +11171,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
-  }
-
-  export type StringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | null
-    notIn?: string[] | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    search?: string
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
   export type CategoryOrderByRelevanceInput = {
@@ -7717,29 +11203,6 @@ export namespace Prisma {
 
   export type CategorySumOrderByAggregateInput = {
     id?: SortOrder
-  }
-
-  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | null
-    notIn?: string[] | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    search?: string
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
-  }
-
-  export type BoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
   export type UserScalarRelationFilter = {
@@ -7812,14 +11275,6 @@ export namespace Prisma {
     views?: SortOrder
     authorId?: SortOrder
     categoryId?: SortOrder
-  }
-
-  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type PostScalarRelationFilter = {
@@ -7922,6 +11377,128 @@ export namespace Prisma {
     amount?: SortOrder
   }
 
+  export type PostViewUserIdPostIdCompoundUniqueInput = {
+    userId: number
+    postId: number
+  }
+
+  export type PostViewCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    postId?: SortOrder
+    viewedAt?: SortOrder
+  }
+
+  export type PostViewAvgOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    postId?: SortOrder
+  }
+
+  export type PostViewMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    postId?: SortOrder
+    viewedAt?: SortOrder
+  }
+
+  export type PostViewMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    postId?: SortOrder
+    viewedAt?: SortOrder
+  }
+
+  export type PostViewSumOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    postId?: SortOrder
+  }
+
+  export type AnswerUpvoteUserIdAnswerIdCompoundUniqueInput = {
+    userId: number
+    answerId: number
+  }
+
+  export type AnswerUpvoteCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    answerId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type AnswerUpvoteAvgOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    answerId?: SortOrder
+  }
+
+  export type AnswerUpvoteMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    answerId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type AnswerUpvoteMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    answerId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type AnswerUpvoteSumOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    answerId?: SortOrder
+  }
+
+  export type AdSessionOrderByRelevanceInput = {
+    fields: AdSessionOrderByRelevanceFieldEnum | AdSessionOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type AdSessionCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    status?: SortOrder
+    heartbeats?: SortOrder
+    startedAt?: SortOrder
+    lastHeartbeat?: SortOrder
+    completedAt?: SortOrder
+  }
+
+  export type AdSessionAvgOrderByAggregateInput = {
+    userId?: SortOrder
+    heartbeats?: SortOrder
+  }
+
+  export type AdSessionMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    status?: SortOrder
+    heartbeats?: SortOrder
+    startedAt?: SortOrder
+    lastHeartbeat?: SortOrder
+    completedAt?: SortOrder
+  }
+
+  export type AdSessionMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    status?: SortOrder
+    heartbeats?: SortOrder
+    startedAt?: SortOrder
+    lastHeartbeat?: SortOrder
+    completedAt?: SortOrder
+  }
+
+  export type AdSessionSumOrderByAggregateInput = {
+    userId?: SortOrder
+    heartbeats?: SortOrder
+  }
+
   export type PostCreateNestedManyWithoutAuthorInput = {
     create?: XOR<PostCreateWithoutAuthorInput, PostUncheckedCreateWithoutAuthorInput> | PostCreateWithoutAuthorInput[] | PostUncheckedCreateWithoutAuthorInput[]
     connectOrCreate?: PostCreateOrConnectWithoutAuthorInput | PostCreateOrConnectWithoutAuthorInput[]
@@ -7978,6 +11555,14 @@ export namespace Prisma {
 
   export type EnumRoleFieldUpdateOperationsInput = {
     set?: $Enums.Role
+  }
+
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
+  }
+
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
   }
 
   export type NullableDateTimeFieldUpdateOperationsInput = {
@@ -8086,10 +11671,6 @@ export namespace Prisma {
     connect?: PostWhereUniqueInput | PostWhereUniqueInput[]
   }
 
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
-  }
-
   export type PostUpdateManyWithoutCategoryNestedInput = {
     create?: XOR<PostCreateWithoutCategoryInput, PostUncheckedCreateWithoutCategoryInput> | PostCreateWithoutCategoryInput[] | PostUncheckedCreateWithoutCategoryInput[]
     connectOrCreate?: PostCreateOrConnectWithoutCategoryInput | PostCreateOrConnectWithoutCategoryInput[]
@@ -8142,10 +11723,6 @@ export namespace Prisma {
     connectOrCreate?: AnswerCreateOrConnectWithoutPostInput | AnswerCreateOrConnectWithoutPostInput[]
     createMany?: AnswerCreateManyPostInputEnvelope
     connect?: AnswerWhereUniqueInput | AnswerWhereUniqueInput[]
-  }
-
-  export type BoolFieldUpdateOperationsInput = {
-    set?: boolean
   }
 
   export type UserUpdateOneRequiredWithoutPostsNestedInput = {
@@ -8267,6 +11844,26 @@ export namespace Prisma {
     not?: NestedEnumRoleFilter<$PrismaModel> | $Enums.Role
   }
 
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
     in?: Date[] | string[] | null
@@ -8344,60 +11941,6 @@ export namespace Prisma {
     _max?: NestedEnumRoleFilter<$PrismaModel>
   }
 
-  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | null
-    notIn?: Date[] | string[] | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedDateTimeNullableFilter<$PrismaModel>
-    _max?: NestedDateTimeNullableFilter<$PrismaModel>
-  }
-
-  export type NestedIntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | null
-    notIn?: number[] | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
-  }
-
-  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[]
-    notIn?: Date[] | string[]
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
-  }
-
-  export type NestedStringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | null
-    notIn?: string[] | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    search?: string
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
-
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | null
@@ -8416,9 +11959,15 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
-  export type NestedBoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
   export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
@@ -8427,6 +11976,34 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedBoolFilter<$PrismaModel>
     _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
+  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[]
+    notIn?: Date[] | string[]
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
   export type PostCreateWithoutAuthorInput = {
@@ -8668,6 +12245,8 @@ export namespace Prisma {
     school: string
     grade: number
     role?: $Enums.Role
+    phone?: string | null
+    phoneVerified?: boolean
     points?: number
     questionTickets?: number
     lastTicketRefillAt?: Date | string | null
@@ -8685,6 +12264,8 @@ export namespace Prisma {
     school: string
     grade: number
     role?: $Enums.Role
+    phone?: string | null
+    phoneVerified?: boolean
     points?: number
     questionTickets?: number
     lastTicketRefillAt?: Date | string | null
@@ -8762,6 +12343,8 @@ export namespace Prisma {
     school?: StringFieldUpdateOperationsInput | string
     grade?: IntFieldUpdateOperationsInput | number
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneVerified?: BoolFieldUpdateOperationsInput | boolean
     points?: IntFieldUpdateOperationsInput | number
     questionTickets?: IntFieldUpdateOperationsInput | number
     lastTicketRefillAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -8779,6 +12362,8 @@ export namespace Prisma {
     school?: StringFieldUpdateOperationsInput | string
     grade?: IntFieldUpdateOperationsInput | number
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneVerified?: BoolFieldUpdateOperationsInput | boolean
     points?: IntFieldUpdateOperationsInput | number
     questionTickets?: IntFieldUpdateOperationsInput | number
     lastTicketRefillAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -8833,6 +12418,8 @@ export namespace Prisma {
     school: string
     grade: number
     role?: $Enums.Role
+    phone?: string | null
+    phoneVerified?: boolean
     points?: number
     questionTickets?: number
     lastTicketRefillAt?: Date | string | null
@@ -8850,6 +12437,8 @@ export namespace Prisma {
     school: string
     grade: number
     role?: $Enums.Role
+    phone?: string | null
+    phoneVerified?: boolean
     points?: number
     questionTickets?: number
     lastTicketRefillAt?: Date | string | null
@@ -8914,6 +12503,8 @@ export namespace Prisma {
     school?: StringFieldUpdateOperationsInput | string
     grade?: IntFieldUpdateOperationsInput | number
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneVerified?: BoolFieldUpdateOperationsInput | boolean
     points?: IntFieldUpdateOperationsInput | number
     questionTickets?: IntFieldUpdateOperationsInput | number
     lastTicketRefillAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -8931,6 +12522,8 @@ export namespace Prisma {
     school?: StringFieldUpdateOperationsInput | string
     grade?: IntFieldUpdateOperationsInput | number
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneVerified?: BoolFieldUpdateOperationsInput | boolean
     points?: IntFieldUpdateOperationsInput | number
     questionTickets?: IntFieldUpdateOperationsInput | number
     lastTicketRefillAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -8985,6 +12578,8 @@ export namespace Prisma {
     school: string
     grade: number
     role?: $Enums.Role
+    phone?: string | null
+    phoneVerified?: boolean
     points?: number
     questionTickets?: number
     lastTicketRefillAt?: Date | string | null
@@ -9002,6 +12597,8 @@ export namespace Prisma {
     school: string
     grade: number
     role?: $Enums.Role
+    phone?: string | null
+    phoneVerified?: boolean
     points?: number
     questionTickets?: number
     lastTicketRefillAt?: Date | string | null
@@ -9034,6 +12631,8 @@ export namespace Prisma {
     school?: StringFieldUpdateOperationsInput | string
     grade?: IntFieldUpdateOperationsInput | number
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneVerified?: BoolFieldUpdateOperationsInput | boolean
     points?: IntFieldUpdateOperationsInput | number
     questionTickets?: IntFieldUpdateOperationsInput | number
     lastTicketRefillAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -9051,6 +12650,8 @@ export namespace Prisma {
     school?: StringFieldUpdateOperationsInput | string
     grade?: IntFieldUpdateOperationsInput | number
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneVerified?: BoolFieldUpdateOperationsInput | boolean
     points?: IntFieldUpdateOperationsInput | number
     questionTickets?: IntFieldUpdateOperationsInput | number
     lastTicketRefillAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null

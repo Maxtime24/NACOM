@@ -7,7 +7,9 @@ import answersRouter from './routes/answers';
 import categoriesRouter from './routes/categories';
 
 const app = express();
+app.set('etag', false); // 304 응답으로 인한 트래픽/본문 이슈 방지를 위해 ETag 비활성화
 const PORT = parseInt(process.env.PORT ?? '3001', 10);
+
 
 // FRONTEND_URL은 쉼표(,)로 여러 주소 지정 가능
 // 예: "https://gyesan-co.vercel.app,http://localhost:8081"
@@ -49,14 +51,22 @@ app.get('/health', (_req, res) => {
 // -----------------------------------------------
 // 전역 에러 핸들러 (보안: 상세 에러 숨김)
 // -----------------------------------------------
-app.use((err: Error, _req: express.Request, res: express.Response, _next: express.NextFunction) => {
-  console.error('[ERROR]', err.message);
-  res.status(500).json({
-    message: process.env.NODE_ENV === 'production'
-      ? '서버 오류가 발생했습니다.'
-      : err.message,
-  });
+interface HttpError extends Error {
+  status?: number;
+}
+
+app.use((err: HttpError, _req: express.Request, res: express.Response, _next: express.NextFunction) => {
+  const status = err.status || 500;
+  console.error('[ERROR]', err.message, err.stack);
+  
+  // 보안: 500 에러일 경우 구체적인 에러 평문을 노출하지 않고 마스킹 처리
+  const message = status === 500 
+    ? '서버 내부 오류가 발생했습니다.' 
+    : err.message;
+
+  res.status(status).json({ message });
 });
+
 
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`✅ NACOM API Server running on http://0.0.0.0:${PORT} (accessible at http://13.209.42.194:${PORT})`);
